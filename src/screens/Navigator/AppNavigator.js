@@ -1,0 +1,116 @@
+import { StyleSheet, Text, View } from 'react-native'
+import React, { useState } from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import SplashScreen from '../SplashScreen'
+import GettingStarted from '../OnBoardingScreens/GettingStarted'
+import OnboardingScreen from '../OnBoardingScreens/OnBoarding'
+import Login from '../AuthenticationScreens/Login'
+import SignUp from '../AuthenticationScreens/SignUp'
+import ForgotPassword from '../AuthenticationScreens/ForgotPassword'
+import OTPEntry from '../AuthenticationScreens/OTPEntry'
+import SuccessScreen from '../AuthenticationScreens/SuccessScreen'
+import QuizScreen from '../QuizScreens/QuizScreen'
+import ErrorScreen from '../ErrorScreen'
+import BottomNavigator from './BottomNavigator'
+import BinStorePage from '../MainScreens/BinStorePage'
+import IQPortal from '../IQPortal/IQPortal'
+import CourseDetails from '../IQPortal/CourseDetails'
+import Tutorials from '../IQPortal/Tutorials'
+import SearchScreen from '../MainScreens/SearchScreen'
+
+const AppNavigator = () => {
+    const Stack = createStackNavigator();
+  const [hideSplashScreen, setHideSplashScreen] = useState(true);
+
+  return (
+    <NavigationContainer>
+        <Stack.Navigator>
+            <Stack.Screen
+                name='SplashScreen'
+                component={SplashScreen}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='OnBoarding'
+                component={OnboardingScreen}
+                options={{headerShown: false}}
+            />
+             <Stack.Screen
+                name='GettingStarted'
+                component={GettingStarted}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='SignUp'
+                component={SignUp}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='Login'
+                component={Login}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='ForgotPassword'
+                component={ForgotPassword}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='OTPEntry'
+                component={OTPEntry}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='SuccessScreen'
+                component={SuccessScreen}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='QuizScreen'
+                component={QuizScreen}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='ErrorScreen'
+                component={ErrorScreen}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='HomeNavigataor'
+                component={BottomNavigator}
+                options={{headerShown : false}}
+            />
+            <Stack.Screen
+                name='BinStore'
+                component={BinStorePage}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='IQPortal'
+                component={IQPortal}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='CourseDetails'
+                component={CourseDetails}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='Tutorials'
+                component={Tutorials}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='SearchScreen'
+                component={SearchScreen}
+                options={{headerShown: false}}
+            />
+        </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
+
+export default AppNavigator
+
+const styles = StyleSheet.create({})
