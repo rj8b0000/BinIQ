@@ -18,6 +18,13 @@ import IQPortal from '../IQPortal/IQPortal'
 import CourseDetails from '../IQPortal/CourseDetails'
 import Tutorials from '../IQPortal/Tutorials'
 import SearchScreen from '../MainScreens/SearchScreen'
+import Notification from '../UserProfileScreens/Notification'
+import FAQs from '../UserProfileScreens/FAQs'
+import HelpAndSupport from '../UserProfileScreens/HelpAndSupport'
+import Feedback from '../UserProfileScreens/Feedback'
+import FeedbackText from '../UserProfileScreens/FeedbackText'
+import ReferFriend from '../ReferalScreens/ReferFriend'
+import ShareReferLink from '../ReferalScreens/ShareReferLink'
 
 const AppNavigator = () => {
     const Stack = createStackNavigator();
@@ -104,6 +111,41 @@ const AppNavigator = () => {
             <Stack.Screen
                 name='SearchScreen'
                 component={SearchScreen}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='Notifications'
+                component={Notification}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='FAQs'
+                component={FAQs}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='HelpAndSupport'
+                component={HelpAndSupport}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='Feedback'
+                component={Feedback}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='FeedbackText'
+                component={FeedbackText}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='ReferFriend'
+                component={ReferFriend}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='ShareReferLink'
+                component={ShareReferLink}
                 options={{headerShown: false}}
             />
         </Stack.Navigator>

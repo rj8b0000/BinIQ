@@ -1,13 +1,16 @@
-import { Image, ImageBackground, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView, FlatList, Pressable } from 'react-native'
-import React from 'react'
+import { Image, ImageBackground, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView, FlatList, Pressable, Dimensions } from 'react-native'
+import React, { useState } from 'react'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { Camera, Search, Menu } from 'lucide-react-native';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
 
-const HomeScreen = () => {
+const { width, height } = Dimensions.get('window');
+const HomeScreen = ({ openDrawer }) => {
   const navigation = useNavigation();
+  const [activeSlide, setActiveSlide] = useState(1);
   const topBins = [
     {
       id: 1,
@@ -57,6 +60,18 @@ const HomeScreen = () => {
     }
 
   ]
+  const carouselImages = [
+    {
+      id: 1,
+      image: require('../../../assets/slider_1.png'),
+      styles: {width: wp(90), height: hp(40)}
+    },
+    {
+      id: 2,
+      image: require('../../../assets/globe_map.png'),
+      styles: {width: wp(85), height: hp(45)}
+    },
+  ]
   const myFavourites = [{
     id: 1,
     image: require('../../../assets/gray_img.png'),
@@ -85,6 +100,16 @@ const HomeScreen = () => {
     totalDiscount: '60% off'
   }
   ]
+  const renderCarouselItem = ({ item, index }) => {
+    return (
+      <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: '9%',width: wp(100), height: hp(40)}}>
+        <Image source={item.image} style={item.styles} />
+      </View>
+      //   <View style={{ justifyContent: 'center', alignItems: 'center', marginTop : '9%'}}>
+      //   <Image source={require('../../../assets/globe_map.png')} style={{ width: wp(85), height: hp(45)}} />
+      // </View>
+    )
+  };
   const renderItem = ({ item }) => (
     // <View style={{paddingHorizontal: '0.1%'}}>
     <Pressable style={{ width: wp(58), height: hp(25), marginVertical: '7%' }} onPress={() => navigation.navigate('BinStore')}>
@@ -135,27 +160,54 @@ const HomeScreen = () => {
       </View>
     </TouchableOpacity>
   );
+  const pagination = () => {
+    return (
+        <Pagination
+            dotsLength={carouselImages.length}
+            activeDotIndex={activeSlide}
+            containerStyle={styles.paginationContainer}
+            dotStyle={styles.paginationDot}
+            inactiveDotStyle={styles.paginationInactiveDot}
+            inactiveDotOpacity={0.3}
+            inactiveDotScale={0.7}
+        />
+    );
+};
   return (
     <ScrollView style={{ flex: 1, backgroundColor: '#fff' }} showsVerticalScrollIndicator={false}>
       <StatusBar translucent={true} backgroundColor={'transparent'} />
       <ImageBackground source={require('../../../assets/home_bg.jpg')} style={styles.vector}>
         <View style={styles.container}>
           <Pressable style={styles.searchContainer} onPress={() => navigation.navigate('SearchScreen')}>
-            <View style={styles.cameraButton}  onPress={() => navigation.navigate('SearchScreen')}>
-              <Image source={require('../../../assets/camera.png')} style={{ width: wp(7) }}/>
+            <View style={styles.cameraButton} onPress={() => navigation.navigate('SearchScreen')}>
+              <Image source={require('../../../assets/camera.png')} style={{ width: wp(7) }} />
             </View>
             <Text style={styles.input}>search for anything</Text>
             <View style={styles.searchButton}>
               <Image source={require('../../../assets/search.png')} style={{ width: wp(6) }} />
             </View>
           </Pressable>
-          <TouchableOpacity style={styles.menuButton}>
+          <TouchableOpacity style={styles.menuButton} onPress={openDrawer}>
             <FontAwesome6 name='bars-staggered' size={18} color={'#fff'} />
           </TouchableOpacity>
         </View>
-        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: '9%' }}>
-          <Image source={require('../../../assets/globe_map.png')} style={{ width: wp(85), height: hp(45) }} />
+        <Carousel
+          data={carouselImages}
+          renderItem={renderCarouselItem}
+          sliderWidth={width}
+          itemWidth={width}
+          layout={'default'}
+          loop={true}
+          onSnapToItem={(index) => setActiveSlide(index)}
+        />
+      {carouselImages[activeSlide]?.id === 2 && (
+        <View style={{ width: wp(100), height: hp(14), paddingHorizontal: '10%', justifyContent: 'center'}}>
+          <Image source={require('../../../assets/find_icon.png')} style={{ width: wp(8), height: hp(4) }} />
+          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(3) }}>BIN FINDER</Text>
+          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#667085', fontSize: hp(2.1) }}>Discover Hidden Gems Near You</Text>
         </View>
+      )}
+      {pagination()}
       </ImageBackground>
       {/* TOP BINS NEAR ME  */}
       <View style={{ flex: 1, width: '100%', height: hp(35) }}>
@@ -206,7 +258,7 @@ const HomeScreen = () => {
                 <View>
                   <Text style={{ fontFamily: 'Nunito-ExtraBold', color: '#0049AF', fontSize: hp(1.7) }}>Free Reseller Training</Text>
                   <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.4) }}>Reseller Training</Text>
-                  <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5), marginTop: '5%'  }}>Full Video • With PDF</Text>
+                  <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5), marginTop: '5%' }}>Full Video • With PDF</Text>
                 </View>
               </View>
             </Pressable>
@@ -234,7 +286,7 @@ const styles = StyleSheet.create({
   vector: {
     flex: 1,
     width: wp(100),
-    height: hp(68),
+    height: hp(75),
   },
   container: {
     flexDirection: 'row',
@@ -275,4 +327,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  paginationContainer: {
+    position: 'absolute',
+    left: '43%',
+    bottom: '-8%',
+    width: wp(10),
+    zIndex: 2
+},
+paginationDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: '#130160'
+},
+paginationInactiveDot: {
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+},
 })

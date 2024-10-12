@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native"
 import React from "react"
 import {
   View,
@@ -15,6 +16,7 @@ import Ionicons from "react-native-vector-icons/Ionicons"
 const { width } = Dimensions.get("window")
 
 const CustomDrawer = ({ isOpen, closeDrawer }) => {
+  const navigation = useNavigation();
   const translateX = React.useRef(new Animated.Value(-width)).current
 
   React.useEffect(() => {
@@ -26,13 +28,13 @@ const CustomDrawer = ({ isOpen, closeDrawer }) => {
   }, [isOpen])
 
   const menuItems = [
-    { icon: "person-outline", label: "Edit Profile" },
-    { icon: "notifications-outline", label: "Notification" },
-    { icon: "chatbox-outline", label: "Feedback" },
-    { icon: "lock-closed-outline", label: "Change Password" },
-    { icon: "help-circle-outline", label: "Help" },
-    { icon: "gift-outline", label: "Referral Program" },
-    { icon: "settings-outline", label: "Settings" }
+    // { icon: "person-outline", label: "Edit Profile", goto:  'EditProfile' },
+    { icon: "notifications-outline", label: "Notification", goto : 'Notifications' },
+    { icon: "chatbox-outline", label: "Feedback", goto : 'Feedback'},
+    // { icon: "lock-closed-outline", label: "Change Password", goto: 'null'},
+    { icon: "help-circle-outline", label: "Help", goto: 'HelpAndSupport'},
+    { icon: "gift-outline", label: "Referral Program", goto : 'ReferFriend'},
+    // { icon: "settings-outline", label: "Settings"}
   ]
 
   return (
@@ -49,7 +51,7 @@ const CustomDrawer = ({ isOpen, closeDrawer }) => {
       </View>
       <ScrollView style={styles.menuItems}>
         {menuItems.map((item, index) => (
-          <TouchableOpacity key={index} style={styles.menuItem}>
+          <TouchableOpacity key={index} style={styles.menuItem} onPress={() => navigation.navigate(item.goto)}>
             <Ionicons name={item.icon} size={24} color="#14BA9C" />
             <Text style={styles.menuItemLabel}>{item.label}</Text>
           </TouchableOpacity>

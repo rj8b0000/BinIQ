@@ -14,6 +14,7 @@ import MapScreen from '../MainScreens/MapScreen';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import HomeScreenMain from '../MainScreens/HomeScreenMain';
 
 const Tab = createBottomTabNavigator();
 const BottomNavigator = () => {
@@ -44,7 +45,7 @@ const BottomNavigator = () => {
             >
                 <Tab.Screen
                     name='HomeScreen'
-                    component={HomeScreen}
+                    component={HomeScreenMain}
                     options={{
                         tabBarShowLabel: false,
                         tabBarIcon: ({ focused }) => (

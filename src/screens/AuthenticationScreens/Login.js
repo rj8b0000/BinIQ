@@ -34,7 +34,7 @@ const Login = () => {
                         />
                     </View>
                 </View>
-                <TouchableOpacity style={styles.gettingStarted} onPress={() => navigation.navigate('Login')}>
+                <TouchableOpacity style={styles.gettingStarted} onPress={() => navigation.navigate('HomeNavigataor')}>
                     <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#fff', fontSize: hp(2.5) }}>Login</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={{ backgroundColor: 'transparent', justifyContent: 'center', marginVertical: '5%' }} onPress={() => navigation.navigate('ForgotPassword')}>

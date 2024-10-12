@@ -21,23 +21,23 @@ const IQPortal = () => {
         </View>
         <View style={{ flex: 1, width: '100%', height: hp(42) }}>
           <View style={{ marginVertical: '3%', paddingHorizontal: '5%' }}>
-            <View style={{ width: '100%', height: hp(25), flexDirection: 'row', marginTop: '4%', justifyContent: 'space-between' }}>
-              <Pressable style={{ width: wp(44), height: hp(25), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6', backgroundColor: '#fff' }}>
+            <View style={{ width: '100%', height: hp(30), flexDirection: 'row', marginTop: '4%', justifyContent: 'space-between' }}>
+              <Pressable style={{ width: wp(44), height: hp(30), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6', backgroundColor: '#fff' }}>
                 <Image source={require('../../../assets/reseller_training.png')} style={{ width: wp(44), height: hp(13), borderRadius: 5 }} />
                 <View style={{ margin: '6%', flexDirection: 'row', justifyContent: 'space-between' }}>
                   <View>
                     <Text style={{ fontFamily: 'Nunito-ExtraBold', color: '#0049AF', fontSize: hp(1.7) }}>Start a Bin Store</Text>
-                    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.4) }}>Bin Store</Text>
+                    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.9) }}>How to start a bin store Intro to reselling video</Text>
                     <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5), marginTop: '5%' }}>Full Video • With PDF</Text>
                   </View>
                 </View>
               </Pressable>
-              <Pressable style={{ width: wp(44), height: hp(25), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6', backgroundColor: '#fff' }}>
+              <Pressable style={{ width: wp(44), height: hp(30), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6', backgroundColor: '#fff' }}>
                 <Image source={require('../../../assets/reseller_training.png')} style={{ width: wp(44), height: hp(13), borderRadius: 5 }} />
                 <View style={{ margin: '6%', flexDirection: 'row', justifyContent: 'space-between' }}>
                   <View>
                     <Text style={{ fontFamily: 'Nunito-ExtraBold', color: '#0049AF', fontSize: hp(1.6) }}>Free Reseller Training</Text>
-                    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.4) }}>Buy Pallets</Text>
+                    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.9) }}>Resellers BluePrint Method</Text>
                     <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5), marginTop: '5%' }}>1 Video • With PDF</Text>
                   </View>
                 </View>
@@ -51,7 +51,7 @@ const IQPortal = () => {
                 <View style={{ margin: '6%', flexDirection: 'row', justifyContent: 'space-between' }}>
                   <View>
                     <Text style={{ fontFamily: 'Nunito-ExtraBold', color: '#0049AF', fontSize: hp(1.7) }}>Reseller BluePrint</Text>
-                    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.3) }}>Reseller Training</Text>
+                    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.9) }}>How to Buy Pallets</Text>
                     <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5), marginTop: '5%' }}>3 Video • With PDF</Text>
                   </View>
                 </View>
@@ -62,7 +62,7 @@ const IQPortal = () => {
                 <View style={{ margin: '6%', flexDirection: 'row', justifyContent: 'space-between' }}>
                   <View>
                     <Text style={{ fontFamily: 'Nunito-ExtraBold', color: '#0049AF', fontSize: hp(1.6) }}>Buy Pallets</Text>
-                    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.4) }}>Buy Pallets</Text>
+                    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.9) }}>Truckloads Directly</Text>
                     <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5), marginTop: '5%' }}>Full Traning • With PDF</Text>
                   </View>
                 </View>
