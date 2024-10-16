@@ -205,12 +205,12 @@ const styles = StyleSheet.create({
     headerChild: {
         flexDirection: 'row',
         alignItems: 'center',
-        width: wp(55),
+        width: wp(50),
         justifyContent: 'space-between'
     },
     headerText: {
         fontFamily: 'Nunito-Bold',
-        fontSize: hp(3.5),
+        fontSize: hp(3.2),
         textAlign: 'left',
         color: '#0D0140'
     },

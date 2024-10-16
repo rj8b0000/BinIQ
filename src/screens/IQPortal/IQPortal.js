@@ -71,7 +71,7 @@ const IQPortal = () => {
           </View>
           <View style={{paddingHorizontal: '5%'}}>
           <View style={{marginVertical: '7%'}}>
-        <Text style={{fontFamily: 'Nunito-Bold', color: '#130160', fontSize: hp(2.6) }}>ADDITIONAL SERVICES</Text>
+        <Text style={{fontFamily: 'Nunito-Bold', color: '#130160', fontSize: hp(2.3) }}>ADDITIONAL SERVICES</Text>
       </View>
       <View style={{backgroundColor: '#fff', width: wp(90), height: hp(6.5), borderRadius: 5,justifyContent: 'center', paddingHorizontal: '5%', elevation: 3, marginBottom: '4%'}}>
         <Text style={{color: '#524B6B', fontFamily: 'Nunito-SemiBold', fontSize: hp(2)}}>Scale Your Business: $185.00</Text>
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontFamily: 'Nunito-Bold',
-    fontSize: hp(3.2),
+    fontSize: hp(2.9),
     textAlign: 'left',
     color: '#0D0140'
   },

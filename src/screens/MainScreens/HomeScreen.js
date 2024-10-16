@@ -6,6 +6,7 @@ import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+import MapView, { Marker } from 'react-native-maps';
 
 const { width, height } = Dimensions.get('window');
 const HomeScreen = ({ openDrawer }) => {
@@ -64,13 +65,13 @@ const HomeScreen = ({ openDrawer }) => {
     {
       id: 1,
       image: require('../../../assets/slider_1.png'),
-      styles: {width: wp(85), height: hp(41.5)}
+      styles: {width: wp(85), height: hp(45)}
     },
     {
       id: 2,
-      image: require('../../../assets/globe_map.png'),
-      styles: {width: wp(80), height: hp(40)}
-    },
+      isMap : true,
+      styles: {width: wp(100), height: hp(100)}
+    }
   ]
   const myFavourites = [{
     id: 1,
@@ -101,18 +102,41 @@ const HomeScreen = ({ openDrawer }) => {
   }
   ]
   const renderCarouselItem = ({ item, index }) => {
+    if (item.isMap) {
+      return (
+      <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: '9%', width: wp(90), height: wp(90), overflow: 'hidden', backgroundColor: 'red', alignSelf: 'center'}}>
+        <MapView
+          style={{...item.styles}}
+          initialRegion={{
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.0722,
+            longitudeDelta: 0.0221,
+          }}
+        >
+          {locations.map(location => (
+            <Marker
+              key={location.id}
+              coordinate={{
+                latitude: location.latitude,
+                longitude: location.longitude,
+              }}
+              title={location.title}
+            />
+          ))}
+        </MapView>
+        </View>
+      );
+    }
     return (
       <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: '9%',width: wp(100), height: hp(40)}}>
         <Image source={item.image} style={item.styles} />
       </View>
-      //   <View style={{ justifyContent: 'center', alignItems: 'center', marginTop : '9%'}}>
-      //   <Image source={require('../../../assets/globe_map.png')} style={{ width: wp(85), height: hp(45)}} />
-      // </View>
     )
   };
   const renderItem = ({ item }) => (
     // <View style={{paddingHorizontal: '0.1%'}}>
-    <Pressable style={{ width: wp(52), height: hp(25), marginVertical: '7%'}} onPress={() => navigation.navigate('TopBinsNearMe')}>
+    <Pressable style={{ width: wp(52), height: hp(25), marginVertical: '7%'}} onPress={() => navigation.navigate('BinStore')}>
       <View style={{ width: wp(49), height: hp(23.5), borderRadius: 10, borderWidth: 0.4, borderColor: '#999' }}>
         <Image source={item.image} style={{ width: wp(49), height: hp(14), borderRadius: 10 }} />
         <View style={{ margin: '5%', flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -173,11 +197,18 @@ const HomeScreen = ({ openDrawer }) => {
         />
     );
 };
+const locations = [
+  { id: 1, title: 'Location 1', latitude: 37.78825, longitude: -122.4324 },
+  { id: 2, title: 'Location 2', latitude: 37.78925, longitude: -122.4224 },
+  { id: 3, title: 'Location 3', latitude: 37.79025, longitude: -122.4124 },
+  { id: 4, title: 'Location 4', latitude: 37.79125, longitude: -122.4024 },
+  { id: 5, title: 'Location 5', latitude: 37.79225, longitude: -122.3924 },
+];
   return (
     <ScrollView style={{ flex: 1, backgroundColor: '#fff' }} showsVerticalScrollIndicator={false}>
       <StatusBar translucent={true} backgroundColor={'transparent'} />
       <ImageBackground source={require('../../../assets/home_bg.jpg')} style={styles.vector}>
-        <View style={styles.container}>
+      <View style={styles.container}>
           <Pressable style={styles.searchContainer} onPress={() => navigation.navigate('SearchScreen')}>
             <View style={styles.cameraButton} onPress={() => navigation.navigate('SearchScreen')}>
               <Image source={require('../../../assets/camera.png')} style={{ width: wp(7) }} />
@@ -199,7 +230,7 @@ const HomeScreen = ({ openDrawer }) => {
           layout={'default'}
           loop={true}
           onSnapToItem={(index) => setActiveSlide(index)}
-        />
+        /> 
       {carouselImages[activeSlide]?.id === 2 ? (
         <View style={{ width: wp(100), height: hp(14), paddingHorizontal: '10%', justifyContent: 'center'}}>
           <Image source={require('../../../assets/find_icon.png')} style={{ width: wp(7), height: hp(3.5) }} />
@@ -212,7 +243,9 @@ const HomeScreen = ({ openDrawer }) => {
       {/* TOP BINS NEAR ME  */}
       <View style={{ flex: 1, width: '100%', height: hp(35) }}>
         <View style={{ marginTop: '7%', paddingHorizontal: '5%' }}>
-          <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.4), color: '#000000' }}>TOP BINS NEAR ME</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('TopBinsNearMe')}>
+        <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.4), color: '#000000' }}>TOP BINS NEAR ME</Text>
+        </TouchableOpacity>
           <FlatList
             data={topBins}
             renderItem={renderItem}
@@ -345,5 +378,8 @@ paginationDot: {
 },
 paginationInactiveDot: {
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
+},
+map: {
+  ...StyleSheet.absoluteFillObject,
 },
 })

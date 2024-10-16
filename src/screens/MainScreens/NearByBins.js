@@ -22,72 +22,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const { width } = Dimensions.get('window');
 
-// Component for individual list items
-const ListItem = ({ item }) => (
-  <View style={styles.itemContainer}>
-    <View style={styles.itemImage} />
-    <View style={styles.itemDetails}>
-      <Text style={styles.itemTitle}>{item.title}</Text>
-      <Text style={styles.itemSubtitle}>{item.subtitle}</Text>
-    </View>
-    <TouchableOpacity style={styles.heartIcon}>
-      <Ionicons name={item.isFavorite ? "heart" : "heart-outline"} size={24} color={item.isFavorite ? "red" : "gray"} />
-    </TouchableOpacity>
-  </View>
-);
+// Component for individual list item
 
-// Component for the Scan History tab
-const ScanHistoryScreen = () => {
-  const myFavourites = [{
-    id: 1,
-    image: require('../../../assets/gray_img.png'),
-    description: `IWC Schaffhausen 2021 Pilot's Watch "SIHH 2019" 44mm`,
-    discountPrice: '$65',
-    originalPrice: '$151',
-    totalDiscount: '60% off'
-  },
-  {
-    id: 2,
-    image: require('../../../assets/gray_img.png'),
-    description: `IWC Schaffhausen 2021 Pilot's Watch "SIHH 2019" 44mm`,
-    discountPrice: '$65',
-    originalPrice: '$151',
-    totalDiscount: '60% off'
-  },
-  {
-    id: 3,
-    image: require('../../../assets/gray_img.png'),
-    description: `IWC Schaffhausen 2021 Pilot's Watch "SIHH 2019" 44mm`,
-    discountPrice: '$65',
-    originalPrice: '$151',
-    totalDiscount: '60% off'
-  },
-  {
-    id: 4,
-    image: require('../../../assets/gray_img.png'),
-    description: `IWC Schaffhausen 2021 Pilot's Watch "SIHH 2019" 44mm`,
-    discountPrice: '$65',
-    originalPrice: '$151',
-    totalDiscount: '60% off'
-  },
-  ]
-
-  return (
-    <View style={{ flex: 1, width: '100%' }}>
-    <View style={{ marginVertical: '4%', }}>
-      <View style={{ marginVertical: '3%' }}>
-        <FlatList
-          data={myFavourites}
-          renderItem={renderMyFavourites}
-          keyExtractor={(item) => item.id.toString()}
-          numColumns={2}
-          showsHorizontalScrollIndicator={false}
-        />
-      </View>
-    </View>
-  </View>
-  );
-};
 
 // Component for the My Items tab
   const topBins = [
@@ -124,22 +60,6 @@ const ScanHistoryScreen = () => {
       review: '4.2'
     },
   ]
-  const renderItem = ({ item }) => (
-            <View style={{ width: wp(43.6), height: hp(23), borderRadius: 10, borderWidth: 0.5, borderColor: '#e6e6e6', backgroundColor: '#fff',marginHorizontal: '1%', marginVertical: '3%'}}>
-        <Image source={item.image} style={{ width: wp(43.6), height: hp(13), borderRadius: 10 }} />
-        <View style={{ margin: '6%', flexDirection: 'row', justifyContent: 'space-between' }}>
-          <View>
-            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#0049AF', fontSize: hp(1.8) }}>{item.title}</Text>
-            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.3) }}>{item.location}</Text>
-            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5) }}>{item.distance}</Text>
-          </View>
-          <View style={{ backgroundColor: '#FFBB36', height: hp(2), width: wp(8), flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', padding: '1.5%', borderRadius: 4 }}>
-            <FontAwesome name='star' size={8} color={'#fff'} />
-            <Text style={{ color: '#fff', fontFamily: 'Nunito-Regular', fontSize: hp(1)}}>{item.review}</Text>
-          </View>
-        </View>
-      </View>
-  );
 
 const renderMyFavourites = ({ item }) => (
   <View style={{ width: wp(47), height: hp(26)}}>
@@ -161,39 +81,25 @@ const renderMyFavourites = ({ item }) => (
 const NearByBins = () => {
   const [activeTab, setActiveTab] = useState('scan'); // State to track which tab is active
   const navigation = useNavigation();
-  const myFavourites = [{
-    id: 1,
-    image: require('../../../assets/gray_img.png'),
-    description: `IWC Schaffhausen 2021 Pilot's Watch "SIHH 2019" 44mm`,
-    discountPrice: '$65',
-    originalPrice: '$151',
-    totalDiscount: '60% off'
-  },
-  {
-    id: 2,
-    image: require('../../../assets/gray_img.png'),
-    description: `IWC Schaffhausen 2021 Pilot's Watch "SIHH 2019" 44mm`,
-    discountPrice: '$65',
-    originalPrice: '$151',
-    totalDiscount: '60% off'
-  },
-  {
-    id: 3,
-    image: require('../../../assets/gray_img.png'),
-    description: `IWC Schaffhausen 2021 Pilot's Watch "SIHH 2019" 44mm`,
-    discountPrice: '$65',
-    originalPrice: '$151',
-    totalDiscount: '60% off'
-  },
-  {
-    id: 4,
-    image: require('../../../assets/gray_img.png'),
-    description: `IWC Schaffhausen 2021 Pilot's Watch "SIHH 2019" 44mm`,
-    discountPrice: '$65',
-    originalPrice: '$151',
-    totalDiscount: '60% off'
-  },
-  ]
+
+  const renderItem = ({ item }) => {
+    return(
+      <TouchableOpacity style={{ width: wp(43.6), height: hp(23), borderRadius: 10, borderWidth: 0.5, borderColor: '#e6e6e6', backgroundColor: '#fff',marginHorizontal: '1%', marginVertical: '3%'}} onPress={() => navigation.navigate('BinStore')}>
+      <Image source={item.image} style={{ width: wp(43.6), height: hp(13), borderRadius: 10 }} />
+      <View style={{ margin: '6%', flexDirection: 'row', justifyContent: 'space-between' }}>
+        <View>
+          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#0049AF', fontSize: hp(1.8) }}>{item.title}</Text>
+          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.3) }}>{item.location}</Text>
+          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5) }}>{item.distance}</Text>
+        </View>
+        <View style={{ backgroundColor: '#FFBB36', height: hp(2), width: wp(8), flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', padding: '1.5%', borderRadius: 4 }}>
+          <FontAwesome name='star' size={8} color={'#fff'} />
+          <Text style={{ color: '#fff', fontFamily: 'Nunito-Regular', fontSize: hp(1)}}>{item.review}</Text>
+        </View>
+      </View>
+    </TouchableOpacity>
+    )
+  };
 
   return (
     <View style={styles.container}>
