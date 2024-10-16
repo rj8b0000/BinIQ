@@ -25,6 +25,10 @@ import Feedback from '../UserProfileScreens/Feedback'
 import FeedbackText from '../UserProfileScreens/FeedbackText'
 import ReferFriend from '../ReferalScreens/ReferFriend'
 import ShareReferLink from '../ReferalScreens/ShareReferLink'
+import SingleItemPage from '../MainScreens/SingleItemPage'
+import TopBinsItems from '../MainScreens/TopBinsItems'
+import NearByBins from '../MainScreens/NearByBins'
+import PromoScreen from '../QuizScreens/PromoScreen'
 
 const AppNavigator = () => {
     const Stack = createStackNavigator();
@@ -146,6 +150,26 @@ const AppNavigator = () => {
             <Stack.Screen
                 name='ShareReferLink'
                 component={ShareReferLink}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='SinglePageItem'
+                component={SingleItemPage}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='TopBinItems'
+                component={TopBinsItems}
+                options={{headerShown: false}}
+            />
+                        <Stack.Screen
+                name='TopBinsNearMe'
+                component={NearByBins}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name='PromoScreen'
+                component={PromoScreen}
                 options={{headerShown: false}}
             />
         </Stack.Navigator>

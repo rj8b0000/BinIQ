@@ -90,7 +90,6 @@ const ScanHistoryScreen = () => {
 };
 
 // Component for the My Items tab
-const MyItemsScreen = () => {
   const topBins = [
     {
       id: 1,
@@ -142,23 +141,6 @@ const MyItemsScreen = () => {
       </View>
   );
 
-  return (
-    <View style={{ flex: 1, width: '100%'}}>
-      <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.6), color: '#000000', marginVertical: '2%' }}>FAV. BINS</Text>
-      <View style={{width: '100%'}}>
-      <FlatList
-        data={topBins}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-        // horizontal={true}
-        numColumns={2}
-        showsHorizontalScrollIndicator={false}
-        // scrollEnabled={false}
-      />
-      </View>
-  </View>
-  );
-};
 const renderMyFavourites = ({ item }) => (
   <View style={{ width: wp(47), height: hp(26)}}>
     <View style={{ width: wp(45), height: hp(26), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6' }}>
@@ -176,9 +158,42 @@ const renderMyFavourites = ({ item }) => (
     </View>
   </View>
 );
-const FavouratiesScreen = () => {
+const NearByBins = () => {
   const [activeTab, setActiveTab] = useState('scan'); // State to track which tab is active
   const navigation = useNavigation();
+  const myFavourites = [{
+    id: 1,
+    image: require('../../../assets/gray_img.png'),
+    description: `IWC Schaffhausen 2021 Pilot's Watch "SIHH 2019" 44mm`,
+    discountPrice: '$65',
+    originalPrice: '$151',
+    totalDiscount: '60% off'
+  },
+  {
+    id: 2,
+    image: require('../../../assets/gray_img.png'),
+    description: `IWC Schaffhausen 2021 Pilot's Watch "SIHH 2019" 44mm`,
+    discountPrice: '$65',
+    originalPrice: '$151',
+    totalDiscount: '60% off'
+  },
+  {
+    id: 3,
+    image: require('../../../assets/gray_img.png'),
+    description: `IWC Schaffhausen 2021 Pilot's Watch "SIHH 2019" 44mm`,
+    discountPrice: '$65',
+    originalPrice: '$151',
+    totalDiscount: '60% off'
+  },
+  {
+    id: 4,
+    image: require('../../../assets/gray_img.png'),
+    description: `IWC Schaffhausen 2021 Pilot's Watch "SIHH 2019" 44mm`,
+    discountPrice: '$65',
+    originalPrice: '$151',
+    totalDiscount: '60% off'
+  },
+  ]
 
   return (
     <View style={styles.container}>
@@ -193,41 +208,26 @@ const FavouratiesScreen = () => {
             <Pressable onPress={() => navigation.goBack()}>
               <MaterialIcons name='arrow-back-ios' color={'#0D0D26'} size={25} />
             </Pressable>
-            <Text style={styles.headerText}>My Favourites</Text>
+            <Text style={styles.headerText}>Top Bins Near Me</Text>
           </View>
         </View>
 
-        {/* Tab navigation */}
-        <View style={styles.tabContainer}>
-          <TouchableOpacity
-            style={[styles.tab, activeTab === 'scan' && styles.activeTab]}
-            onPress={() => setActiveTab('scan')}
-          >
-            <Text style={[styles.tabText, activeTab === 'scan' && styles.activeTabText]}>Fav Items</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.tab, activeTab === 'items' && styles.activeTab]}
-            onPress={() => setActiveTab('items')}
-          >
-            <Text style={[styles.tabText, activeTab === 'items' && styles.activeTabText]}>Location</Text>
-          </TouchableOpacity>
-        </View>
-
-        {/* Content for the active tab */}
-        <ScrollView style={styles.content}>
-          {/* <Text style={styles.sectionTitle}>TODAY</Text> */}
-          {activeTab === 'scan' ? <ScanHistoryScreen /> : <MyItemsScreen />}
-        </ScrollView>
-        <View style={styles.enrollNowContainer}>
-                    <Pressable style={styles.button} onPress={() => navigation.navigate('HomeNavigataor')}>
-                        <Text style={styles.buttonText}>ADD TO LIBRARY</Text>
-                    </Pressable>
-                </View>
+        <View style={{ flex: 1, width: '100%'}}>
+        <View style={{width: '100%', margin: '4%'}}>
+      <FlatList
+        data={topBins}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id.toString()}
+        numColumns={2}
+        showsHorizontalScrollIndicator={false}
+      />
+      </View>
+  </View>
       </ImageBackground>
     </View>
   );
 };
-export default FavouratiesScreen;
+export default NearByBins;
 
 
 const styles = StyleSheet.create({
@@ -352,8 +352,8 @@ const styles = StyleSheet.create({
   enrollNowContainer: {
     position: 'absolute',
     elevation: 5,
-    width: wp(85),
-    height: hp(15),
+    width: wp(90),
+    height: hp(18),
     backgroundColor: '#fff',
     bottom: hp(6),
     alignSelf: 'center',
@@ -361,12 +361,12 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingVertical: '8%'
+    paddingVertical: '10%'
 },
 button: {
     backgroundColor: '#1a237e', // Dark purple color
-    width: '77%',
-    height: hp(5),
+    width: '80%',
+    height: hp(5.6),
     borderRadius: 10,
     justifyContent: 'center',
     elevation: 3, // This creates the shadow for the button

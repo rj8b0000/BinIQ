@@ -1,13 +1,15 @@
+
 import { Dimensions, FlatList, Image, ImageBackground, Pressable, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import React, { useRef, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import OTPTextView from 'react-native-otp-textinput';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const { width, height } = Dimensions.get('window')
-const QuizScreen = () => {
+const PromoScreen = () => {
     const navigation = useNavigation();
     const questions = [
         {
@@ -19,7 +21,7 @@ const QuizScreen = () => {
             id: 2,
             question: 'What tools or software do you currently use to assist with your reselling business?',
             options: [],
-            isOtherOption: true, // Flag for text input when 'Others' is selected
+            isOtherOption: true, 
         },
         {
             id: 3,
@@ -40,7 +42,7 @@ const QuizScreen = () => {
         },
         {
             id: 6,
-            question: 'Are you interested in educational resources or training that could help improve your reselling skills?',
+            question: 'Is there anything else you would like to share about your reselling experience or need that we haven’t covered?',
             options: [],
             isOtherOption: true, 
         },
@@ -75,95 +77,40 @@ const QuizScreen = () => {
                 </Pressable>
                 <Image source={require('../../../assets/logo.png')} style={styles.logo} />
             </View>
-            <View style={{ flex: 1, marginHorizontal: '5%', marginTop: hp(1) }}>
-                <View style={styles.progressContainer}>
-                    {questions.map((_, index) => (
-                        <View
-                            key={index}
-                            style={[styles.progressDot, currentQuestion >= index && styles.activeDot]}
-                        />
-                    ))}
-                </View>
-                <Text style={styles.questionText}>{questions[currentQuestion].question}</Text>
-                <ScrollView style={styles.optionContainer}>
-                    <FlatList
-                        data={questions[currentQuestion].options}
-                        keyExtractor={(item) => item}
-                        renderItem={({ item }) => (
-                            <TouchableOpacity
-                                style={[
-                                    styles.optionButton,
-                                    answers[currentQuestion] === item && styles.selectedOption,
-                                ]}
-                                onPress={() => handleOptionSelect(item)}
-                            >
-                                <Text style={styles.optionText}>{item}</Text>
-                            </TouchableOpacity>
-                        )}
-                    />
-
-                    {/* Show TextInput for 'Others' Option */}
-                    {questions[currentQuestion].isOtherOption && answers[currentQuestion] === 'Others' && (
-                        <TextInput
-                            style={styles.textInputForQue3}
-                            placeholder="Please specify............"
-                            placeholderTextColor={'#000'}
-                            value={otherText}
-                            onChangeText={setOtherText}
-                        />
-                    )}
-                     {/* {questions[currentQuestion].isOtherOption && answers[currentQuestion] === 'Others' && (
-                        <TextInput
-                            style={styles.textInput}
-                            placeholder="Please specify..."
-                            value={otherText}
-                            onChangeText={setOtherText}
-                        />
-                    )} */}
-                    {questions[currentQuestion].id === 2 && (
-                        <TextInput
-                            style={styles.textInput}
-                            placeholder= '..................'
-                            placeholderTextColor={'#000'}
-                            value={otherText}
-                            onChangeText={setOtherText}
-                        />
-                    )}
-                                        {questions[currentQuestion].id === 6 && (
-                        <TextInput
-                            style={styles.textInput}
-                            placeholder= '..................'
-                            placeholderTextColor={'#000'}
-                            value={otherText}
-                            onChangeText={setOtherText}
-                        />
-                    )}
-                    {
-                        questions[currentQuestion].id === 4 && answers[currentQuestion] === 'Yes' &&(
-                            navigation.navigate('PromoScreen')
-                        )
-                    }
-
-                </ScrollView>
-                {currentQuestion < questions.length - 1 ? (
-                    <TouchableOpacity style={styles.nextButton} onPress={handleNextQuestion}>
-                        <AntDesign name="arrowright" size={30} color="#fff" style={styles.nextArrow} />
-                    </TouchableOpacity>
-
-                ): (
-                    <View style={styles.enrollNowContainer}>
+            <View style={styles.content}>
+         <Text style={styles.title}>
+           Embark on an immersive journey into the dynamic world of BinIQ and start with our{' '}
+           <Text style={styles.highlightText}>FREE RESELLING TRAINING</Text>
+         </Text> 
+         <View style={{backgroundColor: '#fff', padding: '2%', borderRadius: 10, elevation: 4}}>
+         <View style={styles.videoContainer}>
+           <View style={styles.ratingContainer}>
+                <Text style={{color: '#fff', fontSize: hp(1.8)}}>4,8</Text>
+             <Ionicons name="star" size={hp(1.8)} color="#FFD700" />
+             <AntDesign name="hearto" size={hp(1.8)} color="#fff" />
+           </View>
+         </View>      
+         <Text style={styles.courseTitle}>Reselling Training</Text>
+         <Text style={styles.courseDescription}>
+           In this course, you'll learn everything there is to know about Free Reselling Video
+         </Text>      
+         <View style={styles.progressContainer}>
+           <View style={styles.progressBar} />
+           <Text style={styles.progressText}>1/1 Video</Text>
+         </View>
+        </View>     
+       </View>
+       <View style={styles.enrollNowContainer}>
                     <Pressable style={styles.button} onPress={() => navigation.navigate('HomeNavigataor')}>
                         <Text style={styles.buttonText}>ENROLL NOW</Text>
                     </Pressable>
                 </View>
-                )}
-            </View>
             <ImageBackground source={require('../../../assets/vector_3.png')} style={styles.vector2} />
         </View>
     )
 }
 
-export default QuizScreen
+export default PromoScreen
 
 const styles = StyleSheet.create({
     container: {
@@ -367,6 +314,95 @@ const styles = StyleSheet.create({
         position: 'absolute',
         elevation: 5,
         width: wp(90),
+        height: hp(16),
+        backgroundColor: '#fff',
+        bottom: 0,
+        alignSelf: 'center',
+        borderTopRightRadius: 10,
+        borderTopLeftRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    button: {
+        backgroundColor: '#1a237e', // Dark purple color
+        width: '80%',
+        height: hp(5.6),
+        borderRadius: 10,
+        justifyContent: 'center',
+        elevation: 3, // This creates the shadow for the button
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: hp(1.9),
+        fontFamily: 'Nunito-Bold',
+        textAlign: 'center',
+    },
+    content: {
+        flex: 1,
+        paddingHorizontal: 20,
+      },
+      title: {
+        fontSize: hp(2.2),
+        fontFamily: 'Nunito-SemiBold',
+        color: '#333',
+        marginBottom: 20,
+      },
+      highlightText: {
+        color: '#14BA9C',
+        fontFamily: 'Nunito-Bold'
+      },
+      videoContainer: {
+        width: '100%',
+        height: hp(20),
+        backgroundColor: '#e0e0e0',
+        borderRadius: 10,
+        justifyContent: 'flex-end',
+        marginBottom: 20,
+      },
+      ratingContainer: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        flexDirection: 'row',
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        padding: 4,
+        borderRadius: 10,
+        // alignSelf: 'flex-start',
+        margin: 10,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: wp(17),
+      },
+      courseTitle: {
+        fontSize: hp(2.5),
+        fontFamily: 'Nunito-Bold',
+        color: '#000'
+      },
+      courseDescription: {
+        fontSize: hp(2),
+        color: '#666',
+        fontFamily: 'Nunito-SemiBold',
+        marginVertical: '5%',
+      },
+      progressContainer: {
+        marginBottom: 20,
+      },
+      progressBar: {
+        height: hp(0.9),
+        backgroundColor: '#14BA9C',
+        width: '100%',
+        borderRadius: 10,
+      },
+      progressText: {
+        fontSize: 14,
+        color: '#666',
+        marginTop: 5,
+        textAlign: 'right'
+      },
+      enrollNowContainer: {
+        position: 'absolute',
+        elevation: 5,
+        width: wp(100),
         height: hp(16),
         backgroundColor: '#fff',
         bottom: 0,

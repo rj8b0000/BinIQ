@@ -10,7 +10,7 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 const { width, height } = Dimensions.get('window');
 const HomeScreen = ({ openDrawer }) => {
   const navigation = useNavigation();
-  const [activeSlide, setActiveSlide] = useState(1);
+  const [activeSlide, setActiveSlide] = useState(0);
   const topBins = [
     {
       id: 1,
@@ -64,12 +64,12 @@ const HomeScreen = ({ openDrawer }) => {
     {
       id: 1,
       image: require('../../../assets/slider_1.png'),
-      styles: {width: wp(90), height: hp(40)}
+      styles: {width: wp(85), height: hp(41.5)}
     },
     {
       id: 2,
       image: require('../../../assets/globe_map.png'),
-      styles: {width: wp(85), height: hp(45)}
+      styles: {width: wp(80), height: hp(40)}
     },
   ]
   const myFavourites = [{
@@ -112,28 +112,28 @@ const HomeScreen = ({ openDrawer }) => {
   };
   const renderItem = ({ item }) => (
     // <View style={{paddingHorizontal: '0.1%'}}>
-    <Pressable style={{ width: wp(58), height: hp(25), marginVertical: '7%' }} onPress={() => navigation.navigate('BinStore')}>
-      <View style={{ width: wp(55), height: hp(25), borderRadius: 10, borderWidth: 0.5, borderColor: '#e6e6e6' }}>
-        <Image source={item.image} style={{ width: wp(55), height: hp(15), borderRadius: 10 }} />
-        <View style={{ margin: '6%', flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Pressable style={{ width: wp(52), height: hp(25), marginVertical: '7%'}} onPress={() => navigation.navigate('TopBinsNearMe')}>
+      <View style={{ width: wp(49), height: hp(23.5), borderRadius: 10, borderWidth: 0.4, borderColor: '#999' }}>
+        <Image source={item.image} style={{ width: wp(49), height: hp(14), borderRadius: 10 }} />
+        <View style={{ margin: '5%', flexDirection: 'row', justifyContent: 'space-between' }}>
           <View>
-            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#0049AF', fontSize: hp(2.1) }}>{item.title}</Text>
-            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.7) }}>{item.location}</Text>
-            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5) }}>{item.distance}</Text>
+            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#0049AF', fontSize: hp(2) }}>{item.title}</Text>
+            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.6) }}>{item.location}</Text>
+            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.4) }}>{item.distance}</Text>
           </View>
-          <View style={{ backgroundColor: '#FFBB36', height: hp(3), width: wp(12), flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', padding: '1.5%', borderRadius: 4 }}>
-            <FontAwesome name='star' size={13} color={'#fff'} />
-            <Text style={{ color: '#fff', fontFamily: 'Nunito-Regular' }}>{item.review}</Text>
+          <View style={{ backgroundColor: '#FFBB36', height: hp(2.3), width: wp(11), flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', padding: '1.4%', borderRadius: 4 }}>
+            <FontAwesome name='star' size={12} color={'#fff'} />
+            <Text style={{ color: '#fff', fontFamily: 'Nunito-Regular', fontSize: hp(1.6) }}>{item.review}</Text>
           </View>
         </View>
       </View>
     </Pressable>
-
   );
   const renderProductsItem = ({ item }) => (
-    <View style={{ width: wp(52), height: hp(23) }}>
-      <View style={{ width: wp(50), height: hp(21), borderRadius: 10, borderWidth: 0.5, borderColor: '#e6e6e6' }}>
-        <Image source={item.image} style={{ width: wp(50), height: hp(13) }} />
+    <TouchableOpacity style={{ width: wp(52), height: hp(23),  marginVertical: '5%'}} onPress={() => navigation.navigate('TopBinItems')}>
+
+      <View style={{ width: wp(48), height: hp(22), borderRadius: 10, borderWidth: 0.5, borderColor: '#999' }}>
+        <Image source={item.image} style={{ width: wp(47), height: hp(13) }} />
         <View style={{ margin: '3%', flexDirection: 'row', justifyContent: 'space-between' }}>
           <View>
             <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#0049AF', fontSize: hp(1.6) }}>{item.title}</Text>
@@ -142,7 +142,7 @@ const HomeScreen = ({ openDrawer }) => {
           </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
   const renderMyFavourites = ({ item }) => (
     <TouchableOpacity style={{ width: wp(47), height: hp(26) }} onPress={() => navigation.navigate('FavouritesScreen')}>
@@ -200,19 +200,19 @@ const HomeScreen = ({ openDrawer }) => {
           loop={true}
           onSnapToItem={(index) => setActiveSlide(index)}
         />
-      {carouselImages[activeSlide]?.id === 2 && (
+      {carouselImages[activeSlide]?.id === 2 ? (
         <View style={{ width: wp(100), height: hp(14), paddingHorizontal: '10%', justifyContent: 'center'}}>
-          <Image source={require('../../../assets/find_icon.png')} style={{ width: wp(8), height: hp(4) }} />
-          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(3) }}>BIN FINDER</Text>
-          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#667085', fontSize: hp(2.1) }}>Discover Hidden Gems Near You</Text>
+          <Image source={require('../../../assets/find_icon.png')} style={{ width: wp(7), height: hp(3.5) }} />
+          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.6) }}>BIN FINDER</Text>
+          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#667085', fontSize: hp(1.7) }}>Discover Hidden Gems Near You</Text>
         </View>
-      )}
+      ) : null}
       {pagination()}
       </ImageBackground>
       {/* TOP BINS NEAR ME  */}
       <View style={{ flex: 1, width: '100%', height: hp(35) }}>
-        <View style={{ marginVertical: '7%', paddingHorizontal: '5%' }}>
-          <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.6), color: '#000000' }}>TOP BINS NEAR ME</Text>
+        <View style={{ marginTop: '7%', paddingHorizontal: '5%' }}>
+          <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.4), color: '#000000' }}>TOP BINS NEAR ME</Text>
           <FlatList
             data={topBins}
             renderItem={renderItem}
@@ -223,7 +223,9 @@ const HomeScreen = ({ openDrawer }) => {
         </View>
       </View>
       {/* PRODUCTS  */}
-      <View style={{ width: wp(100), height: hp(22), paddingHorizontal: '5%' }}>
+      <View style={{ flex: 1, width: '100%', height: hp(30)}}>
+        <View style={{ marginVertical: '0%', paddingHorizontal: '5%' }}>
+        <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.4), color: '#000000' }}>TOP BIN ITEM</Text>
         <FlatList
           data={products}
           renderItem={renderProductsItem}
@@ -231,11 +233,12 @@ const HomeScreen = ({ openDrawer }) => {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
         />
-      </View>
+        </View>
+        </View>
       {/* MY FAVOURITES  */}
       <View style={{ flex: 1, width: '100%', height: hp(35) }}>
-        <View style={{ marginVertical: '6%', paddingHorizontal: '5%' }}>
-          <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.6), color: '#000000' }}>MY FAVOURITES</Text>
+        <View style={{ marginVertical: '0%', paddingHorizontal: '5%' }}>
+          <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.4), color: '#000000' }}>MY FAVOURITES</Text>
           <View style={{ marginVertical: '3%' }}>
             <FlatList
               data={myFavourites}
@@ -249,25 +252,25 @@ const HomeScreen = ({ openDrawer }) => {
       </View>
       {/* RESELLER IO PORTAL  */}
       <View style={{ flex: 1, width: '100%', height: hp(42) }}>
-        <View style={{ marginVertical: '6%', paddingHorizontal: '5%' }}>
-          <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.6), color: '#000000' }}>RESELLER IQ PORTAL</Text>
+        <View style={{ marginVertical: '0%', paddingHorizontal: '5%' }}>
+          <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.4), color: '#000000' }}>RESELLER IQ PORTAL</Text>
           <View style={{ width: '100%', height: hp(25), flexDirection: 'row', marginTop: '4%', justifyContent: 'space-between' }}>
-            <Pressable style={{ width: wp(44), height: hp(25), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6' }} onPress={() => navigation.navigate('IQPortal')}>
+            <Pressable style={{ width: wp(44), height: hp(24), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6' }} onPress={() => navigation.navigate('IQPortal')}>
               <Image source={require('../../../assets/reseller_training.png')} style={{ width: wp(44), height: hp(13), borderRadius: 5 }} />
               <View style={{ margin: '6%', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <View>
                   <Text style={{ fontFamily: 'Nunito-ExtraBold', color: '#0049AF', fontSize: hp(1.7) }}>Free Reseller Training</Text>
-                  <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.4) }}>Reseller Training</Text>
+                  <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.2) }}>Reseller Training</Text>
                   <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5), marginTop: '5%' }}>Full Video • With PDF</Text>
                 </View>
               </View>
             </Pressable>
-            <Pressable style={{ width: wp(44), height: hp(25), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6' }}>
+            <Pressable style={{ width: wp(44), height: hp(24), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6' }}>
               <Image source={require('../../../assets/reseller_training.png')} style={{ width: wp(44), height: hp(13), borderRadius: 5 }} />
               <View style={{ margin: '6%', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <View>
                   <Text style={{ fontFamily: 'Nunito-ExtraBold', color: '#0049AF', fontSize: hp(1.6) }}>Buy Pallets</Text>
-                  <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.4) }}>Buy Pallets</Text>
+                  <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.2) }}>Buy Pallets</Text>
                   <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5), marginTop: '5%' }}>Full Video • With PDF</Text>
                 </View>
               </View>
@@ -286,7 +289,7 @@ const styles = StyleSheet.create({
   vector: {
     flex: 1,
     width: wp(100),
-    height: hp(75),
+    height: hp(73),
   },
   container: {
     flexDirection: 'row',

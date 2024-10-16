@@ -11,6 +11,9 @@ const ShareReferLink = () => {
             <View style={styles.header}>
                 <Text style={{ color: '#fff', fontFamily: 'Nunito-SemiBold', fontSize: hp(2.4), textAlign: 'center' }}>Refer A Friend And You’ll Both Be Rewarded!</Text>
             </View>
+            <View style={{marginHorizontal: '5%', width: wp(90), height: hp(20), justifyContent: 'center', alignItems: 'center'}}>
+                <Image source={require('../../../assets/refer_screen.png')} style={{width: '97%', height: hp(16)}}/>
+            </View>
             <View style={{ width: wp(100), paddingHorizontal: '5%' }}>
                 <View style={styles.footerContainer}>
                     <Text style={{ color: '#130160', fontWeight: '500', fontSize: hp(3), textAlign: 'center' }}>Share your Unique Link</Text>
@@ -21,6 +24,14 @@ const ShareReferLink = () => {
                 </TouchableOpacity>
                     </View>
                 </View>
+            </View>
+            <View style={{width: '80%', alignSelf: 'center', height: hp(6), flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Image source={require('../../../assets/fb.png')} style={{height: '100%', width: wp(12)}}/>
+                <Image source={require('../../../assets/x.png')} style={{height: '100%', width: wp(12)}}/>
+                <Image source={require('../../../assets/whatsapp.png')} style={{height: '100%', width: wp(12)}}/>
+                <Image source={require('../../../assets/telegram.png')} style={{height: '100%', width: wp(12)}}/>
+                <Image source={require('../../../assets/messenger.png')} style={{height: '100%', width: wp(12)}}/>
+                <Image source={require('../../../assets/ln.png')} style={{height: '100%', width: wp(12)}}/>
             </View>
             <ImageBackground source={require('../../../assets/vector_2.png')} style={styles.vector2} />
         </View>
@@ -59,7 +70,7 @@ const styles = StyleSheet.create({
         width: wp(90),
         height: hp(25),
         marginVertical: '5%',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     gettingStarted: {
         backgroundColor: '#130160',

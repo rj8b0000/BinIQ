@@ -176,7 +176,7 @@ const renderMyFavourites = ({ item }) => (
     </View>
   </View>
 );
-const FavouratiesScreen = () => {
+const TopBinsItems = () => {
   const [activeTab, setActiveTab] = useState('scan'); // State to track which tab is active
   const navigation = useNavigation();
 
@@ -193,24 +193,8 @@ const FavouratiesScreen = () => {
             <Pressable onPress={() => navigation.goBack()}>
               <MaterialIcons name='arrow-back-ios' color={'#0D0D26'} size={25} />
             </Pressable>
-            <Text style={styles.headerText}>My Favourites</Text>
+            <Text style={styles.headerText}>Top Bins Items</Text>
           </View>
-        </View>
-
-        {/* Tab navigation */}
-        <View style={styles.tabContainer}>
-          <TouchableOpacity
-            style={[styles.tab, activeTab === 'scan' && styles.activeTab]}
-            onPress={() => setActiveTab('scan')}
-          >
-            <Text style={[styles.tabText, activeTab === 'scan' && styles.activeTabText]}>Fav Items</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.tab, activeTab === 'items' && styles.activeTab]}
-            onPress={() => setActiveTab('items')}
-          >
-            <Text style={[styles.tabText, activeTab === 'items' && styles.activeTabText]}>Location</Text>
-          </TouchableOpacity>
         </View>
 
         {/* Content for the active tab */}
@@ -218,16 +202,11 @@ const FavouratiesScreen = () => {
           {/* <Text style={styles.sectionTitle}>TODAY</Text> */}
           {activeTab === 'scan' ? <ScanHistoryScreen /> : <MyItemsScreen />}
         </ScrollView>
-        <View style={styles.enrollNowContainer}>
-                    <Pressable style={styles.button} onPress={() => navigation.navigate('HomeNavigataor')}>
-                        <Text style={styles.buttonText}>ADD TO LIBRARY</Text>
-                    </Pressable>
-                </View>
       </ImageBackground>
     </View>
   );
 };
-export default FavouratiesScreen;
+export default TopBinsItems;
 
 
 const styles = StyleSheet.create({
@@ -352,8 +331,8 @@ const styles = StyleSheet.create({
   enrollNowContainer: {
     position: 'absolute',
     elevation: 5,
-    width: wp(85),
-    height: hp(15),
+    width: wp(90),
+    height: hp(18),
     backgroundColor: '#fff',
     bottom: hp(6),
     alignSelf: 'center',
@@ -361,12 +340,12 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingVertical: '8%'
+    paddingVertical: '10%'
 },
 button: {
     backgroundColor: '#1a237e', // Dark purple color
-    width: '77%',
-    height: hp(5),
+    width: '80%',
+    height: hp(5.6),
     borderRadius: 10,
     justifyContent: 'center',
     elevation: 3, // This creates the shadow for the button

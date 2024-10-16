@@ -44,7 +44,7 @@ const onboardingData = [
     ),
     subtitle: "Efficiently store and review scan history, and manage inventory with precision.",
     image: require('../../../assets/ob_img4.png'), // Add your image path
-    styles: { width: wp(90), height: hp(25)}
+    styles: { width: wp(90), height: hp(37)}
   },
 ];
 
