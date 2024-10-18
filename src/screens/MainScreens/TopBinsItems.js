@@ -5,39 +5,17 @@ import {
   Text,
   StyleSheet,
   ScrollView,
-  TouchableOpacity,
   FlatList,
-  Dimensions,
   ImageBackground,
   StatusBar,
   Pressable,
   Image
 } from 'react-native';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-const { width } = Dimensions.get('window');
-
-// Component for individual list items
-const ListItem = ({ item }) => (
-  <View style={styles.itemContainer}>
-    <View style={styles.itemImage} />
-    <View style={styles.itemDetails}>
-      <Text style={styles.itemTitle}>{item.title}</Text>
-      <Text style={styles.itemSubtitle}>{item.subtitle}</Text>
-    </View>
-    <TouchableOpacity style={styles.heartIcon}>
-      <Ionicons name={item.isFavorite ? "heart" : "heart-outline"} size={24} color={item.isFavorite ? "red" : "gray"} />
-    </TouchableOpacity>
-  </View>
-);
-
-// Component for the Scan History tab
-const ScanHistoryScreen = () => {
+const TopBinItemsList = () => {
   const myFavourites = [{
     id: 1,
     image: require('../../../assets/gray_img.png'),
@@ -73,95 +51,19 @@ const ScanHistoryScreen = () => {
   ]
 
   return (
-    <View style={{ flex: 1, width: '100%' }}>
-    <View style={{ marginVertical: '4%', }}>
-      <View style={{ marginVertical: '3%' }}>
+    <View style={{ flex: 1, width: '100%', flexDirection: 'row', paddingHorizontal: '2.5%'}}>
         <FlatList
           data={myFavourites}
           renderItem={renderMyFavourites}
           keyExtractor={(item) => item.id.toString()}
           numColumns={2}
-          showsHorizontalScrollIndicator={false}
         />
-      </View>
-    </View>
-  </View>
-  );
-};
-
-// Component for the My Items tab
-const MyItemsScreen = () => {
-  const topBins = [
-    {
-      id: 1,
-      image: require('../../../assets/flip_find.png'),
-      title: 'FLIP $ FIND',
-      location: 'Florida US',
-      distance: '3.4KM',
-      review: '4.2'
-    },
-    {
-      id: 2,
-      image: require('../../../assets/hidden_finds.png'),
-      title: 'HIDDED FINDS',
-      location: 'Florida US',
-      distance: '3.4KM',
-      review: '4.2'
-    },
-    {
-      id: 3,
-      image: require('../../../assets/flip_find.png'),
-      title: 'FLIP $ FIND',
-      location: 'Florida US',
-      distance: '3.4KM',
-      review: '4.2'
-    },
-    {
-      id: 4,
-      image: require('../../../assets/hidden_finds.png'),
-      title: 'HIDDED FINDS',
-      location: 'Florida US',
-      distance: '3.4KM',
-      review: '4.2'
-    },
-  ]
-  const renderItem = ({ item }) => (
-            <View style={{ width: wp(43.6), height: hp(23), borderRadius: 10, borderWidth: 0.5, borderColor: '#e6e6e6', backgroundColor: '#fff',marginHorizontal: '1%', marginVertical: '3%'}}>
-        <Image source={item.image} style={{ width: wp(43.6), height: hp(13), borderRadius: 10 }} />
-        <View style={{ margin: '6%', flexDirection: 'row', justifyContent: 'space-between' }}>
-          <View>
-            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#0049AF', fontSize: hp(1.8) }}>{item.title}</Text>
-            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.3) }}>{item.location}</Text>
-            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5) }}>{item.distance}</Text>
-          </View>
-          <View style={{ backgroundColor: '#FFBB36', height: hp(2), width: wp(8), flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', padding: '1.5%', borderRadius: 4 }}>
-            <FontAwesome name='star' size={8} color={'#fff'} />
-            <Text style={{ color: '#fff', fontFamily: 'Nunito-Regular', fontSize: hp(1)}}>{item.review}</Text>
-          </View>
-        </View>
-      </View>
-  );
-
-  return (
-    <View style={{ flex: 1, width: '100%'}}>
-      <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.6), color: '#000000', marginVertical: '2%' }}>FAV. BINS</Text>
-      <View style={{width: '100%'}}>
-      <FlatList
-        data={topBins}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-        // horizontal={true}
-        numColumns={2}
-        showsHorizontalScrollIndicator={false}
-        // scrollEnabled={false}
-      />
-      </View>
   </View>
   );
 };
 const renderMyFavourites = ({ item }) => (
-  <View style={{ width: wp(47), height: hp(26)}}>
-    <View style={{ width: wp(45), height: hp(26), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6' }}>
+  <View style={{ width: wp(47), height: hp(26), alignItems: 'center', marginVertical: '1%'}}>
+    <View style={{ width: wp(45), height: hp(26), borderRadius: 5, borderWidth: 1, borderColor: '#e6e6e6', backgroundColor: '#fff'}}>
       <Image source={item.image} style={{ width: wp(45), height: hp(13), borderRadius: 5 }} />
       <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
       <View style={{ paddingHorizontal: '1%' }}>
@@ -177,7 +79,6 @@ const renderMyFavourites = ({ item }) => (
   </View>
 );
 const TopBinsItems = () => {
-  const [activeTab, setActiveTab] = useState('scan'); // State to track which tab is active
   const navigation = useNavigation();
 
   return (
@@ -196,11 +97,16 @@ const TopBinsItems = () => {
             <Text style={styles.headerText}>Top Bins Items</Text>
           </View>
         </View>
-
-        {/* Content for the active tab */}
+        <View style={{flexDirection: 'row', alignItems: 'center', marginHorizontal: '3%'}}>
+        <Pressable style={styles.searchContainer} onPress={() => navigation.navigate('SearchScreen')}>
+            <Text style={styles.input}>search for anything</Text>
+            <View>
+              <Image source={require('../../../assets/search.png')} style={{ width: wp(6) }} />
+            </View>
+          </Pressable>
+        </View>
         <ScrollView style={styles.content}>
-          {/* <Text style={styles.sectionTitle}>TODAY</Text> */}
-          {activeTab === 'scan' ? <ScanHistoryScreen /> : <MyItemsScreen />}
+          <TopBinItemsList/> 
         </ScrollView>
       </ImageBackground>
     </View>
@@ -280,7 +186,6 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    paddingHorizontal: 16,
   },
   sectionTitle: {
     fontSize: 12,
@@ -355,5 +260,25 @@ buttonText: {
     fontSize: hp(1.9),
     fontFamily: 'Nunito-Bold',
     textAlign: 'center',
+},
+searchContainer: {
+  flex: 1,
+  flexDirection: 'row',
+  alignItems: 'center',
+  // backgroundColor: 'trasparent',
+  borderWidth: 1,
+  borderRadius: 12,
+  marginRight: 10,
+  borderColor: '#99ABC678',
+  height: hp(6),
+  marginVertical: '2.5%',
+  paddingHorizontal: '3%'
+},
+input: {
+  flex: 1,
+  fontSize: hp(2.2),
+  fontFamily: 'Nunito-Regular',
+  paddingVertical: 8,
+  color: '#999'
 },
 });

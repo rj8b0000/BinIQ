@@ -7,6 +7,16 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import MapView, { Marker } from 'react-native-maps';
+import Feather from 'react-native-vector-icons/Feather';
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import BinIQIcon from  '../../../assets/BinIQIcon.svg';
+import GetButton from  '../../../assets/GetButton.svg';
+import Notification from  '../../../assets/Notification.svg';
+import CameraIcon from  '../../../assets/CameraIcon.svg';
+import SearchIcon from  '../../../assets/SearchIcon.svg';
+import MenuIcon from  '../../../assets/MenuIcon.svg';
+import BinFinderIcon from  '../../../assets/BinFinderIcon.svg';
 
 const { width, height } = Dimensions.get('window');
 const HomeScreen = ({ openDrawer }) => {
@@ -23,6 +33,54 @@ const HomeScreen = ({ openDrawer }) => {
     },
     {
       id: 2,
+      image: require('../../../assets/hidden_finds.png'),
+      title: 'HIDDED FINDS',
+      location: 'Florida US',
+      distance: '3.4KM',
+      review: '4.2'
+    },
+    {
+      id: 3,
+      image: require('../../../assets/flip_find.png'),
+      title: 'FLIP $ FIND',
+      location: 'Florida US',
+      distance: '3.4KM',
+      review: '4.2'
+    },
+    {
+      id: 4,
+      image: require('../../../assets/hidden_finds.png'),
+      title: 'HIDDED FINDS',
+      location: 'Florida US',
+      distance: '3.4KM',
+      review: '4.2'
+    },
+    {
+      id: 5,
+      image: require('../../../assets/flip_find.png'),
+      title: 'FLIP $ FIND',
+      location: 'Florida US',
+      distance: '3.4KM',
+      review: '4.2'
+    },
+    {
+      id: 6,
+      image: require('../../../assets/hidden_finds.png'),
+      title: 'HIDDED FINDS',
+      location: 'Florida US',
+      distance: '3.4KM',
+      review: '4.2'
+    },
+    {
+      id: 7,
+      image: require('../../../assets/flip_find.png'),
+      title: 'FLIP $ FIND',
+      location: 'Florida US',
+      distance: '3.4KM',
+      review: '4.2'
+    },
+    {
+      id: 8,
       image: require('../../../assets/hidden_finds.png'),
       title: 'HIDDED FINDS',
       location: 'Florida US',
@@ -58,6 +116,34 @@ const HomeScreen = ({ openDrawer }) => {
       title: 'DARLIE',
       description: 'All shiny white toothpaste 140g',
       price: '$24.3 - 35.8'
+    },
+    {
+      id: 5,
+      image: require('../../../assets/colgate.png'),
+      title: 'COLGATE',
+      description: 'Advance whitening toothpaste 160g',
+      price: '$7 - 27'
+    },
+    {
+      id: 6,
+      image: require('../../../assets/darlie.png'),
+      title: 'DARLIE',
+      description: 'All shiny white toothpaste 140g',
+      price: '$24.3 - 35.8'
+    },
+    {
+      id: 7,
+      image: require('../../../assets/colgate.png'),
+      title: 'COLGATE',
+      description: 'Advance whitening toothpaste 160g',
+      price: '$7 - 27'
+    },
+    {
+      id: 8,
+      image: require('../../../assets/darlie.png'),
+      title: 'DARLIE',
+      description: 'All shiny white toothpaste 140g',
+      price: '$24.3 - 35.8'
     }
 
   ]
@@ -65,80 +151,166 @@ const HomeScreen = ({ openDrawer }) => {
     {
       id: 1,
       image: require('../../../assets/slider_1.png'),
-      styles: {width: wp(85), height: hp(45)}
+      styles: { width: wp(90), height: hp(47) }
     },
     {
       id: 2,
-      isMap : true,
-      styles: {width: wp(100), height: hp(100)}
+      isMap: true,
+      styles: { width: wp(100), height: hp(100) }
     }
   ]
-  const myFavourites = [{
-    id: 1,
-    image: require('../../../assets/gray_img.png'),
-    title: 'COLGATE',
-    description: `IWC Schaffhausen 2021 Pilot's Watch "SIHH 2019" 44mm`,
-    discountPrice: '$65',
-    originalPrice: '$151',
-    totalDiscount: '60% off'
-  },
-  {
-    id: 2,
-    image: require('../../../assets/gray_img.png'),
-    title: 'COLGATE',
-    description: `Labbin White Sneakers For Men and Female`,
-    discountPrice: '$650',
-    originalPrice: '$125',
-    totalDiscount: '70% off'
-  },
-  {
-    id: 3,
-    image: require('../../../assets/gray_img.png'),
-    title: 'COLGATE',
-    description: `Mammon Women's Handbag (Set of 3, Beige)`,
-    discountPrice: '$75',
-    originalPrice: '$199',
-    totalDiscount: '60% off'
-  }
+  const myFavourites = [
+    {
+      id: 1,
+      image: require('../../../assets/gray_img.png'),
+      title: 'COLGATE',
+      description: `IWC Schaffhausen 2021 Pilot's Watch "SIHH 2019" 44mm`,
+      discountPrice: '$65',
+      originalPrice: '$151',
+      totalDiscount: '60% off'
+    },
+    {
+      id: 2,
+      image: require('../../../assets/gray_img.png'),
+      title: 'COLGATE',
+      description: `Labbin White Sneakers For Men and Female`,
+      discountPrice: '$650',
+      originalPrice: '$125',
+      totalDiscount: '70% off'
+    },
+    {
+      id: 3,
+      image: require('../../../assets/gray_img.png'),
+      title: 'COLGATE',
+      description: `Mammon Women's Handbag (Set of 3, Beige)`,
+      discountPrice: '$75',
+      originalPrice: '$199',
+      totalDiscount: '60% off'
+    },
+    {
+      id: 4,
+      image: require('../../../assets/gray_img.png'),
+      title: 'COLGATE',
+      description: `IWC Schaffhausen 2021 Pilot's Watch "SIHH 2019" 44mm`,
+      discountPrice: '$65',
+      originalPrice: '$151',
+      totalDiscount: '60% off'
+    },
+    {
+      id: 5,
+      image: require('../../../assets/gray_img.png'),
+      title: 'COLGATE',
+      description: `Labbin White Sneakers For Men and Female`,
+      discountPrice: '$650',
+      originalPrice: '$125',
+      totalDiscount: '70% off'
+    },
+    {
+      id: 6,
+      image: require('../../../assets/gray_img.png'),
+      title: 'COLGATE',
+      description: `Mammon Women's Handbag (Set of 3, Beige)`,
+      discountPrice: '$75',
+      originalPrice: '$199',
+      totalDiscount: '60% off'
+    },
+    {
+      id: 7,
+      image: require('../../../assets/gray_img.png'),
+      title: 'COLGATE',
+      description: `IWC Schaffhausen 2021 Pilot's Watch "SIHH 2019" 44mm`,
+      discountPrice: '$65',
+      originalPrice: '$151',
+      totalDiscount: '60% off'
+    },
+    {
+      id: 8,
+      image: require('../../../assets/gray_img.png'),
+      title: 'COLGATE',
+      description: `Labbin White Sneakers For Men and Female`,
+      discountPrice: '$650',
+      originalPrice: '$125',
+      totalDiscount: '70% off'
+    },
+    {
+      id: 9,
+      image: require('../../../assets/gray_img.png'),
+      title: 'COLGATE',
+      description: `Mammon Women's Handbag (Set of 3, Beige)`,
+      discountPrice: '$75',
+      originalPrice: '$199',
+      totalDiscount: '60% off'
+    }
+  ]
+  const resellerIQPortal = [
+    {
+      id: 1,
+      image: require('../../../assets/reseller_training.png'),
+      miniHeader: 'Buy Pallets',
+      title : 'Buy Pallets',
+      tutDetails: 'Full Video • With PDF'
+    },
+    {
+      id: 2,
+      image: require('../../../assets/reseller_training.png'),
+      miniHeader: 'Buy Pallets',
+      title : 'Buy Pallets',
+      tutDetails: 'Full Video • With PDF'
+    },
+    {
+      id: 3,
+      image: require('../../../assets/reseller_training.png'),
+      miniHeader: 'Buy Pallets',
+      title : 'Buy Pallets',
+      tutDetails: 'Full Video • With PDF'
+    },
+    {
+      id: 4,
+      image: require('../../../assets/reseller_training.png'),
+      miniHeader: 'Buy Pallets',
+      title : 'Buy Pallets',
+      tutDetails: 'Full Video • With PDF'
+    }
   ]
   const renderCarouselItem = ({ item, index }) => {
     if (item.isMap) {
       return (
-      <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: '9%', width: wp(90), height: wp(90), overflow: 'hidden', backgroundColor: 'red', alignSelf: 'center'}}>
-        <MapView
-          style={{...item.styles}}
-          initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0722,
-            longitudeDelta: 0.0221,
-          }}
-        >
-          {locations.map(location => (
-            <Marker
-              key={location.id}
-              coordinate={{
-                latitude: location.latitude,
-                longitude: location.longitude,
-              }}
-              title={location.title}
-            />
-          ))}
-        </MapView>
+        <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: '4%', width: wp(90), height: wp(90), overflow: 'hidden', backgroundColor: 'red', alignSelf: 'center' }}>
+          <MapView
+            style={{ ...item.styles }}
+            initialRegion={{
+              latitude: 37.78825,
+              longitude: -122.4324,
+              latitudeDelta: 0.0722,
+              longitudeDelta: 0.0221,
+            }}
+          >
+            {locations.map(location => (
+              <Marker
+                key={location.id}
+                coordinate={{
+                  latitude: location.latitude,
+                  longitude: location.longitude,
+                }}
+                title={location.title}
+              />
+            ))}
+          </MapView>
         </View>
       );
     }
     return (
-      <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: '9%',width: wp(100), height: hp(40)}}>
+      <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: '9%', width: wp(100), height: hp(40) }}>
         <Image source={item.image} style={item.styles} />
       </View>
     )
   };
   const renderItem = ({ item }) => (
     // <View style={{paddingHorizontal: '0.1%'}}>
-    <Pressable style={{ width: wp(52), height: hp(25), marginVertical: '7%'}} onPress={() => navigation.navigate('BinStore')}>
+    <Pressable style={{ width: wp(52), height: hp(25), marginVertical: '7%' }} onPress={() => navigation.navigate('BinStore')}>
       <View style={{ width: wp(49), height: hp(23.5), borderRadius: 10, borderWidth: 0.4, borderColor: '#999' }}>
         <Image source={item.image} style={{ width: wp(49), height: hp(14), borderRadius: 10 }} />
+      <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
         <View style={{ margin: '5%', flexDirection: 'row', justifyContent: 'space-between' }}>
           <View>
             <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#0049AF', fontSize: hp(2) }}>{item.title}</Text>
@@ -154,10 +326,10 @@ const HomeScreen = ({ openDrawer }) => {
     </Pressable>
   );
   const renderProductsItem = ({ item }) => (
-    <TouchableOpacity style={{ width: wp(52), height: hp(23),  marginVertical: '5%'}} onPress={() => navigation.navigate('TopBinItems')}>
-
+    <TouchableOpacity style={{ width: wp(52), height: hp(23), marginVertical: '5%' }}>
       <View style={{ width: wp(48), height: hp(22), borderRadius: 10, borderWidth: 0.5, borderColor: '#999' }}>
         <Image source={item.image} style={{ width: wp(47), height: hp(13) }} />
+      <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
         <View style={{ margin: '3%', flexDirection: 'row', justifyContent: 'space-between' }}>
           <View>
             <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#0049AF', fontSize: hp(1.6) }}>{item.title}</Text>
@@ -169,11 +341,12 @@ const HomeScreen = ({ openDrawer }) => {
     </TouchableOpacity>
   );
   const renderMyFavourites = ({ item }) => (
-    <TouchableOpacity style={{ width: wp(47), height: hp(26) }} onPress={() => navigation.navigate('FavouritesScreen')}>
-      <View style={{ width: wp(45), height: hp(26), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6' }}>
-        <Image source={item.image} style={{ width: wp(45), height: hp(13), borderRadius: 5 }} />
+    <TouchableOpacity style={{ width: wp(44), height: hp(26) }}>
+      <View style={{ width: wp(42), height: hp(26), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6' }}>
+        <Image source={item.image} style={{ width: wp(42), height: hp(13), borderRadius: 5 }} />
+      <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
         <View style={{ paddingHorizontal: '1%' }}>
-          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.7), margin: '0.5%' }}>{item.description}</Text>
+          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.5), margin: '0.5%' }}>{item.description}</Text>
         </View>
         <View style={{ position: 'absolute', bottom: '2%', paddingHorizontal: '3%' }}>
           <View>
@@ -184,44 +357,72 @@ const HomeScreen = ({ openDrawer }) => {
       </View>
     </TouchableOpacity>
   );
+  const renderResellerPortal = ({ item }) => (
+    <TouchableOpacity style={{ width: wp(46), height: hp(26)}}>
+      <Pressable style={{ width: wp(44), height: hp(24), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6' }}>
+<Image source={item.image} style={{ width: wp(44), height: hp(13), borderRadius: 5 }} />
+<View style={{ margin: '5%', flexDirection: 'row', justifyContent: 'space-between' }}>
+  <View>
+    <Text style={{ fontFamily: 'Nunito-ExtraBold', color: '#0049AF', fontSize: hp(1.7) }}>{item.miniHeader}</Text>
+    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.2) }}>{item.title}</Text>
+    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5), marginTop: '5%' }}>{item.tutDetails}</Text>
+  </View>
+</View>
+</Pressable>
+    </TouchableOpacity>
+  )
   const pagination = () => {
     return (
-        <Pagination
-            dotsLength={carouselImages.length}
-            activeDotIndex={activeSlide}
-            containerStyle={styles.paginationContainer}
-            dotStyle={styles.paginationDot}
-            inactiveDotStyle={styles.paginationInactiveDot}
-            inactiveDotOpacity={0.3}
-            inactiveDotScale={0.7}
-        />
+      <Pagination
+        dotsLength={carouselImages.length}
+        activeDotIndex={activeSlide}
+        containerStyle={styles.paginationContainer}
+        dotStyle={styles.paginationDot}
+        inactiveDotStyle={styles.paginationInactiveDot}
+        inactiveDotOpacity={0.3}
+        inactiveDotScale={0.7}
+      />
     );
-};
-const locations = [
-  { id: 1, title: 'Location 1', latitude: 37.78825, longitude: -122.4324 },
-  { id: 2, title: 'Location 2', latitude: 37.78925, longitude: -122.4224 },
-  { id: 3, title: 'Location 3', latitude: 37.79025, longitude: -122.4124 },
-  { id: 4, title: 'Location 4', latitude: 37.79125, longitude: -122.4024 },
-  { id: 5, title: 'Location 5', latitude: 37.79225, longitude: -122.3924 },
-];
+  };
+  const locations = [
+    { id: 1, title: 'Location 1', latitude: 37.78825, longitude: -122.4324 },
+    { id: 2, title: 'Location 2', latitude: 37.78925, longitude: -122.4224 },
+    { id: 3, title: 'Location 3', latitude: 37.79025, longitude: -122.4124 },
+    { id: 4, title: 'Location 4', latitude: 37.79125, longitude: -122.4024 },
+    { id: 5, title: 'Location 5', latitude: 37.79225, longitude: -122.3924 },
+  ];
   return (
     <ScrollView style={{ flex: 1, backgroundColor: '#fff' }} showsVerticalScrollIndicator={false}>
       <StatusBar translucent={true} backgroundColor={'transparent'} />
       <ImageBackground source={require('../../../assets/home_bg.jpg')} style={styles.vector}>
+        <View style={{ marginTop: '6%' }}>
+          <View style={{width: wp(90), height: hp(5), alignSelf: 'center', marginVertical: '4%', flexDirection: 'row', justifyContent: 'space-between' }}>
+            <View style={{ width: '28%', height: '100%', justifyContent: 'center', alignItems: 'flex-start' }}>
+              <BinIQIcon/>
+            </View>
+            <View style={{width: '45%', height: '100%', flexDirection: 'row' }}>
+              <GetButton/>
+              <View style={{width: '23%', height: '100%', justifyContent: 'center', alignItems: 'flex-end',paddingRight: '2%'}}>
+              <Notification/>
+              </View>
+            </View>
+        </View>
       <View style={styles.container}>
           <Pressable style={styles.searchContainer} onPress={() => navigation.navigate('SearchScreen')}>
-            <View style={styles.cameraButton} onPress={() => navigation.navigate('SearchScreen')}>
-              <Image source={require('../../../assets/camera.png')} style={{ width: wp(7) }} />
+            <View style={styles.cameraButton}>
+            <CameraIcon/>
             </View>
             <Text style={styles.input}>search for anything</Text>
             <View style={styles.searchButton}>
-              <Image source={require('../../../assets/search.png')} style={{ width: wp(6) }} />
+            <SearchIcon/>
             </View>
           </Pressable>
           <TouchableOpacity style={styles.menuButton} onPress={openDrawer}>
-            <FontAwesome6 name='bars-staggered' size={18} color={'#fff'} />
+            {/* <FontAwesome6 name='bars-staggered' size={18} color={'#fff'} /> */}
+            <MenuIcon/>
           </TouchableOpacity>
         </View>
+      </View>
         <Carousel
           data={carouselImages}
           renderItem={renderCarouselItem}
@@ -230,22 +431,22 @@ const locations = [
           layout={'default'}
           loop={true}
           onSnapToItem={(index) => setActiveSlide(index)}
-        /> 
-      {carouselImages[activeSlide]?.id === 2 ? (
-        <View style={{ width: wp(100), height: hp(14), paddingHorizontal: '10%', justifyContent: 'center'}}>
-          <Image source={require('../../../assets/find_icon.png')} style={{ width: wp(7), height: hp(3.5) }} />
-          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.6) }}>BIN FINDER</Text>
-          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#667085', fontSize: hp(1.7) }}>Discover Hidden Gems Near You</Text>
-        </View>
-      ) : null}
-      {pagination()}
+        />
+        {carouselImages[activeSlide]?.id === 2 ? (
+          <View style={{ width: wp(100), height: hp(14), paddingHorizontal: '10%', justifyContent: 'center' }}>
+            <BinFinderIcon/>
+            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.6) }}>BIN FINDER</Text>
+            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#667085', fontSize: hp(1.7) }}>Discover Hidden Gems Near You</Text>
+          </View>
+        ) : null}
+        {pagination()}
       </ImageBackground>
       {/* TOP BINS NEAR ME  */}
       <View style={{ flex: 1, width: '100%', height: hp(35) }}>
         <View style={{ marginTop: '7%', paddingHorizontal: '5%' }}>
-        <TouchableOpacity onPress={() => navigation.navigate('TopBinsNearMe')}>
-        <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.4), color: '#000000' }}>TOP BINS NEAR ME</Text>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('TopBinsNearMe')}>
+            <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.4), color: '#000000' }}>TOP BINS NEAR ME</Text>
+          </TouchableOpacity>
           <FlatList
             data={topBins}
             renderItem={renderItem}
@@ -256,22 +457,26 @@ const locations = [
         </View>
       </View>
       {/* PRODUCTS  */}
-      <View style={{ flex: 1, width: '100%', height: hp(30)}}>
+      <View style={{ flex: 1, width: '100%', height: hp(30) }}>
         <View style={{ marginVertical: '0%', paddingHorizontal: '5%' }}>
-        <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.4), color: '#000000' }}>TOP BIN ITEM</Text>
-        <FlatList
-          data={products}
-          renderItem={renderProductsItem}
-          keyExtractor={(item) => item.id.toString()}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        />
+          <TouchableOpacity onPress={() => navigation.navigate('TopBinItems')}>
+            <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.4), color: '#000000' }}>TOP BIN ITEM</Text>
+          </TouchableOpacity>
+          <FlatList
+            data={products}
+            renderItem={renderProductsItem}
+            keyExtractor={(item) => item.id.toString()}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          />
         </View>
-        </View>
+      </View>
       {/* MY FAVOURITES  */}
       <View style={{ flex: 1, width: '100%', height: hp(35) }}>
-        <View style={{ marginVertical: '0%', paddingHorizontal: '5%' }}>
+        <View style={{ marginVertical: '0%', paddingHorizontal: '3%' }}>
+          <TouchableOpacity   onPress={() => navigation.navigate('FavouritesScreen')}>
           <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.4), color: '#000000' }}>MY FAVOURITES</Text>
+          </TouchableOpacity>
           <View style={{ marginVertical: '3%' }}>
             <FlatList
               data={myFavourites}
@@ -285,30 +490,19 @@ const locations = [
       </View>
       {/* RESELLER IO PORTAL  */}
       <View style={{ flex: 1, width: '100%', height: hp(42) }}>
-        <View style={{ marginVertical: '0%', paddingHorizontal: '5%' }}>
+        <View style={{ marginVertical: '0%', paddingHorizontal: '3%' }}>
+          <TouchableOpacity onPress={() => navigation.navigate('IQPortal')}>
           <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.4), color: '#000000' }}>RESELLER IQ PORTAL</Text>
-          <View style={{ width: '100%', height: hp(25), flexDirection: 'row', marginTop: '4%', justifyContent: 'space-between' }}>
-            <Pressable style={{ width: wp(44), height: hp(24), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6' }} onPress={() => navigation.navigate('IQPortal')}>
-              <Image source={require('../../../assets/reseller_training.png')} style={{ width: wp(44), height: hp(13), borderRadius: 5 }} />
-              <View style={{ margin: '6%', flexDirection: 'row', justifyContent: 'space-between' }}>
-                <View>
-                  <Text style={{ fontFamily: 'Nunito-ExtraBold', color: '#0049AF', fontSize: hp(1.7) }}>Free Reseller Training</Text>
-                  <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.2) }}>Reseller Training</Text>
-                  <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5), marginTop: '5%' }}>Full Video • With PDF</Text>
-                </View>
-              </View>
-            </Pressable>
-            <Pressable style={{ width: wp(44), height: hp(24), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6' }}>
-              <Image source={require('../../../assets/reseller_training.png')} style={{ width: wp(44), height: hp(13), borderRadius: 5 }} />
-              <View style={{ margin: '6%', flexDirection: 'row', justifyContent: 'space-between' }}>
-                <View>
-                  <Text style={{ fontFamily: 'Nunito-ExtraBold', color: '#0049AF', fontSize: hp(1.6) }}>Buy Pallets</Text>
-                  <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.2) }}>Buy Pallets</Text>
-                  <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5), marginTop: '5%' }}>Full Video • With PDF</Text>
-                </View>
-              </View>
-            </Pressable>
-          </View>
+          </TouchableOpacity>
+          <View style={{ marginVertical: '4%' }}>
+          <FlatList
+              data={resellerIQPortal}
+              renderItem={renderResellerPortal}
+              keyExtractor={(item) => item.id.toString()}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+            />
+            </View>
         </View>
       </View>
 
@@ -322,13 +516,12 @@ const styles = StyleSheet.create({
   vector: {
     flex: 1,
     width: wp(100),
-    height: hp(73),
+    height: hp(78),
   },
   container: {
     flexDirection: 'row',
     alignItems: 'center',
     marginHorizontal: '3%',
-    marginTop: '13%',
   },
   searchContainer: {
     flex: 1,
@@ -369,17 +562,17 @@ const styles = StyleSheet.create({
     bottom: '-8%',
     width: wp(10),
     zIndex: 2
-},
-paginationDot: {
+  },
+  paginationDot: {
     width: 10,
     height: 10,
     borderRadius: 5,
     backgroundColor: '#130160'
-},
-paginationInactiveDot: {
+  },
+  paginationInactiveDot: {
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
-},
-map: {
-  ...StyleSheet.absoluteFillObject,
-},
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
 })

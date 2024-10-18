@@ -16,6 +16,10 @@ import {
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Star, Heart } from "lucide-react-native";
+import SearchIcon from '../../../assets/SearchIcon.svg';
+import CameraIcon from '../../../assets/CameraIcon.svg';
+import FilterIcon from '../../../assets/FilterIcon.svg';
+import PieGraph from '../../../assets/PieGraph.svg';
 
 const { width } = Dimensions.get('window');
 
@@ -23,54 +27,85 @@ const ScanHistoryScreen = () => {
 
   return (
     <View style={{ width: '100%' }}>
-      <View style={{ height: hp(40.5), flexDirection: 'row'}}>
-        <View style={{ width: '60%', height: '100%',  justifyContent: 'center', alignItems: 'center' }}>
-          <Image source={require('../../../assets/pie_chart.png')} style={{ width: '90%', height: '90%'}} />
+            <View style={styles.searchParent}>
+        <Pressable style={styles.searchContainer}>
+          <View style={styles.cameraButton}>
+            <SearchIcon />
+          </View>
+          <Text style={styles.input}>search for anything</Text>
+          <View style={styles.searchButton}>
+            <CameraIcon />
+          </View>
+        </Pressable>
+        <TouchableOpacity style={styles.menuButton}>
+          <FilterIcon size={10} />
+        </TouchableOpacity>
+      </View>
+      <View style={{ height: hp(38), flexDirection: 'row'}}>
+        <View style={{ width: '72%',  justifyContent: 'space-around', alignItems: 'center' }}>
+          <View style={{width: '80%'}}>
+          <Text style={{color: '#130160', fontFamily: 'Nunito-SemiBold', fontSize: hp(2), textDecorationLine: 'underline'}}>SCANS CATEGORY</Text>
+          </View>
+          <PieGraph/>
+          <View style={{flexDirection: 'row',  justifyContent: 'space-between', width:'90%'}}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+              <View style={{ width: wp(4), height: hp(1.2), backgroundColor: '#0049AF', borderRadius: 3 }} />
+              <Text style={{ color: '#000', fontWeight: 'semibold', fontSize: hp(1.4) }}> Category 1</Text>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+              <View style={{ width: wp(4), height: hp(1.2), backgroundColor: '#FFBB36', borderRadius: 3 }} />
+              <Text style={{ color: '#000', fontWeight: 'semibold', fontSize: hp(1.4) }}> Category 1</Text>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+              <View style={{ width: wp(4), height: hp(1.2), backgroundColor: '#70B6C1', borderRadius: 3 }} />
+              <Text style={{ color: '#000', fontWeight: 'semibold', fontSize: hp(1.4) }}> Category 1</Text>
+            </View>
+          </View>
         </View>
-        <View style={{ width: '38%', height: '100%', alignItems: 'flex-end' }}>
-          <View style={{ height: '20%', width: '85%', paddingRight: '4%' }}>
+        <View style={{ width: '28%', height: '100%', justifyContent: 'space-between',   }}>
+          <View style={{ height: '18%', width: '100%', }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+              <View style={{ width: 13, height: 13, backgroundColor: '#0049AF', borderRadius: 20 }} />
+              <Text style={{ color: 'gray', fontWeight: 'semibold', fontSize: hp(1.9) }}>Category 1</Text>
+            </View>
+            <View style={{width: '68%', height: '69%', alignItems: 'flex-start', alignSelf: 'flex-end', paddingVertical: '1%'}}>
+              <Text style={{ color: '#000', fontWeight: '600', fontSize: hp(2.2) }}>45%</Text>
+            </View>
+          </View>
+          <View style={{ height: '18%', width: '100%', paddingRight: '4%' }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
               <View style={{ width: 13, height: 13, backgroundColor: '#70B6C1', borderRadius: 20 }} />
-              <Text style={{ color: '#00000061', fontWeight: 'bold', fontSize: hp(1.9) }}>Category 1</Text>
+              <Text style={{ color: 'gray', fontWeight: 'semibold', fontSize: hp(1.9) }}>Category 2</Text>
             </View>
-            <View style={{ height: '75%', alignItems: 'flex-end' }}>
-              <Text style={{ color: '#000', fontWeight: '600', fontSize: hp(2.3) }}>45%</Text>
+            <View style={{width: '68%', height: '69%', alignItems: 'flex-start', alignSelf: 'flex-end', paddingVertical: '1%'}}>
+              <Text style={{ color: '#000', fontWeight: '600', fontSize: hp(2.2) }}>45%</Text>
             </View>
           </View>
-          <View style={{ height: '20%', width: '85%', paddingRight: '4%' }}>
+          <View style={{ height: '18%', width: '100%', paddingRight: '4%' }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+              <View style={{ width: 13, height: 13, backgroundColor: '#6F19C2', borderRadius: 20 }} />
+              <Text style={{ color: 'gray', fontWeight: 'semibold', fontSize: hp(1.9) }}>Category 3</Text>
+            </View>
+            <View style={{width: '68%', height: '100%', alignItems: 'flex-start', alignSelf: 'flex-end', paddingVertical: '1%'}}>
+              <Text style={{ color: '#000', fontWeight: '600', fontSize: hp(2.2) }}>45%</Text>
+            </View>
+          </View>
+          <View style={{ height: '18%', width: '100%', paddingRight: '4%' }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
               <View style={{ width: 13, height: 13, backgroundColor: '#FF9F40', borderRadius: 20 }} />
-              <Text style={{ color: '#00000061', fontWeight: 'bold', fontSize: hp(1.9) }}>Category 2</Text>
+              <Text style={{ color: 'gray', fontWeight: 'semibold', fontSize: hp(1.9) }}>Category 4</Text>
             </View>
-            <View style={{ height: '75%', alignItems: 'flex-end' }}>
-              <Text style={{ color: '#000', fontWeight: '600', fontSize: hp(2.3) }}>45%</Text>
-            </View>
-          </View>
-          <View style={{ height: '20%', width: '85%', paddingRight: '4%' }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-              <View style={{ width: 13, height: 13, backgroundColor: '#0049AF', borderRadius: 20 }} />
-              <Text style={{ color: '#00000061', fontWeight: 'bold', fontSize: hp(1.9) }}>Category 3</Text>
-            </View>
-            <View style={{ height: '75%', alignItems: 'flex-end' }}>
-              <Text style={{ color: '#000', fontWeight: '600', fontSize: hp(2.3) }}>10%</Text>
+            <View style={{width: '68%', height: '69%', alignItems: 'flex-start', alignSelf: 'flex-end', paddingVertical: '1%'}}>
+              <Text style={{ color: '#000', fontWeight: '600', fontSize: hp(2.2) }}>45%</Text>
             </View>
           </View>
-          <View style={{ height: '20%', width: '85%', paddingRight: '4%' }}>
+          <View style={{ height: '18%', width: '100%', paddingRight: '4%' }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-              <View style={{ width: 13, height: 13, backgroundColor: '#0049AF', borderRadius: 20 }} />
-              <Text style={{ color: '#00000061', fontWeight: 'bold', fontSize: hp(1.9) }}>Category 3</Text>
+              <View style={{ width: 13, height: 13, backgroundColor: '#14BA9C', borderRadius: 20 }} />
+              <Text style={{ color: 'gray', fontWeight: 'semibold', fontSize: hp(1.9) }}>Category 5</Text>
             </View>
-            <View style={{ height: '75%', alignItems: 'flex-end' }}>
-              <Text style={{ color: '#000', fontWeight: '600', fontSize: hp(2.3) }}>10%</Text>
-            </View>
-          </View>
-          <View style={{ height: '20%', width: '85%', paddingRight: '4%' }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-              <View style={{ width: 13, height: 13, backgroundColor: '#0049AF', borderRadius: 20 }} />
-              <Text style={{ color: '#00000061', fontWeight: 'bold', fontSize: hp(1.9) }}>Category 3</Text>
-            </View>
-            <View style={{ height: '75%', alignItems: 'flex-end' }}>
-              <Text style={{ color: '#000', fontWeight: '600', fontSize: hp(2.3) }}>10%</Text>
+            <View style={{width: '68%', height: '69%', alignItems: 'flex-start', alignSelf: 'flex-end', paddingVertical: '1%'}}>
+              <Text style={{ color: '#000', fontWeight: '600', fontSize: hp(2.2) }}>45%</Text>
             </View>
           </View>
         </View>
@@ -79,12 +114,26 @@ const ScanHistoryScreen = () => {
         <Text style={{ color: '#000000', fontFamily: 'Nunito-Bold', fontSize: hp(2.4) }}>MY ITEMS</Text>
         <Text style={{ color: '#524B6B', fontSize: hp(1.9), textDecorationLine: 'underline' }}>View All</Text>
       </View>
-      <View style={{ marginBottom: '22%' }}>
+      <View style={{ flex: 1, width: '100%', marginBottom: '22%'}}>
         <FlatList
           data={products}
-          renderItem={({ item }) => <ProductCard product={item}/>}
+          renderItem={({ item }) => (
+            <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('SinglePageItem')}>
+            <Image source={require('../../../assets/dummy_product.png')} style={styles.image} />
+            <Text style={styles.name}>{item.name}</Text>
+            <Text style={styles.subtitle}>{item.subtitle}</Text>
+            <View style={styles.ratingContainer}>
+              <Star size={12} color="#FFD700" fill="#FFD700" />
+              <Text style={styles.rating}>{item.rating}</Text>
+              <Text style={styles.reviews}>{item.reviews} Reviews</Text>
+            </View>
+            <TouchableOpacity style={styles.heartButton}>
+              <Heart size={15} color="red" />
+            </TouchableOpacity>
+          </TouchableOpacity>
+          )}
           keyExtractor={item => item.id}
-          numColumns={2}
+          numColumns={3}
           contentContainerStyle={styles.grid}
         />
       </View>
@@ -134,12 +183,12 @@ const ProductCard = ({ product }) => {
     <Text style={styles.name}>{product.name}</Text>
     <Text style={styles.subtitle}>{product.subtitle}</Text>
     <View style={styles.ratingContainer}>
-      <Star size={16} color="#FFD700" fill="#FFD700" />
+      <Star size={12} color="#FFD700" fill="#FFD700" />
       <Text style={styles.rating}>{product.rating}</Text>
       <Text style={styles.reviews}>{product.reviews} Reviews</Text>
     </View>
     <TouchableOpacity style={styles.heartButton}>
-      <Heart size={18} color="red" />
+      <Heart size={15} color="red" />
     </TouchableOpacity>
   </TouchableOpacity>
   )
@@ -302,7 +351,7 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: '5%',
     height: hp(6),
-    marginVertical: '3%'
+    marginTop: '3%'
   },
   tab: {
     paddingVertical: '3%',
@@ -378,29 +427,33 @@ const styles = StyleSheet.create({
     height: hp(50),
   },
   card: {
-    margin: '1.5%',
+    width: '30%',
+    flex: 1,
+    height: '100%',
     backgroundColor: "#fff",
     borderRadius: 8,
-    padding: '3%',
+    padding: '1.5%',
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 3
+    elevation: 3,
+    marginHorizontal: '0.5%',
   },
   image: {
-    width: "100%",
+    width: '100%',
     marginBottom: 10,
   },
   name: {
-    fontSize: 16,
-    fontWeight: "bold",
+    fontSize: hp(1.45),
+    fontWeight: '500',
     marginBottom: 4,
     color: '#000'
   },
   subtitle: {
-    fontSize: 14,
-    color: "#666",
+    fontSize: hp(1.7),
+    color: "#14BA9C",
+    fontWeight: 'bold',
     marginBottom: 8
   },
   ratingContainer: {
@@ -409,14 +462,14 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   rating: {
-    marginLeft: 4,
-    fontSize: 14,
+    // marginLeft: 4,
+    fontSize: hp(1.5),
     fontWeight: "bold",
     color: '#000'
   },
   reviews: {
     marginLeft: 4,
-    fontSize: 12,
+    fontSize: hp(1.2),
     color: "#666"
   },
   heartButton: {
@@ -425,7 +478,46 @@ const styles = StyleSheet.create({
     right: '1%',
     borderRadius: 15,
     padding: 5
-  }
+  },
+  searchParent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: '3%',
+    marginVertical: '6%',
+  },
+  searchContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: 12,
+    marginRight: 10,
+    borderColor: '#99ABC678',
+    height: hp(6.5),
+    backgroundColor: '#F2F2F2'
+  },
+  cameraButton: {
+    padding: 10,
+  },
+  input: {
+    flex: 1,
+    fontSize: hp(2.2),
+    fontFamily: 'Nunito-Regular',
+    paddingVertical: 8,
+    color: '#999'
+  },
+  searchButton: {
+    padding: 10,
+  },
+  menuButton: {
+    backgroundColor: '#130160',
+    padding: 10,
+    borderRadius: 12,
+    height: hp(6.5),
+    width: wp(14),
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
 });
 
 export default MyLibrary;

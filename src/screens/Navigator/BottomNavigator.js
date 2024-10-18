@@ -15,6 +15,15 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import HomeScreenMain from '../MainScreens/HomeScreenMain';
+import CameraScan from '../../../assets/CameraScan.svg';
+import Home from '../../../assets/Home.svg';
+import HomeFocused from '../../../assets/HomeFocused.svg';
+import Heart from '../../../assets/Heart.svg';
+import HeartFocused from '../../../assets/HeartFocused.svg';
+import Library from '../../../assets/Library.svg';
+import LibraryFocused from '../../../assets/LibraryFocused.svg';
+import User from  '../../../assets/User.svg';
+
 
 const Tab = createBottomTabNavigator();
 const BottomNavigator = () => {
@@ -32,7 +41,7 @@ const BottomNavigator = () => {
                     tabBarStyle: {
                         backgroundColor: '#E6E6E6',
                         position: 'absolute',
-                        height: hp(7.5),
+                        height: hp(8),
                         borderRadius: 10,
                         shadowColor: '#000',
                         shadowOpacity: 0.06,
@@ -50,7 +59,10 @@ const BottomNavigator = () => {
                         tabBarShowLabel: false,
                         tabBarIcon: ({ focused }) => (
                             <View style={{ position: 'absolute' }}>
-                                <AntDesign name='home' size={hp(3.5)} color={focused ? '#14BA9C' : '#293032'} />
+                                {
+                                    focused ? <HomeFocused  height={hp(3.5)} /> :
+                                <Home size={hp(3.5)}/>
+                                }
                             </View>
                         )
                     }}
@@ -71,8 +83,11 @@ const BottomNavigator = () => {
                         tabBarShowLabel: false,
                         tabBarIcon: ({ focused }) => (
                             <View style={{ position: 'absolute' }}>
-                                <Ionicons name='heart' size={hp(3.5)} color={focused ? '#14BA9C' : '#293032'} />
-                            </View>
+                            {
+                                focused ? <HeartFocused  height={hp(3.5)} /> :
+                            <Heart size={hp(3.5)}/>
+                            }
+                        </View>
                         )
                     }}
                     listeners={({ navigation, route }) => ({
@@ -91,8 +106,8 @@ const BottomNavigator = () => {
                         tabBarShowLabel: false,
                         tabBarIcon: ({ focused }) => (
                             <TouchableOpacity>
-                                <View style={{ width: 60, height: 60, backgroundColor: '#14BA9C', borderRadius: 50, justifyContent: 'center', alignItems: 'center', marginBottom: 50 }}>
-                                    <AntDesign name='plus' size={hp(4.2)} color={'white'} />
+                                <View style={{ width: 65, height: 65, backgroundColor: '#14BA9C', borderRadius: 50, justifyContent: 'center', alignItems: 'center', marginBottom: 50 }}>
+                                    <CameraScan size={hp(4.2)} color={'white'} />
                                 </View>
                             </TouchableOpacity>
                         )
@@ -105,8 +120,11 @@ const BottomNavigator = () => {
                         tabBarShowLabel: false,
                         tabBarIcon: ({ focused }) => (
                             <View style={{ position: 'absolute' }}>
-                                <Ionicons name='library' size={hp(3.2)} color={focused ? '#14BA9C' : '#293032'} />
-                            </View>
+                            {
+                                focused ? <LibraryFocused  height={hp(3.5)} /> :
+                            <Library size={hp(3.5)}/>
+                            }
+                        </View>
                         )
                     }}
                     listeners={({ navigation, route }) => ({
@@ -125,8 +143,11 @@ const BottomNavigator = () => {
                         tabBarShowLabel: false,
                         tabBarIcon: ({ focused }) => (
                             <View style={{ position: 'absolute' }}>
-                                <FontAwesome6 name='user-large' size={hp(3)} color={focused ? '#14BA9C' : '#293032'} />
-                            </View>
+                            {
+                                focused ? <User  height={hp(3.5)} /> :
+                            <User size={hp(3.5)}/>
+                            }
+                        </View>
                         )
                     }}
                     listeners={({ navigation, route }) => ({

@@ -19,6 +19,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import SearchBar from 'react-native-search-bar';
 
 const { width } = Dimensions.get('window');
 
@@ -116,10 +117,17 @@ const NearByBins = () => {
             </Pressable>
             <Text style={styles.headerText}>Top Bins Near Me</Text>
           </View>
+        </View> 
+        <View style={{flexDirection: 'row', alignItems: 'center', marginHorizontal: '3%'}}>
+        <Pressable style={styles.searchContainer} onPress={() => navigation.navigate('SearchScreen')}>
+            <Text style={styles.input}>search for anything</Text>
+            <View>
+              <Image source={require('../../../assets/search.png')} style={{ width: wp(6) }} />
+            </View>
+          </Pressable>
         </View>
-
         <View style={{ flex: 1, width: '100%'}}>
-        <View style={{width: '100%', margin: '4%'}}>
+        <View style={{width: '100%', marginHorizontal: '4%'}}>
       <FlatList
         data={topBins}
         renderItem={renderItem}
@@ -282,5 +290,25 @@ buttonText: {
     fontSize: hp(1.9),
     fontFamily: 'Nunito-Bold',
     textAlign: 'center',
+},
+searchContainer: {
+  flex: 1,
+  flexDirection: 'row',
+  alignItems: 'center',
+  // backgroundColor: 'trasparent',
+  borderWidth: 1,
+  borderRadius: 12,
+  marginRight: 10,
+  borderColor: '#99ABC678',
+  height: hp(6),
+  marginVertical: '2.5%',
+  paddingHorizontal: '3%'
+},
+input: {
+  flex: 1,
+  fontSize: hp(2.2),
+  fontFamily: 'Nunito-Regular',
+  paddingVertical: 8,
+  color: '#999'
 },
 });

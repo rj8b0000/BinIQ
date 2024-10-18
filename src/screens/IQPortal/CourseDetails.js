@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     button: {
-        backgroundColor: '#1a237e', // Dark purple color
+        backgroundColor: '#14BA9C', // Dark purple color
         width: '80%',
         height: hp(5.6),
         borderRadius: 10,

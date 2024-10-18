@@ -14,11 +14,12 @@ import {
   Image
 } from 'react-native';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import SearchIcon from '../../../assets/SearchIcon.svg';
+import CameraIcon from '../../../assets/CameraIcon.svg';
+import FilterIcon from '../../../assets/FilterIcon.svg';
 
 const { width } = Dimensions.get('window');
 
@@ -37,7 +38,7 @@ const ListItem = ({ item }) => (
 );
 
 // Component for the Scan History tab
-const ScanHistoryScreen = () => {
+const TopBinItemsList = () => {
   const myFavourites = [{
     id: 1,
     image: require('../../../assets/gray_img.png'),
@@ -73,19 +74,31 @@ const ScanHistoryScreen = () => {
   ]
 
   return (
-    <View style={{ flex: 1, width: '100%' }}>
-    <View style={{ marginVertical: '4%', }}>
-      <View style={{ marginVertical: '3%' }}>
+    <>
+      <View style={styles.searchParent}>
+        <Pressable style={styles.searchContainer}>
+          <View style={styles.cameraButton}>
+            <SearchIcon />
+          </View>
+          <Text style={styles.input}>search for anything</Text>
+          <View style={styles.searchButton}>
+            <CameraIcon />
+          </View>
+        </Pressable>
+        <TouchableOpacity style={styles.menuButton}>
+          <FilterIcon size={10} />
+        </TouchableOpacity>
+      </View>
+      <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.3), color: '#000000', marginVertical: '2%', marginHorizontal: '5.5%' }}>FAV. ITEMS</Text>
+      <View style={{ flex: 1, width: '100%', alignItems: 'center' }}>
         <FlatList
           data={myFavourites}
           renderItem={renderMyFavourites}
           keyExtractor={(item) => item.id.toString()}
           numColumns={2}
-          showsHorizontalScrollIndicator={false}
         />
       </View>
-    </View>
-  </View>
+    </>
   );
 };
 
@@ -126,42 +139,52 @@ const MyItemsScreen = () => {
     },
   ]
   const renderItem = ({ item }) => (
-            <View style={{ width: wp(43.6), height: hp(23), borderRadius: 10, borderWidth: 0.5, borderColor: '#e6e6e6', backgroundColor: '#fff',marginHorizontal: '1%', marginVertical: '3%'}}>
-        <Image source={item.image} style={{ width: wp(43.6), height: hp(13), borderRadius: 10 }} />
-        <View style={{ margin: '6%', flexDirection: 'row', justifyContent: 'space-between' }}>
-          <View>
-            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#0049AF', fontSize: hp(1.8) }}>{item.title}</Text>
-            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.3) }}>{item.location}</Text>
-            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5) }}>{item.distance}</Text>
-          </View>
-          <View style={{ backgroundColor: '#FFBB36', height: hp(2), width: wp(8), flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', padding: '1.5%', borderRadius: 4 }}>
-            <FontAwesome name='star' size={8} color={'#fff'} />
-            <Text style={{ color: '#fff', fontFamily: 'Nunito-Regular', fontSize: hp(1)}}>{item.review}</Text>
-          </View>
+    <View style={{ width: wp(43.6), height: hp(23), borderRadius: 10, borderWidth: 0.5, borderColor: '#e6e6e6', backgroundColor: '#fff', marginHorizontal: '1%', marginVertical: '3%' }}>
+      <Image source={item.image} style={{ width: wp(43.6), height: hp(13), borderRadius: 10 }} />
+      <View style={{ margin: '6%', flexDirection: 'row', justifyContent: 'space-between' }}>
+        <View>
+          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#0049AF', fontSize: hp(1.8) }}>{item.title}</Text>
+          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.3) }}>{item.location}</Text>
+          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5) }}>{item.distance}</Text>
+        </View>
+        <View style={{ backgroundColor: '#FFBB36', height: hp(2), width: wp(8), flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', padding: '1.5%', borderRadius: 4 }}>
+          <FontAwesome name='star' size={8} color={'#fff'} />
+          <Text style={{ color: '#fff', fontFamily: 'Nunito-Regular', fontSize: hp(1) }}>{item.review}</Text>
         </View>
       </View>
+    </View>
   );
-
   return (
-    <View style={{ flex: 1, width: '100%'}}>
-      <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.6), color: '#000000', marginVertical: '2%' }}>FAV. BINS</Text>
-      <View style={{width: '100%'}}>
-      <FlatList
-        data={topBins}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-        // horizontal={true}
-        numColumns={2}
-        showsHorizontalScrollIndicator={false}
-        // scrollEnabled={false}
-      />
+    <View style={{ flex: 1, width: '100%' }}>
+      <View style={styles.searchParent}>
+        <Pressable style={styles.searchContainer}>
+          <View style={styles.cameraButton}>
+            <SearchIcon />
+          </View>
+          <Text style={styles.input}>search for anything</Text>
+          <View style={styles.searchButton}>
+            <CameraIcon />
+          </View>
+        </Pressable>
+        <TouchableOpacity style={styles.menuButton}>
+          <FilterIcon size={10} />
+        </TouchableOpacity>
       </View>
-  </View>
+      <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.3), color: '#000000', marginVertical: '2%', marginHorizontal: '5.5%' }}>FAV. BINS</Text>
+      <View style={{ width: '100%', alignItems: 'center' }}>
+        <FlatList
+          data={topBins}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id.toString()}
+          numColumns={2}
+        />
+      </View>
+    </View>
   );
 };
 const renderMyFavourites = ({ item }) => (
-  <View style={{ width: wp(47), height: hp(26)}}>
-    <View style={{ width: wp(45), height: hp(26), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6' }}>
+  <View style={{ width: wp(47), height: hp(26), alignItems: 'center', marginVertical: '1%' }}>
+    <View style={{ width: wp(45), height: hp(26), borderRadius: 5, borderWidth: 1, borderColor: '#e6e6e6', backgroundColor: '#fff' }}>
       <Image source={item.image} style={{ width: wp(45), height: hp(13), borderRadius: 5 }} />
       <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
       <View style={{ paddingHorizontal: '1%' }}>
@@ -216,13 +239,19 @@ const FavouratiesScreen = () => {
         {/* Content for the active tab */}
         <ScrollView style={styles.content}>
           {/* <Text style={styles.sectionTitle}>TODAY</Text> */}
-          {activeTab === 'scan' ? <ScanHistoryScreen /> : <MyItemsScreen />}
+          {activeTab === 'scan' ? <ScrollView style={{ flex: 1 }}>
+            <TopBinItemsList />
+          </ScrollView> :
+            <ScrollView style={{ flex: 1 }}>
+              <MyItemsScreen />
+            </ScrollView>
+          }
         </ScrollView>
         <View style={styles.enrollNowContainer}>
-                    <Pressable style={styles.button} onPress={() => navigation.navigate('HomeNavigataor')}>
-                        <Text style={styles.buttonText}>ADD TO LIBRARY</Text>
-                    </Pressable>
-                </View>
+          <Pressable style={styles.button} onPress={() => navigation.navigate('HomeNavigataor')}>
+            <Text style={styles.buttonText}>ADD TO LIBRARY</Text>
+          </Pressable>
+        </View>
       </ImageBackground>
     </View>
   );
@@ -281,12 +310,18 @@ const styles = StyleSheet.create({
   tabContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginVertical: '5%'
+    marginVertical: '5%',
+    width: wp(100),
+    height: hp(6),
+    paddingHorizontal: '5%'
   },
   tab: {
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 20,
+    width: wp(40),
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    borderWidth: 1.2,
+    borderColor: '#99ABC62E'
   },
   activeTab: {
     backgroundColor: '#2CCCA6',
@@ -301,7 +336,6 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    paddingHorizontal: 16,
   },
   sectionTitle: {
     fontSize: 12,
@@ -362,19 +396,58 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingVertical: '8%'
-},
-button: {
+  },
+  button: {
     backgroundColor: '#1a237e', // Dark purple color
     width: '77%',
     height: hp(5),
     borderRadius: 10,
     justifyContent: 'center',
     elevation: 3, // This creates the shadow for the button
-},
-buttonText: {
+  },
+  buttonText: {
     color: 'white',
     fontSize: hp(1.9),
     fontFamily: 'Nunito-Bold',
     textAlign: 'center',
-},
+  },
+  searchParent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: '3%',
+    marginVertical: '4%',
+  },
+  searchContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: 12,
+    marginRight: 10,
+    borderColor: '#99ABC678',
+    height: hp(6.5),
+    backgroundColor: '#F2F2F2'
+  },
+  cameraButton: {
+    padding: 10,
+  },
+  input: {
+    flex: 1,
+    fontSize: hp(2.2),
+    fontFamily: 'Nunito-Regular',
+    paddingVertical: 8,
+    color: '#999'
+  },
+  searchButton: {
+    padding: 10,
+  },
+  menuButton: {
+    backgroundColor: '#130160',
+    padding: 10,
+    borderRadius: 12,
+    height: hp(6.5),
+    width: wp(14),
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
 });
