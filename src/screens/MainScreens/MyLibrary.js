@@ -19,15 +19,20 @@ import { Star, Heart } from "lucide-react-native";
 import SearchIcon from '../../../assets/SearchIcon.svg';
 import CameraIcon from '../../../assets/CameraIcon.svg';
 import FilterIcon from '../../../assets/FilterIcon.svg';
-import PieGraph from '../../../assets/PieGraph.svg';
+import VictoryPie from 'victory-native';
+import Svg, { Text as SvgText } from 'react-native-svg';
+import PieGraph from '../../Components/PieGraph';
 
 const { width } = Dimensions.get('window');
-
 const ScanHistoryScreen = () => {
-
+  const navigation = useNavigation();
   return (
     <View style={{ width: '100%' }}>
-            <View style={styles.searchParent}>
+      <View style={{ width: wp(100), height: hp(13), justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={{ fontSize: wp(4), fontFamily: 'Nunito-Regular', color: '#130160' }}>Available balance</Text>
+        <Text style={{ fontFamily: 'Nunito-SemiBold', fontSize: wp(9), color: '#130160' }}>20%</Text>
+      </View>
+      <View style={{ ...styles.searchParent, marginBottom: '4%' }}>
         <Pressable style={styles.searchContainer}>
           <View style={styles.cameraButton}>
             <SearchIcon />
@@ -41,14 +46,16 @@ const ScanHistoryScreen = () => {
           <FilterIcon size={10} />
         </TouchableOpacity>
       </View>
-      <View style={{ height: hp(38), flexDirection: 'row'}}>
-        <View style={{ width: '72%',  justifyContent: 'space-around', alignItems: 'center' }}>
-          <View style={{width: '80%'}}>
-          <Text style={{color: '#130160', fontFamily: 'Nunito-SemiBold', fontSize: hp(2), textDecorationLine: 'underline'}}>SCANS CATEGORY</Text>
+      <View style={{ height: hp(38), flexDirection: 'row' }}>
+        <View style={{ width: '72%', justifyContent: 'space-around', alignItems: 'center' }}>
+          <View style={{ width: '80%' }}>
+            <Text style={{ color: '#130160', fontFamily: 'Nunito-SemiBold', fontSize: hp(2), textDecorationLine: 'underline' }}>SCANS CATEGORY</Text>
           </View>
-          <PieGraph/>
-          <View style={{flexDirection: 'row',  justifyContent: 'space-between', width:'90%'}}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <View>
+            <PieGraph />
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '90%' }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
               <View style={{ width: wp(4), height: hp(1.2), backgroundColor: '#0049AF', borderRadius: 3 }} />
               <Text style={{ color: '#000', fontWeight: 'semibold', fontSize: hp(1.4) }}> Category 1</Text>
             </View>
@@ -62,13 +69,13 @@ const ScanHistoryScreen = () => {
             </View>
           </View>
         </View>
-        <View style={{ width: '28%', height: '100%', justifyContent: 'space-between',   }}>
+        <View style={{ width: '28%', height: '100%', justifyContent: 'space-between', }}>
           <View style={{ height: '18%', width: '100%', }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
               <View style={{ width: 13, height: 13, backgroundColor: '#0049AF', borderRadius: 20 }} />
               <Text style={{ color: 'gray', fontWeight: 'semibold', fontSize: hp(1.9) }}>Category 1</Text>
             </View>
-            <View style={{width: '68%', height: '69%', alignItems: 'flex-start', alignSelf: 'flex-end', paddingVertical: '1%'}}>
+            <View style={{ width: '68%', height: '69%', alignItems: 'flex-start', alignSelf: 'flex-end', paddingVertical: '1%' }}>
               <Text style={{ color: '#000', fontWeight: '600', fontSize: hp(2.2) }}>45%</Text>
             </View>
           </View>
@@ -77,7 +84,7 @@ const ScanHistoryScreen = () => {
               <View style={{ width: 13, height: 13, backgroundColor: '#70B6C1', borderRadius: 20 }} />
               <Text style={{ color: 'gray', fontWeight: 'semibold', fontSize: hp(1.9) }}>Category 2</Text>
             </View>
-            <View style={{width: '68%', height: '69%', alignItems: 'flex-start', alignSelf: 'flex-end', paddingVertical: '1%'}}>
+            <View style={{ width: '68%', height: '69%', alignItems: 'flex-start', alignSelf: 'flex-end', paddingVertical: '1%' }}>
               <Text style={{ color: '#000', fontWeight: '600', fontSize: hp(2.2) }}>45%</Text>
             </View>
           </View>
@@ -86,7 +93,7 @@ const ScanHistoryScreen = () => {
               <View style={{ width: 13, height: 13, backgroundColor: '#6F19C2', borderRadius: 20 }} />
               <Text style={{ color: 'gray', fontWeight: 'semibold', fontSize: hp(1.9) }}>Category 3</Text>
             </View>
-            <View style={{width: '68%', height: '100%', alignItems: 'flex-start', alignSelf: 'flex-end', paddingVertical: '1%'}}>
+            <View style={{ width: '68%', height: '100%', alignItems: 'flex-start', alignSelf: 'flex-end', paddingVertical: '1%' }}>
               <Text style={{ color: '#000', fontWeight: '600', fontSize: hp(2.2) }}>45%</Text>
             </View>
           </View>
@@ -95,7 +102,7 @@ const ScanHistoryScreen = () => {
               <View style={{ width: 13, height: 13, backgroundColor: '#FF9F40', borderRadius: 20 }} />
               <Text style={{ color: 'gray', fontWeight: 'semibold', fontSize: hp(1.9) }}>Category 4</Text>
             </View>
-            <View style={{width: '68%', height: '69%', alignItems: 'flex-start', alignSelf: 'flex-end', paddingVertical: '1%'}}>
+            <View style={{ width: '68%', height: '69%', alignItems: 'flex-start', alignSelf: 'flex-end', paddingVertical: '1%' }}>
               <Text style={{ color: '#000', fontWeight: '600', fontSize: hp(2.2) }}>45%</Text>
             </View>
           </View>
@@ -104,7 +111,7 @@ const ScanHistoryScreen = () => {
               <View style={{ width: 13, height: 13, backgroundColor: '#14BA9C', borderRadius: 20 }} />
               <Text style={{ color: 'gray', fontWeight: 'semibold', fontSize: hp(1.9) }}>Category 5</Text>
             </View>
-            <View style={{width: '68%', height: '69%', alignItems: 'flex-start', alignSelf: 'flex-end', paddingVertical: '1%'}}>
+            <View style={{ width: '68%', height: '69%', alignItems: 'flex-start', alignSelf: 'flex-end', paddingVertical: '1%' }}>
               <Text style={{ color: '#000', fontWeight: '600', fontSize: hp(2.2) }}>45%</Text>
             </View>
           </View>
@@ -114,23 +121,23 @@ const ScanHistoryScreen = () => {
         <Text style={{ color: '#000000', fontFamily: 'Nunito-Bold', fontSize: hp(2.4) }}>MY ITEMS</Text>
         <Text style={{ color: '#524B6B', fontSize: hp(1.9), textDecorationLine: 'underline' }}>View All</Text>
       </View>
-      <View style={{ flex: 1, width: '100%', marginBottom: '22%'}}>
+      <View style={{ flex: 1, width: '100%', marginBottom: '22%' }}>
         <FlatList
           data={products}
           renderItem={({ item }) => (
             <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('SinglePageItem')}>
-            <Image source={require('../../../assets/dummy_product.png')} style={styles.image} />
-            <Text style={styles.name}>{item.name}</Text>
-            <Text style={styles.subtitle}>{item.subtitle}</Text>
-            <View style={styles.ratingContainer}>
-              <Star size={12} color="#FFD700" fill="#FFD700" />
-              <Text style={styles.rating}>{item.rating}</Text>
-              <Text style={styles.reviews}>{item.reviews} Reviews</Text>
-            </View>
-            <TouchableOpacity style={styles.heartButton}>
-              <Heart size={15} color="red" />
+              <Image source={require('../../../assets/dummy_product.png')} style={styles.image} />
+              <Text style={styles.name}>{item.name}</Text>
+              <Text style={styles.subtitle}>{item.subtitle}</Text>
+              <View style={styles.ratingContainer}>
+                <Star size={12} color="#FFD700" fill="#FFD700" />
+                <Text style={styles.rating}>{item.rating}</Text>
+                <Text style={styles.reviews}>{item.reviews} Reviews</Text>
+              </View>
+              <TouchableOpacity style={styles.heartButton}>
+                <Heart size={15} color="red" />
+              </TouchableOpacity>
             </TouchableOpacity>
-          </TouchableOpacity>
           )}
           keyExtractor={item => item.id}
           numColumns={3}
@@ -144,6 +151,24 @@ const ScanHistoryScreen = () => {
 const MyItemsScreen = () => {
   return (
     <View style={{ marginBottom: '22%' }}>
+      <View style={{ width: wp(100), height: hp(13), justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={{ fontSize: wp(4), fontFamily: 'Nunito-Regular', color: '#130160' }}>Available balance</Text>
+        <Text style={{ fontFamily: 'Nunito-SemiBold', fontSize: wp(9), color: '#130160' }}>20%</Text>
+      </View>
+      <View style={styles.searchParent}>
+        <Pressable style={styles.searchContainer}>
+          <View style={styles.cameraButton}>
+            <SearchIcon />
+          </View>
+          <Text style={styles.input}>search for anything</Text>
+          <View style={styles.searchButton}>
+            <CameraIcon />
+          </View>
+        </Pressable>
+        <TouchableOpacity style={styles.menuButton}>
+          <FilterIcon size={10} />
+        </TouchableOpacity>
+      </View>
       <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: '7%', paddingHorizontal: '2%' }}>
         <Text style={{ color: '#000000', fontFamily: 'Nunito-Bold', fontSize: hp(2.5) }}>SCANS HISTORY</Text>
         <Text style={{ color: '#524B6B', fontSize: hp(2), textDecorationLine: 'underline' }}>View All</Text>
@@ -161,6 +186,24 @@ const MyItemsScreen = () => {
 const AllTotalScans = () => {
   return (
     <View style={{ marginBottom: '22%' }}>
+      <View style={{ width: wp(100), height: hp(13), justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={{ fontSize: wp(4), fontFamily: 'Nunito-Regular', color: '#130160' }}>Available balance</Text>
+        <Text style={{ fontFamily: 'Nunito-SemiBold', fontSize: wp(9), color: '#130160' }}>20%</Text>
+      </View>
+      <View style={styles.searchParent}>
+        <Pressable style={styles.searchContainer}>
+          <View style={styles.cameraButton}>
+            <SearchIcon />
+          </View>
+          <Text style={styles.input}>search for anything</Text>
+          <View style={styles.searchButton}>
+            <CameraIcon />
+          </View>
+        </Pressable>
+        <TouchableOpacity style={styles.menuButton}>
+          <FilterIcon size={10} />
+        </TouchableOpacity>
+      </View>
       <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: '7%', paddingHorizontal: '2%' }}>
         <Text style={{ color: '#000000', fontFamily: 'Nunito-Bold', fontSize: hp(2.5) }}>MY SCAN</Text>
         <Text style={{ color: '#524B6B', fontSize: hp(2), textDecorationLine: 'underline' }}>View All</Text>
@@ -171,26 +214,27 @@ const AllTotalScans = () => {
         keyExtractor={item => item.id}
         numColumns={2}
         contentContainerStyle={styles.grid}
+        columnWrapperStyle={{ justifyContent: 'space-between' }}
       />
     </View>
   );
 }
 const ProductCard = ({ product }) => {
   const navigation = useNavigation();
-  return(
+  return (
     <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('SinglePageItem')}>
-    <Image source={require('../../../assets/dummy_product.png')} style={styles.image} />
-    <Text style={styles.name}>{product.name}</Text>
-    <Text style={styles.subtitle}>{product.subtitle}</Text>
-    <View style={styles.ratingContainer}>
-      <Star size={12} color="#FFD700" fill="#FFD700" />
-      <Text style={styles.rating}>{product.rating}</Text>
-      <Text style={styles.reviews}>{product.reviews} Reviews</Text>
-    </View>
-    <TouchableOpacity style={styles.heartButton}>
-      <Heart size={15} color="red" />
+      <Image source={require('../../../assets/dummy_product.png')} style={styles.image} />
+      <Text style={styles.name}>{product.name}</Text>
+      <Text style={styles.subtitle}>{product.subtitle}</Text>
+      <View style={styles.ratingContainer}>
+        <Star size={12} color="#FFD700" fill="#FFD700" />
+        <Text style={styles.rating}>{product.rating}</Text>
+        <Text style={styles.reviews}>{product.reviews} Reviews</Text>
+      </View>
+      <TouchableOpacity style={styles.heartButton}>
+        <Heart size={15} color="red" />
+      </TouchableOpacity>
     </TouchableOpacity>
-  </TouchableOpacity>
   )
 }
 const products = [
@@ -288,8 +332,8 @@ const MyLibrary = () => {
         {/* Content for the active tab */}
         <ScrollView style={styles.content}>
           {activeTab === 'scan' && <ScanHistoryScreen />}
-          {activeTab === 'items' && <MyItemsScreen/>}
-          {activeTab === 'all_scans' && <AllTotalScans/>}
+          {activeTab === 'items' && <MyItemsScreen />}
+          {activeTab === 'all_scans' && <AllTotalScans />}
         </ScrollView>
       </ImageBackground>
     </View>
@@ -427,18 +471,18 @@ const styles = StyleSheet.create({
     height: hp(50),
   },
   card: {
-    width: '30%',
+    width: '30%', // Adjust the width to allow space between columns
     flex: 1,
-    height: '100%',
     backgroundColor: "#fff",
     borderRadius: 8,
-    padding: '1.5%',
+    padding: '2%',
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
     marginHorizontal: '0.5%',
+    marginBottom: '2%', // Add spacing between rows
   },
   image: {
     width: '100%',
@@ -483,7 +527,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginHorizontal: '3%',
-    marginVertical: '6%',
   },
   searchContainer: {
     flex: 1,

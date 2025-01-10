@@ -4,40 +4,44 @@ import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { maxWorkers } from '../../metro.config';
+import Splash from '../../assets/Splash.svg'
+import City from '../../assets/City.svg'
 
 const SplashScreen = () => {
-    const navigation = useNavigation();
-    // useEffect(()=>{
-    //     setTimeout(()=>{    
-    //         checkUserLogin();
-    //     }, 3500)
-    // },[])
-    // const checkUserLogin = async () => {
-        
-    //     const firstTimeAppOpen = await AsyncStorage.getItem('NEW_USER')
-    //     if(firstTimeAppOpen == null)
-    //     {
-    //         navigation.dispatch(StackActions.push('GettingStarted'));
-    //     }
-    //     else
-    //     {
-    //         navigation.dispatch(StackActions.replace('HomeNavigator'));
-    //     }
-    // }
-    useEffect(() => {
-      setTimeout(() => {
-        navigation.navigate('OnBoarding')
-      }, 2500)
-    }, [])
+  const navigation = useNavigation();
+  // useEffect(()=>{
+  //     setTimeout(()=>{    
+  //         checkUserLogin();
+  //     }, 3500)
+  // },[])
+  // const checkUserLogin = async () => {
+
+  //     const firstTimeAppOpen = await AsyncStorage.getItem('NEW_USER')
+  //     if(firstTimeAppOpen == null)
+  //     {
+  //         navigation.dispatch(StackActions.push('GettingStarted'));
+  //     }
+  //     else
+  //     {
+  //         navigation.dispatch(StackActions.replace('HomeNavigator'));
+  //     }
+  // }
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate('OnBoarding')
+    }, 2500)
+  }, [])
   return (
     <View style={styles.container}>
-      <StatusBar translucent={true} backgroundColor={'transparent'}/>
+      <StatusBar translucent={true} backgroundColor={'transparent'} />
       <ImageBackground source={require('../../assets/vector_1.png')} style={styles.vector}>
-      <View style={styles.logoContainer}>
-        <Image source={require('../../assets/logo.png')} style={styles.logo}/>
-        <Text style={styles.logoText}>Smart Shopping, Simplified</Text>
-      </View>
-      <Image source={require('../../assets/city_vector.png')} style={styles.cityVector}/>
+        <View style={styles.logoContainer}>
+          <Splash width={wp(38)} />
+          <Text style={styles.logoText}>Where Reselling Meets Innovation</Text>
+        </View>
+        <City
+          style={styles.cityVector}
+        />
       </ImageBackground>
     </View>
   )
@@ -50,12 +54,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff'
   },
-  logoContainer : {
+  logoContainer: {
     flex: 1,
-    justifyContent : 'center',
+    justifyContent: 'center',
     alignItems: 'center',
   },
-  logo : {
+  logo: {
     width: wp(40),
     height: hp(10.5),
   },
@@ -67,11 +71,13 @@ const styles = StyleSheet.create({
   logoText: {
     fontFamily: 'Nunito-SemiBold',
     color: '#000',
-    fontSize: hp(2.5)
-  },
-  cityVector : {
+    fontSize: hp(2.5),
     position: 'absolute',
-    width: wp(100),
+    bottom: '42%'
+  },
+  cityVector: {
+    position: 'absolute',
+    width: wp(50),
     bottom: 0
   }
 })

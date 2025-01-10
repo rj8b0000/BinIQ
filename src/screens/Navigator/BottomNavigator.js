@@ -22,7 +22,9 @@ import Heart from '../../../assets/Heart.svg';
 import HeartFocused from '../../../assets/HeartFocused.svg';
 import Library from '../../../assets/Library.svg';
 import LibraryFocused from '../../../assets/LibraryFocused.svg';
-import User from  '../../../assets/User.svg';
+import User from '../../../assets/User.svg';
+import UserFocused from '../../../assets/user_focus.svg'
+import UserProfileScreen from '../MainScreens/UserProfileScreen';
 
 
 const Tab = createBottomTabNavigator();
@@ -60,8 +62,8 @@ const BottomNavigator = () => {
                         tabBarIcon: ({ focused }) => (
                             <View style={{ position: 'absolute' }}>
                                 {
-                                    focused ? <HomeFocused  height={hp(3.5)} /> :
-                                <Home size={hp(3.5)}/>
+                                    focused ? <HomeFocused height={hp(3.5)} /> :
+                                        <Home size={hp(3.5)} />
                                 }
                             </View>
                         )
@@ -83,12 +85,13 @@ const BottomNavigator = () => {
                         tabBarShowLabel: false,
                         tabBarIcon: ({ focused }) => (
                             <View style={{ position: 'absolute' }}>
-                            {
-                                focused ? <HeartFocused  height={hp(3.5)} /> :
-                            <Heart size={hp(3.5)}/>
-                            }
-                        </View>
-                        )
+                                {
+                                    focused ? <HeartFocused height={hp(3.5)} /> :
+                                        <Heart size={hp(3.5)} />
+                                }
+                            </View>
+                        ),
+                        tabBarStyle: { display: 'none' }
                     }}
                     listeners={({ navigation, route }) => ({
                         // Onpress Update....
@@ -120,11 +123,11 @@ const BottomNavigator = () => {
                         tabBarShowLabel: false,
                         tabBarIcon: ({ focused }) => (
                             <View style={{ position: 'absolute' }}>
-                            {
-                                focused ? <LibraryFocused  height={hp(3.5)} /> :
-                            <Library size={hp(3.5)}/>
-                            }
-                        </View>
+                                {
+                                    focused ? <LibraryFocused height={hp(3.5)} /> :
+                                        <Library size={hp(3.5)} />
+                                }
+                            </View>
                         )
                     }}
                     listeners={({ navigation, route }) => ({
@@ -137,18 +140,19 @@ const BottomNavigator = () => {
                         }
                     })} />
                 <Tab.Screen
-                    name='SettingsScreen'
-                    component={SettingsScreen}
+                    name='UserProfileScreen'
+                    component={UserProfileScreen}
                     options={{
                         tabBarShowLabel: false,
                         tabBarIcon: ({ focused }) => (
                             <View style={{ position: 'absolute' }}>
-                            {
-                                focused ? <User  height={hp(3.5)} /> :
-                            <User size={hp(3.5)}/>
-                            }
-                        </View>
-                        )
+                                {
+                                    focused ? <UserFocused height={hp(3.5)} /> :
+                                        <User size={hp(3.5)} />
+                                }
+                            </View>
+                        ),
+                        tabBarStyle: { display: 'none' }
                     }}
                     listeners={({ navigation, route }) => ({
                         tabPress: e => {
@@ -170,3 +174,10 @@ const BottomNavigator = () => {
 export default BottomNavigator
 
 const styles = StyleSheet.create({})
+
+
+
+
+
+
+

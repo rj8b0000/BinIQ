@@ -21,8 +21,44 @@ const { width } = Dimensions.get('window');
 const SingleItemPage = () => {
     const navigation = useNavigation();
 
+    const myFavourites = [{
+        id: 1,
+        image: require('../../../assets/gray_img.png'),
+        description: `IWC Schaffhausen 2021 Pilot's Watch "SIHH 2019" 44mm`,
+        discountPrice: '$65',
+        originalPrice: '$151',
+        totalDiscount: '60% off'
+    },
+    {
+        id: 2,
+        image: require('../../../assets/gray_img.png'),
+        description: `IWC Schaffhausen 2021 Pilot's Watch "SIHH 2019" 44mm`,
+        discountPrice: '$65',
+        originalPrice: '$151',
+        totalDiscount: '60% off'
+    }
+    ]
+    const renderMyFavourites = ({ item }) => (
+        <View style={{ width: wp(45), height: hp(26), alignItems: 'center', marginVertical: '1%' }}>
+            <View style={{ width: wp(43), height: hp(26), borderRadius: 5, borderWidth: 1, borderColor: '#e6e6e6', backgroundColor: '#fff' }}>
+                <Image source={item.image} style={{ width: wp(43), height: hp(13), borderRadius: 5 }} />
+                <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
+                <View style={{ paddingHorizontal: '1%' }}>
+                    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.7), margin: '0.5%' }}>{item.description}</Text>
+                </View>
+                <View style={{ position: 'absolute', bottom: '2%', paddingHorizontal: '3%' }}>
+                    <View>
+                        <Text style={{ fontFamily: 'Nunito-Bold', color: '#000', fontSize: hp(1.8) }}>{item.discountPrice}</Text>
+                        <Text style={{ color: 'red' }}><Text style={{ fontFamily: 'Nunito-Bold', color: '#808488', fontSize: hp(1.8), textDecorationLine: 'line-through' }}>{item.originalPrice}</Text>{'  '}{item.totalDiscount}</Text>
+                    </View>
+                </View>
+            </View>
+        </View>
+    );
+
+
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <StatusBar translucent={true} backgroundColor={'transparent'} />
             <ImageBackground
                 source={require('../../../assets/vector_1.png')}
@@ -37,50 +73,68 @@ const SingleItemPage = () => {
                         <Text style={styles.headerText}>Item</Text>
                     </View>
                 </View>
-                <View style={{ width: '90%', height: hp(28), marginHorizontal: '5%', borderRadius: 10, marginVertical: '5%' }}>
+                <View style={{ width: '90%', height: hp(25), marginHorizontal: '5%', borderRadius: 10, marginVertical: '5%' }}>
                     <Image source={require('../../../assets/specific_item.png')} style={{ width: '100%', height: '100%', borderRadius: 10 }} />
                 </View>
-                <View style={{paddingHorizontal: '5%'}}>
-                    <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-                    <Text style={styles.title}>Nike Sneakers</Text>
-                <View style={styles.ratingContainer}>
-                    <Ionicons name="star" size={18} color="#FFD700" />
-                    <Ionicons name="star" size={18} color="#FFD700" />
-                    <Ionicons name="star" size={18} color="#FFD700" />
-                    <Ionicons name="star" size={18} color="#FFD700" />
-                    <Ionicons name="star-half" size={18} color="#FFD700" />
-                    <Text style={styles.ratingText}>56,890</Text>
-                </View>
+                <View style={{ paddingHorizontal: '5%' }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Text style={styles.title}>Nike Sneakers</Text>
+                        <View style={styles.ratingContainer}>
+                            <Ionicons name="star" size={18} color="#FFD700" />
+                            <Ionicons name="star" size={18} color="#FFD700" />
+                            <Ionicons name="star" size={18} color="#FFD700" />
+                            <Ionicons name="star" size={18} color="#FFD700" />
+                            <Ionicons name="star-half" size={18} color="#FFD700" />
+                            <Text style={styles.ratingText}>56,890</Text>
+                        </View>
                     </View>
-                <View style={styles.priceContainer}>
-                    <Text style={styles.originalPrice}>₹2,999</Text>
-                    <Text style={styles.discountedPrice}>₹1,500</Text>
-                    <Text style={styles.discount}>50% Off</Text>
+                    <View style={styles.priceContainer}>
+                        <Text style={styles.originalPrice}>₹2,999</Text>
+                        <Text style={styles.discountedPrice}>₹1,500</Text>
+                        <Text style={styles.discount}>50% Off</Text>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity style={styles.button}>
+                            <Ionicons name="heart-outline" size={18} color="#000" />
+                            <Text style={styles.buttonText}>My Fav</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button}>
+                            <Text style={styles.buttonText}>See More</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.detailsContainer}>
+                        <Text style={styles.detailsTitle}>Item Details</Text>
+                        <Text style={styles.detailsText}>
+                            Perhaps the most iconic sneaker of all-time, this original "Chicago" colorway is the cornerstone to any sneaker collection. Made famous in 1985 by Michael Jordan, the shoe has stood the test of time, becoming the most famous colorway of the Air Jordan 1. This 2015 release saw the...
+                        </Text>
+                    </View>
+                    <View style={styles.categoryBtnContainer}>
+                        <TouchableOpacity style={styles.categoryBtn}>
+                            <Text style={styles.ctgryText}>Category - 1</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ marginVertical: '3%' }}>
+                        <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.3), color: '#000000', marginVertical: '5%' }}>SIMILAR PRODUCTS</Text>
+                        <View style={{ flex: 1, width: '100%', alignItems: 'center' }}>
+                            <FlatList
+                                data={myFavourites}
+                                renderItem={renderMyFavourites}
+                                keyExtractor={(item) => item.id.toString()}
+                                numColumns={2}
+                            />
+                        </View>
+                    </View>
                 </View>
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button}>
-                        <Ionicons name="heart-outline" size={18} color="#000" />
-                        <Text style={styles.buttonText}>My Fav</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText}>See More</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.detailsContainer}>
-                    <Text style={styles.detailsTitle}>Item Details</Text>
-                    <Text style={styles.detailsText}>
-                        Perhaps the most iconic sneaker of all-time, this original "Chicago" colorway is the cornerstone to any sneaker collection. Made famous in 1985 by Michael Jordan, the shoe has stood the test of time, becoming the most famous colorway of the Air Jordan 1. This 2015 release saw the...
-                    </Text>
-                </View>
-            </View>
-            </ImageBackground>
-        </View>
+            </ImageBackground >
+        </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        width: wp(100),
+        height: hp(100),
         backgroundColor: '#E6F3F5',
     },
     header: {
@@ -192,7 +246,6 @@ const styles = StyleSheet.create({
     vector: {
         flex: 1,
         width: wp(100),
-        height: hp(50),
     },
     card: {
         margin: '1.5%',
@@ -262,7 +315,7 @@ const styles = StyleSheet.create({
     priceContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 12,
+        marginBottom: '1%',
     },
     originalPrice: {
         fontFamily: 'Nunito-Regular',
@@ -285,7 +338,25 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: 16,
+        marginBottom: '1%',
+    },
+    categoryBtnContainer: {
+        flexDirection: 'row',
+        // justifyContent: 'space-between',
+        marginBottom: '1%',
+        width: wp(45),
+        height: hp(6.1),
+    },
+    categoryBtn: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'transparent',
+        borderRadius: 10,
+        flex: 1,
+        height: hp(6.1),
+        borderWidth: 1,
+        borderColor: '#14BA9C'
     },
     button: {
         flexDirection: 'row',
@@ -304,18 +375,23 @@ const styles = StyleSheet.create({
         marginLeft: 4,
         color: '#000'
     },
+    ctgryText: {
+        fontFamily: 'Nunito-SemiBold',
+        color: '#000',
+        fontSize: wp(5.1)
+    },
     detailsContainer: {
-        marginBottom: 16,
+        marginBottom: '7%',
     },
     detailsTitle: {
         fontFamily: 'Nunito-Bold',
-        fontSize: hp(2.4),
+        fontSize: hp(2.2),
         color: '#000',
         marginBottom: 4,
     },
     detailsText: {
         fontFamily: 'Nunito-Regular',
-        fontSize: hp(2),
+        fontSize: hp(1.8),
         color: '#666',
     },
     categoryContainer: {

@@ -22,6 +22,8 @@ import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import Slider from '@react-native-community/slider';
 import { Navigation } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
+import SearchIcon from '../../../assets/SearchIcon.svg';
+import CameraIcon from '../../../assets/CameraIcon.svg'
 
 const { width } = Dimensions.get('window');
 
@@ -87,7 +89,7 @@ const SearchScreen = () => {
         <View style={styles.header}>
           <View style={styles.headerChild}>
             <Pressable onPress={() => navigation.goBack()}>
-            <MaterialIcons name='arrow-back-ios' color={'#0D0D26'} size={25} />
+              <MaterialIcons name='arrow-back-ios' color={'#0D0D26'} size={25} />
             </Pressable>
             <Text style={styles.headerText}>Search</Text>
           </View>
@@ -95,16 +97,15 @@ const SearchScreen = () => {
         <View style={styles.searchParent}>
           <Pressable style={styles.searchContainer}>
             <View style={styles.cameraButton}>
-              <Image source={require('../../../assets/camera.png')} style={{ width: wp(7) }} />
+              <CameraIcon />
             </View>
-            {/* <Text style={styles.input}>search for anything</Text> */}
             <TextInput
               placeholder='search for anything'
               placeholderTextColor={'#999'}
               style={styles.input}
             />
             <View style={styles.searchButton}>
-              <Image source={require('../../../assets/search.png')} style={{ width: wp(6) }} />
+              <SearchIcon />
             </View>
           </Pressable>
           <TouchableOpacity style={styles.menuButton} onPress={handleFilterButtonPress}>
@@ -187,28 +188,28 @@ const SearchScreen = () => {
                 </View>
 
                 {/* Price Range */}
-                <View style={{marginVertical: '5%'}}>
-                <Text style={styles.priceRangeTitle}>Price range</Text>
-                <Text style={styles.priceRangeSubtitle}>The average price is 80</Text>
+                <View style={{ marginVertical: '5%' }}>
+                  <Text style={styles.priceRangeTitle}>Price range</Text>
+                  <Text style={styles.priceRangeSubtitle}>The average price is 80</Text>
                 </View>
 
                 <View style={styles.priceRangeContainer}>
                   <Text style={styles.price}>${value}</Text>
 
                   <Text style={styles.price}>$10,00</Text>
-                
+
                 </View>
                 <Slider
-                    style={styles.slider}
-                    minimumValue={80}
-                    maximumValue={1000}
-                    step={1}
-                    value={value}
-                    onValueChange={(value) => setValue(value)}
-                    minimumTrackTintColor="#14BA9C"
-                    maximumTrackTintColor="#E4E5E7"
-                    thumbTintColor="#14BA9C"
-                  />
+                  style={styles.slider}
+                  minimumValue={80}
+                  maximumValue={1000}
+                  step={1}
+                  value={value}
+                  onValueChange={(value) => setValue(value)}
+                  minimumTrackTintColor="#14BA9C"
+                  maximumTrackTintColor="#E4E5E7"
+                  thumbTintColor="#14BA9C"
+                />
 
                 {/* Reset and Apply Buttons */}
                 <View style={styles.buttonContainer}>
@@ -398,7 +399,7 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     fontSize: hp(2.3),
-    fontFamily:'Nunito-Bold',
+    fontFamily: 'Nunito-Bold',
     color: '#000',
   },
   doneButton: {
@@ -413,7 +414,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 15,
     fontSize: hp(2.1),
-    fontFamily:'Nunito-SemiBold',
+    fontFamily: 'Nunito-SemiBold',
     color: '#333',
   },
   categoriesContainer: {
@@ -442,12 +443,12 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   priceRangeTitle: {
-    fontFamily:'Nunito-SemiBold',
+    fontFamily: 'Nunito-SemiBold',
     color: '#95969D',
     fontSize: hp(2.2)
   },
   priceRangeSubtitle: {
-    fontFamily:'Nunito-SemiBold',
+    fontFamily: 'Nunito-SemiBold',
     color: '#494A50',
     fontSize: hp(2.1)
   },
@@ -492,7 +493,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   price: {
-    fontFamily:'Nunito-Bold',
+    fontFamily: 'Nunito-Bold',
     fontSize: hp(2.4),
     color: '#000'
   },

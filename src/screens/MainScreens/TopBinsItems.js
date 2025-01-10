@@ -51,19 +51,19 @@ const TopBinItemsList = () => {
   ]
 
   return (
-    <View style={{ flex: 1, width: '100%', flexDirection: 'row', paddingHorizontal: '2.5%'}}>
-        <FlatList
-          data={myFavourites}
-          renderItem={renderMyFavourites}
-          keyExtractor={(item) => item.id.toString()}
-          numColumns={2}
-        />
-  </View>
+    <View style={{ flex: 1, width: '100%', flexDirection: 'row', paddingHorizontal: '2.5%' }}>
+      <FlatList
+        data={myFavourites}
+        renderItem={renderMyFavourites}
+        keyExtractor={(item) => item.id.toString()}
+        numColumns={2}
+      />
+    </View>
   );
 };
 const renderMyFavourites = ({ item }) => (
-  <View style={{ width: wp(47), height: hp(26), alignItems: 'center', marginVertical: '1%'}}>
-    <View style={{ width: wp(45), height: hp(26), borderRadius: 5, borderWidth: 1, borderColor: '#e6e6e6', backgroundColor: '#fff'}}>
+  <View style={{ width: wp(47), height: hp(26), alignItems: 'center', marginVertical: '1%' }}>
+    <View style={{ width: wp(45), height: hp(26), borderRadius: 5, borderWidth: 1, borderColor: '#e6e6e6', backgroundColor: '#fff' }}>
       <Image source={item.image} style={{ width: wp(45), height: hp(13), borderRadius: 5 }} />
       <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
       <View style={{ paddingHorizontal: '1%' }}>
@@ -97,8 +97,8 @@ const TopBinsItems = () => {
             <Text style={styles.headerText}>Top Bins Items</Text>
           </View>
         </View>
-        <View style={{flexDirection: 'row', alignItems: 'center', marginHorizontal: '3%'}}>
-        <Pressable style={styles.searchContainer} onPress={() => navigation.navigate('SearchScreen')}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: '3%' }}>
+          <Pressable style={styles.searchContainer} onPress={() => navigation.navigate('SearchScreen')}>
             <Text style={styles.input}>search for anything</Text>
             <View>
               <Image source={require('../../../assets/search.png')} style={{ width: wp(6) }} />
@@ -106,7 +106,7 @@ const TopBinsItems = () => {
           </Pressable>
         </View>
         <ScrollView style={styles.content}>
-          <TopBinItemsList/> 
+          <TopBinItemsList />
         </ScrollView>
       </ImageBackground>
     </View>
@@ -246,39 +246,39 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingVertical: '10%'
-},
-button: {
+  },
+  button: {
     backgroundColor: '#1a237e', // Dark purple color
     width: '80%',
     height: hp(5.6),
     borderRadius: 10,
     justifyContent: 'center',
     elevation: 3, // This creates the shadow for the button
-},
-buttonText: {
+  },
+  buttonText: {
     color: 'white',
     fontSize: hp(1.9),
     fontFamily: 'Nunito-Bold',
     textAlign: 'center',
-},
-searchContainer: {
-  flex: 1,
-  flexDirection: 'row',
-  alignItems: 'center',
-  // backgroundColor: 'trasparent',
-  borderWidth: 1,
-  borderRadius: 12,
-  marginRight: 10,
-  borderColor: '#99ABC678',
-  height: hp(6),
-  marginVertical: '2.5%',
-  paddingHorizontal: '3%'
-},
-input: {
-  flex: 1,
-  fontSize: hp(2.2),
-  fontFamily: 'Nunito-Regular',
-  paddingVertical: 8,
-  color: '#999'
-},
+  },
+  searchContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    // backgroundColor: 'trasparent',
+    borderWidth: 1,
+    borderRadius: 12,
+    marginRight: 10,
+    borderColor: '#99ABC678',
+    height: hp(6),
+    marginVertical: '2.5%',
+    paddingHorizontal: '3%'
+  },
+  input: {
+    flex: 1,
+    fontSize: hp(2.2),
+    fontFamily: 'Nunito-Regular',
+    paddingVertical: 8,
+    color: '#999'
+  },
 });

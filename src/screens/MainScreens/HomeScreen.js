@@ -10,13 +10,15 @@ import MapView, { Marker } from 'react-native-maps';
 import Feather from 'react-native-vector-icons/Feather';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import BinIQIcon from  '../../../assets/BinIQIcon.svg';
-import GetButton from  '../../../assets/GetButton.svg';
-import Notification from  '../../../assets/Notification.svg';
-import CameraIcon from  '../../../assets/CameraIcon.svg';
-import SearchIcon from  '../../../assets/SearchIcon.svg';
-import MenuIcon from  '../../../assets/MenuIcon.svg';
-import BinFinderIcon from  '../../../assets/BinFinderIcon.svg';
+import BinIQIcon from '../../../assets/BinIQIcon.svg';
+import GetButton from '../../../assets/GetButton.svg';
+import Notification from '../../../assets/Notification.svg';
+import CameraIcon from '../../../assets/CameraIcon.svg';
+import SearchIcon from '../../../assets/SearchIcon.svg';
+import MenuIcon from '../../../assets/MenuIcon.svg';
+import BinFinderIcon from '../../../assets/BinFinderIcon.svg';
+import SettingsIcon from '../../../assets/SettingsIcon.svg';
+import Dashboard from './Dashboard';
 
 const { width, height } = Dimensions.get('window');
 const HomeScreen = ({ openDrawer }) => {
@@ -150,14 +152,19 @@ const HomeScreen = ({ openDrawer }) => {
   const carouselImages = [
     {
       id: 1,
-      image: require('../../../assets/slider_1.png'),
-      styles: { width: wp(90), height: hp(47) }
+      isDashboard: true,
+      styles: { width: wp(90), height: hp(43) },
     },
     {
       id: 2,
       isMap: true,
       styles: { width: wp(100), height: hp(100) }
-    }
+    },
+    {
+      id: 3,
+      image: require('../../../assets/slider_1.png'),
+      styles: { width: wp(90), height: hp(43) }
+    },
   ]
   const myFavourites = [
     {
@@ -247,35 +254,35 @@ const HomeScreen = ({ openDrawer }) => {
       id: 1,
       image: require('../../../assets/reseller_training.png'),
       miniHeader: 'Buy Pallets',
-      title : 'Buy Pallets',
+      title: 'Buy Pallets',
       tutDetails: 'Full Video • With PDF'
     },
     {
       id: 2,
       image: require('../../../assets/reseller_training.png'),
       miniHeader: 'Buy Pallets',
-      title : 'Buy Pallets',
+      title: 'Buy Pallets',
       tutDetails: 'Full Video • With PDF'
     },
     {
       id: 3,
       image: require('../../../assets/reseller_training.png'),
       miniHeader: 'Buy Pallets',
-      title : 'Buy Pallets',
+      title: 'Buy Pallets',
       tutDetails: 'Full Video • With PDF'
     },
     {
       id: 4,
       image: require('../../../assets/reseller_training.png'),
       miniHeader: 'Buy Pallets',
-      title : 'Buy Pallets',
+      title: 'Buy Pallets',
       tutDetails: 'Full Video • With PDF'
     }
   ]
   const renderCarouselItem = ({ item, index }) => {
     if (item.isMap) {
       return (
-        <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: '4%', width: wp(90), height: wp(90), overflow: 'hidden', backgroundColor: 'red', alignSelf: 'center' }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: '4%', width: wp(90), height: wp(90), overflow: 'hidden', alignSelf: 'center' }}>
           <MapView
             style={{ ...item.styles }}
             initialRegion={{
@@ -299,6 +306,14 @@ const HomeScreen = ({ openDrawer }) => {
         </View>
       );
     }
+    if (item.isDashboard) {
+      return (
+        <View style={{ width: wp(90), height: '100%', overflow: 'hidden', alignSelf: 'center' }}>
+          <Dashboard />
+        </View>
+      );
+
+    }
     return (
       <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: '9%', width: wp(100), height: hp(40) }}>
         <Image source={item.image} style={item.styles} />
@@ -307,10 +322,10 @@ const HomeScreen = ({ openDrawer }) => {
   };
   const renderItem = ({ item }) => (
     // <View style={{paddingHorizontal: '0.1%'}}>
-    <Pressable style={{ width: wp(52), height: hp(25), marginVertical: '7%' }} onPress={() => navigation.navigate('BinStore')}>
-      <View style={{ width: wp(49), height: hp(23.5), borderRadius: 10, borderWidth: 0.4, borderColor: '#999' }}>
-        <Image source={item.image} style={{ width: wp(49), height: hp(14), borderRadius: 10 }} />
-      <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
+    <Pressable style={{ width: wp(50), height: hp(23), marginVertical: '7%' }} onPress={() => navigation.navigate('BinStore')}>
+      <View style={{ width: wp(47), height: hp(21.5), borderRadius: 10, borderWidth: 0.4, borderColor: '#999' }}>
+        <Image source={item.image} style={{ width: wp(47), height: hp(12), borderRadius: 10 }} />
+        <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
         <View style={{ margin: '5%', flexDirection: 'row', justifyContent: 'space-between' }}>
           <View>
             <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#0049AF', fontSize: hp(2) }}>{item.title}</Text>
@@ -326,10 +341,10 @@ const HomeScreen = ({ openDrawer }) => {
     </Pressable>
   );
   const renderProductsItem = ({ item }) => (
-    <TouchableOpacity style={{ width: wp(52), height: hp(23), marginVertical: '5%' }}>
-      <View style={{ width: wp(48), height: hp(22), borderRadius: 10, borderWidth: 0.5, borderColor: '#999' }}>
-        <Image source={item.image} style={{ width: wp(47), height: hp(13) }} />
-      <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
+    <TouchableOpacity style={{ width: wp(50), height: hp(23), marginVertical: '5%' }} onPress={() => navigation.navigate('TopBinItems')}>
+      <View style={{ width: wp(47), height: hp(21), borderRadius: 10, borderWidth: 0.5, borderColor: '#999' }}>
+        <Image source={item.image} style={{ width: wp(46), height: hp(12) }} />
+        <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
         <View style={{ margin: '3%', flexDirection: 'row', justifyContent: 'space-between' }}>
           <View>
             <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#0049AF', fontSize: hp(1.6) }}>{item.title}</Text>
@@ -344,7 +359,7 @@ const HomeScreen = ({ openDrawer }) => {
     <TouchableOpacity style={{ width: wp(44), height: hp(26) }}>
       <View style={{ width: wp(42), height: hp(26), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6' }}>
         <Image source={item.image} style={{ width: wp(42), height: hp(13), borderRadius: 5 }} />
-      <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
+        <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
         <View style={{ paddingHorizontal: '1%' }}>
           <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.5), margin: '0.5%' }}>{item.description}</Text>
         </View>
@@ -358,17 +373,17 @@ const HomeScreen = ({ openDrawer }) => {
     </TouchableOpacity>
   );
   const renderResellerPortal = ({ item }) => (
-    <TouchableOpacity style={{ width: wp(46), height: hp(26)}}>
-      <Pressable style={{ width: wp(44), height: hp(24), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6' }}>
-<Image source={item.image} style={{ width: wp(44), height: hp(13), borderRadius: 5 }} />
-<View style={{ margin: '5%', flexDirection: 'row', justifyContent: 'space-between' }}>
-  <View>
-    <Text style={{ fontFamily: 'Nunito-ExtraBold', color: '#0049AF', fontSize: hp(1.7) }}>{item.miniHeader}</Text>
-    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.2) }}>{item.title}</Text>
-    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5), marginTop: '5%' }}>{item.tutDetails}</Text>
-  </View>
-</View>
-</Pressable>
+    <TouchableOpacity style={{ width: wp(44), height: hp(24) }}>
+      <Pressable style={{ width: wp(42), height: hp(22), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6' }}>
+        <Image source={item.image} style={{ width: wp(42), height: hp(11), borderRadius: 5 }} />
+        <View style={{ margin: '5%', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <View>
+            <Text style={{ fontFamily: 'Nunito-ExtraBold', color: '#0049AF', fontSize: hp(1.7) }}>{item.miniHeader}</Text>
+            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.2) }}>{item.title}</Text>
+            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5), marginTop: '5%' }}>{item.tutDetails}</Text>
+          </View>
+        </View>
+      </Pressable>
     </TouchableOpacity>
   )
   const pagination = () => {
@@ -396,33 +411,35 @@ const HomeScreen = ({ openDrawer }) => {
       <StatusBar translucent={true} backgroundColor={'transparent'} />
       <ImageBackground source={require('../../../assets/home_bg.jpg')} style={styles.vector}>
         <View style={{ marginTop: '6%' }}>
-          <View style={{width: wp(90), height: hp(5), alignSelf: 'center', marginVertical: '4%', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <View style={{ width: wp(90), height: hp(5), alignSelf: 'center', marginVertical: '4%', flexDirection: 'row', justifyContent: 'space-between' }}>
             <View style={{ width: '28%', height: '100%', justifyContent: 'center', alignItems: 'flex-start' }}>
-              <BinIQIcon/>
+              <BinIQIcon />
             </View>
-            <View style={{width: '45%', height: '100%', flexDirection: 'row' }}>
-              <GetButton/>
-              <View style={{width: '23%', height: '100%', justifyContent: 'center', alignItems: 'flex-end',paddingRight: '2%'}}>
-              <Notification/>
+            <View style={{ width: '45%', height: '100%', flexDirection: 'row' }}>
+              <Pressable onPress={() => navigation.navigate('ReferFriend')}>
+                <GetButton />
+              </Pressable>
+              <Pressable style={{ width: '23%', height: '100%', justifyContent: 'center', alignItems: 'flex-end', paddingRight: '2%' }} onPress={() => navigation.navigate('Notifications')}>
+                <Notification />
+              </Pressable>
+            </View>
+          </View>
+          <View style={styles.container}>
+            <Pressable style={styles.searchContainer} onPress={() => navigation.navigate('SearchScreen')}>
+              <View style={styles.cameraButton}>
+                <CameraIcon />
               </View>
-            </View>
+              <Text style={styles.input}>search for anything</Text>
+              <View style={styles.searchButton}>
+                <SearchIcon />
+              </View>
+            </Pressable>
+            <TouchableOpacity style={styles.menuButton} onPress={openDrawer}>
+              {/* <FontAwesome6 name='bars-staggered' size={18} color={'#fff'} /> */}
+              <SettingsIcon />
+            </TouchableOpacity>
+          </View>
         </View>
-      <View style={styles.container}>
-          <Pressable style={styles.searchContainer} onPress={() => navigation.navigate('SearchScreen')}>
-            <View style={styles.cameraButton}>
-            <CameraIcon/>
-            </View>
-            <Text style={styles.input}>search for anything</Text>
-            <View style={styles.searchButton}>
-            <SearchIcon/>
-            </View>
-          </Pressable>
-          <TouchableOpacity style={styles.menuButton} onPress={openDrawer}>
-            {/* <FontAwesome6 name='bars-staggered' size={18} color={'#fff'} /> */}
-            <MenuIcon/>
-          </TouchableOpacity>
-        </View>
-      </View>
         <Carousel
           data={carouselImages}
           renderItem={renderCarouselItem}
@@ -434,18 +451,25 @@ const HomeScreen = ({ openDrawer }) => {
         />
         {carouselImages[activeSlide]?.id === 2 ? (
           <View style={{ width: wp(100), height: hp(14), paddingHorizontal: '10%', justifyContent: 'center' }}>
-            <BinFinderIcon/>
+            <BinFinderIcon />
             <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.6) }}>BIN FINDER</Text>
             <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#667085', fontSize: hp(1.7) }}>Discover Hidden Gems Near You</Text>
           </View>
-        ) : null}
+        ) :
+          carouselImages[activeSlide]?.id === 3 ? (
+            <View style={{ width: wp(100), height: hp(15), paddingHorizontal: '10%', justifyContent: 'center' }}>
+              <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.2) }}>KNOWLEDGE IS OPPORTUNITIES</Text>
+              <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#667085', fontSize: hp(1.4) }}>Ready to become a Bin IQ PRO? In this training learn the secrets of pinpointing the best bin stores, selecting the right items, listing effectively, and selling strategically with our proven BinIQ blueprint.</Text>
+            </View>
+          ) : null
+        }
         {pagination()}
       </ImageBackground>
       {/* TOP BINS NEAR ME  */}
-      <View style={{ flex: 1, width: '100%', height: hp(35) }}>
+      <View style={{ flex: 1, width: '100%', height: hp(35), marginTop: '4%' }}>
         <View style={{ marginTop: '7%', paddingHorizontal: '5%' }}>
           <TouchableOpacity onPress={() => navigation.navigate('TopBinsNearMe')}>
-            <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.4), color: '#000000' }}>TOP BINS NEAR ME</Text>
+            <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.3), color: '#000000' }}>TOP BINS NEAR ME</Text>
           </TouchableOpacity>
           <FlatList
             data={topBins}
@@ -460,7 +484,7 @@ const HomeScreen = ({ openDrawer }) => {
       <View style={{ flex: 1, width: '100%', height: hp(30) }}>
         <View style={{ marginVertical: '0%', paddingHorizontal: '5%' }}>
           <TouchableOpacity onPress={() => navigation.navigate('TopBinItems')}>
-            <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.4), color: '#000000' }}>TOP BIN ITEM</Text>
+            <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.3), color: '#000000' }}>TOP BIN ITEM</Text>
           </TouchableOpacity>
           <FlatList
             data={products}
@@ -474,8 +498,8 @@ const HomeScreen = ({ openDrawer }) => {
       {/* MY FAVOURITES  */}
       <View style={{ flex: 1, width: '100%', height: hp(35) }}>
         <View style={{ marginVertical: '0%', paddingHorizontal: '3%' }}>
-          <TouchableOpacity   onPress={() => navigation.navigate('FavouritesScreen')}>
-          <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.4), color: '#000000' }}>MY FAVOURITES</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('FavouritesScreen')}>
+            <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.3), color: '#000000' }}>MY FAVOURITES</Text>
           </TouchableOpacity>
           <View style={{ marginVertical: '3%' }}>
             <FlatList
@@ -492,17 +516,17 @@ const HomeScreen = ({ openDrawer }) => {
       <View style={{ flex: 1, width: '100%', height: hp(42) }}>
         <View style={{ marginVertical: '0%', paddingHorizontal: '3%' }}>
           <TouchableOpacity onPress={() => navigation.navigate('IQPortal')}>
-          <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.4), color: '#000000' }}>RESELLER IQ PORTAL</Text>
+            <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.2), color: '#000000' }}>RESELLER IQ PORTAL</Text>
           </TouchableOpacity>
           <View style={{ marginVertical: '4%' }}>
-          <FlatList
+            <FlatList
               data={resellerIQPortal}
               renderItem={renderResellerPortal}
               keyExtractor={(item) => item.id.toString()}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
             />
-            </View>
+          </View>
         </View>
       </View>
 
@@ -575,4 +599,9 @@ const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject,
   },
+  carouselItem: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
 })

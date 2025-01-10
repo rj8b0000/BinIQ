@@ -2,12 +2,18 @@ import { Dimensions, FlatList, Image, ImageBackground, Pressable, ScrollView, St
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import React, { useRef, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
-import PhoneInput from 'react-native-phone-number-input';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import Feather from 'react-native-vector-icons/Feather'
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+import LocationIcon from '../../../assets/LocationIcon.svg';
+import HeartIcon from '../../../assets/HeartIcon.svg';
+import FacebookIcon from '../../../assets/FacebookIcon.svg';
+import TwitterIcon from '../../../assets/TwitterIcon.svg';
+import WhatsappIcon from '../../../assets/WhatsappIcon.svg';
+import LinkedinIcon from '../../../assets/LinkedinIcon.svg';
+import SharedIcon from '../../../assets/SharedIcon.svg';
+import RatingsSummary from '../../Components/RatingsSummary';
 
 const { width, height } = Dimensions.get('window')
 const BinStorePage = () => {
@@ -36,8 +42,8 @@ const BinStorePage = () => {
         discountPrice: '$65',
         originalPrice: '$151',
         totalDiscount: '60% off'
-      },
-      {
+    },
+    {
         id: 2,
         image: require('../../../assets/gray_img.png'),
         title: 'COLGATE',
@@ -45,8 +51,8 @@ const BinStorePage = () => {
         discountPrice: '$650',
         originalPrice: '$125',
         totalDiscount: '70% off'
-      },
-      {
+    },
+    {
         id: 3,
         image: require('../../../assets/gray_img.png'),
         title: 'COLGATE',
@@ -54,8 +60,8 @@ const BinStorePage = () => {
         discountPrice: '$75',
         originalPrice: '$199',
         totalDiscount: '60% off'
-      }
-      ]
+    }
+    ]
     const renderItem = ({ item, index }) => {
         return (
             <View style={styles.slide}>
@@ -65,20 +71,20 @@ const BinStorePage = () => {
     };
     const renderMyFavourites = ({ item }) => (
         <View style={{ width: wp(47), height: hp(26) }}>
-          <View style={{ width: wp(45), height: hp(26), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6' }}>
-            <Image source={item.image} style={{ width: wp(45), height: hp(13), borderRadius: 5 }} />
-            <View style={{ paddingHorizontal: '1%' }}>
-              <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.7), margin: '0.5%' }}>{item.description}</Text>
+            <View style={{ width: wp(45), height: hp(26), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6' }}>
+                <Image source={item.image} style={{ width: wp(45), height: hp(13), borderRadius: 5 }} />
+                <View style={{ paddingHorizontal: '1%' }}>
+                    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.7), margin: '0.5%' }}>{item.description}</Text>
+                </View>
+                <View style={{ position: 'absolute', bottom: '2%', paddingHorizontal: '3%' }}>
+                    <View>
+                        <Text style={{ fontFamily: 'Nunito-Bold', color: '#000', fontSize: hp(1.8) }}>{item.discountPrice}</Text>
+                        <Text style={{ color: 'red' }}><Text style={{ fontFamily: 'Nunito-Bold', color: '#808488', fontSize: hp(1.8), textDecorationLine: 'line-through' }}>{item.originalPrice}</Text>{'  '}{item.totalDiscount}</Text>
+                    </View>
+                </View>
             </View>
-            <View style={{ position: 'absolute', bottom: '2%', paddingHorizontal: '3%' }}>
-              <View>
-                <Text style={{ fontFamily: 'Nunito-Bold', color: '#000', fontSize: hp(1.8) }}>{item.discountPrice}</Text>
-                <Text style={{ color: 'red' }}><Text style={{ fontFamily: 'Nunito-Bold', color: '#808488', fontSize: hp(1.8), textDecorationLine: 'line-through' }}>{item.originalPrice}</Text>{'  '}{item.totalDiscount}</Text>
-              </View>
-            </View>
-          </View>
         </View>
-      );
+    );
     const pagination = () => {
         return (
             <Pagination
@@ -92,21 +98,24 @@ const BinStorePage = () => {
             />
         );
     };
-    
+
     return (
         <ScrollView style={styles.container}>
             <StatusBar translucent={true} backgroundColor={'transparent'} />
             <ImageBackground source={require('../../../assets/vector_1.png')} style={styles.vector}>
                 <View style={styles.header}>
                     <View style={styles.headerChild}>
-                  <Pressable onPress={() => navigation.goBack()}>
-                        <MaterialIcons name='arrow-back-ios' color={'#0D0D26'} size={25} />
+                        <Pressable onPress={() => navigation.goBack()}>
+                            <MaterialIcons name='arrow-back-ios' color={'#0D0D26'} size={25} />
                         </Pressable>
                         <Text style={styles.headerText}>Hidden Finds</Text>
                     </View>
-                    <Pressable onPress={() => setFavouritePressed(!favouritePress)}>
-                        <Ionicons name='heart' color={favouritePress ? '#EE2525' : '#99ABC6A1'} size={30} />
-                    </Pressable>
+                    <View style={{ flexDirection: 'row', width: '19%', justifyContent: 'space-between' }}>
+                        <Pressable onPress={() => setFavouritePressed(!favouritePress)}>
+                            <Ionicons name='heart' color={favouritePress ? '#EE2525' : '#99ABC6A1'} size={28} />
+                        </Pressable>
+                        <SharedIcon width={28} />
+                    </View>
                 </View>
                 <View style={styles.slider}>
                     <Carousel
@@ -124,59 +133,78 @@ const BinStorePage = () => {
             <View style={styles.contentHeader}>
                 <View style={styles.content}>
                     <Text style={{ fontFamily: 'Nunito-Bold', color: '#000', fontSize: hp(2.5) }}>HIDDEN FINDS</Text>
-                    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.1) }}>All in one bin store</Text>
-                    <Text style={{ fontFamily: 'Nunito-Regular', color: '#808488', fontSize: hp(2) }}>stores full address</Text>
                 </View>
                 <View style={styles.review}>
-                    <FontAwesome name='star' color={'#FFD700'} size={17} />
-                    <FontAwesome name='star' color={'#FFD700'} size={17} />
-                    <FontAwesome name='star' color={'#FFD700'} size={17} />
-                    <FontAwesome name='star' color={'#FFD700'} size={17} />
-                    <FontAwesome name='star' color={'#e6e6e6'} size={17} />
-                    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#828282', fontSize: hp(2.2) }}> 56,890</Text>
+                    <FontAwesome name='star' color={'#FFD700'} size={16} />
+                    <FontAwesome name='star' color={'#FFD700'} size={16} />
+                    <FontAwesome name='star' color={'#FFD700'} size={16} />
+                    <FontAwesome name='star' color={'#FFD700'} size={16} />
+                    <FontAwesome name='star' color={'#e6e6e6'} size={16} />
+                    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#828282', fontSize: hp(2) }}> 56,890</Text>
                 </View>
             </View>
             <View style={styles.contentDetails}>
-                <Text style={{ color: '#000', fontFamily: 'Nunito-SemiBold', fontSize: hp(2.2) }}>Store Details</Text>
-                <Text style={{ color: '#000', fontFamily: 'Nunito-SemiBold', fontSize: hp(1.8), marginTop: '2%' }}>
-                    Perhaps the most iconic sneaker of all-time, this original "Chicago"? colorway is the cornerstone to any sneaker collection. Made famous in 1985 by Michael Jordan, the shoe has stood the test of time, becoming the most famous colorway of the Air Jordan 1. This 2015 release saw the  ...More
-                </Text>
-            </View>
-            <View style={styles.storeButtonsContainer}>
-                <View style={styles.nearestStore}>
-                    <Image source={require('../../../assets/location.png')} style={{width: wp(6.2), height: hp(2.2)}}/>
-                    <Text style={{fontFamily: 'Nunito-SemiBold', color: '#828282', fontSize: hp(1.8)}}>Nearest Store</Text>
-                </View>
-                <View style={styles.nearestStore}>
-                    <Image source={require('../../../assets/return_policy.png')} style={{width: wp(6.2), height: hp(2.2)}}/>
-                    <Text style={{fontFamily: 'Nunito-SemiBold', color: '#828282', fontSize: hp(1.8)}}>Return Policy</Text>
+                <Text style={{ color: '#000', fontFamily: 'Nunito-SemiBold', fontSize: hp(1.8), marginVertical: '1%' }}>Address: </Text>
+                <Text style={{ color: '#000', fontFamily: 'Nunito-SemiBold', fontSize: hp(1.8), marginVertical: '1%' }}>Phone Number: </Text>
+                <Text style={{ color: '#000', fontFamily: 'Nunito-SemiBold', fontSize: hp(1.8), marginVertical: '1%' }}>Email </Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <Text style={{ color: '#000', fontFamily: 'Nunito-SemiBold', fontSize: hp(1.8), marginVertical: '1%' }}>Social Media Page </Text>
+                    <View style={styles.socialMediaIcons}>
+                        <FacebookIcon />
+                        <TwitterIcon />
+                        <WhatsappIcon />
+                        <LinkedinIcon />
+                    </View>
                 </View>
             </View>
-            <View style={styles.bottomButtons}>
-                <View style={styles.viewSimilar}>
-                <Image source={require('../../../assets/eye.png')} style={{width: wp(6.2), height: hp(2.2)}}/>
-                    <Text style={{fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.1)}}>View Similar</Text>
+            <View style={{ marginVertical: '1.5%' }}>
+                <View style={styles.bottomButtons}>
+                    <View style={styles.viewSimilar}>
+                        <LocationIcon />
+                        <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.8) }}>Verify My Bin</Text>
+                    </View>
                 </View>
-                <View style={styles.viewSimilar}>
-                    <Image source={require('../../../assets/card.png')} style={{width: wp(6.2), height: hp(2.2)}}/>
-                    <Text style={{fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.1)}}>Return Policy</Text>
+                <View style={styles.storeButtonsContainer}>
+                    <View style={styles.nearestStore}>
+                        <LocationIcon />
+                        <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.8) }}>Check In</Text>
+                    </View>
+                    <View style={styles.nearestStoreBtn2}>
+                        <HeartIcon />
+                        <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.8) }}>My Fav</Text>
+                    </View>
                 </View>
             </View>
-                  {/* TRENDING PRODUCTS  */}
-      <View style={{ flex: 1, width: '100%', height: hp(35) }}>
-        <View style={{ marginVertical: '6%', paddingHorizontal: '5%' }}>
-          <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.6), color: '#000000' }}>Trending Products</Text>
-          <View style={{ marginVertical: '3%' }}>
-            <FlatList
-              data={myFavourites}
-              renderItem={renderMyFavourites}
-              keyExtractor={(item) => item.id.toString()}
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-            />
-          </View>
-        </View>
-      </View>
+            <View style={{ flex: 1, width: '100%', height: hp(35) }}>
+                <View style={{ marginVertical: '3%', paddingHorizontal: '5%' }}>
+                    <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.6), color: '#000000', marginVertical: '2%' }}>Review & Ratings</Text>
+                    {/* <View style={{ marginVertical: '3%' }}>
+                        <FlatList
+                            data={myFavourites}
+                            renderItem={renderMyFavourites}
+                            keyExtractor={(item) => item.id.toString()}
+                            horizontal={true}
+                            showsHorizontalScrollIndicator={false}
+                        />
+                    </View> */}
+                    <RatingsSummary />
+                </View>
+            </View>
+            {/* TRENDING PRODUCTS  */}
+            <View style={{ flex: 1, width: '100%', height: hp(35) }}>
+                <View style={{ paddingHorizontal: '5%' }}>
+                    <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.6), color: '#000000', marginVertical: '2%' }}>Trending Products</Text>
+                    <View style={{ marginVertical: '3%' }}>
+                        <FlatList
+                            data={myFavourites}
+                            renderItem={renderMyFavourites}
+                            keyExtractor={(item) => item.id.toString()}
+                            horizontal={true}
+                            showsHorizontalScrollIndicator={false}
+                        />
+                    </View>
+                </View>
+            </View>
         </ScrollView>
     )
 }
@@ -219,7 +247,7 @@ const styles = StyleSheet.create({
         borderColor: '#000',
         marginHorizontal: '5%',
         height: height * 0.25,
-        marginTop: '5%',
+        marginTop: '4%',
     },
     slide: {
         flex: 1,
@@ -247,64 +275,77 @@ const styles = StyleSheet.create({
     },
     contentHeader: {
         width: '90%',
-        height: hp(10),
-        marginTop: '6%',
         marginHorizontal: '5%',
-        flexDirection: 'row'
+        marginVertical: '4%',
+        flexDirection: 'row',
     },
     content: {
         width: '50%',
-        height: hp(10),
     },
     review: {
         width: '50%',
-        height: hp(10),
         flexDirection: 'row',
         justifyContent: 'flex-end'
     },
     contentDetails: {
         width: '90%',
         marginHorizontal: '5%',
-        height: hp(19)
     },
-    storeButtonsContainer : {
+    storeButtonsContainer: {
         width: '80%',
         height: hp(4),
-        justifyContent:'center',
         alignSelf: 'center',
-        marginVertical: '4%',
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-    nearestStore : {
-        width: '48%',
-        borderWidth: 0.6,
-        borderColor: '#828282',
-        height: hp(4),
-        borderRadius: 4,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    bottomButtons : {
-        width: '90%',
-        height: hp(7.5),
-        justifyContent:'center',
-        alignSelf: 'center',
-        // marginVertical: '4%',
+        // marginVertical: '5%',
         flexDirection: 'row',
         justifyContent: 'space-between',
+
     },
-    viewSimilar : {
+    nearestStore: {
         width: '48%',
         borderWidth: 0.4,
         borderColor: '#828282',
-        height: hp(7),
+        height: hp(5.5),
+        borderRadius: 7,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: '9%'
+    },
+    nearestStoreBtn2: {
+        width: '48%',
+        borderWidth: 0.4,
+        borderColor: '#828282',
+        height: hp(5.5),
+        borderRadius: 7,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: '11%'
+    },
+    bottomButtons: {
+        width: '90%',
+        height: hp(7.5),
+        justifyContent: 'center',
+        alignSelf: 'center',
+        marginTop: '3%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    viewSimilar: {
+        width: '48%',
+        borderWidth: 0.4,
+        borderColor: '#828282',
+        height: hp(5.4),
         borderRadius: 7,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
         paddingHorizontal: '3%'
+    },
+    socialMediaIcons: {
+        width: '35%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     }
 
 })

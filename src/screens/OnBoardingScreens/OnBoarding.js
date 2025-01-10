@@ -9,16 +9,16 @@ const { width, height } = Dimensions.get('window');
 
 const onboardingData = [
   {
-    title: (<Text>Largest Network of{' '}<Text  style={{color: '#00B386', textDecorationLine: 'underline', }}>Amazon Bin Store</Text> in the Nation!</Text>),
+    title: (<Text>Largest Network of{' '}<Text style={{ color: '#00B386', textDecorationLine: 'underline', }}>Amazon Bin Store</Text> in the Nation!</Text>),
     subtitle: "Discover hidden gems near you.",
-    image: require('../../../assets/ob_img1.png'),
-    styles: { width: wp(80), height: hp(24)}
+    image: require('../../../assets/ob_img1.gif'),
+    styles: { width: wp(80), height: hp(37) }
   },
   {
     title: (
       <Text>
         Select Your{' '}
-        <Text  style={{color: '#00B386', textDecorationLine: 'underline', }}>Course!</Text>
+        <Text style={{ color: '#00B386', textDecorationLine: 'underline', }}>Course!</Text>
       </Text>
     ),
     subtitle: "Enroll in our reselling training tailored to enhance your skills, industry knowledge, and reach goals.",
@@ -29,7 +29,7 @@ const onboardingData = [
     title: (
       <Text>
         Streamline your{' '}
-        <Text  style={{color: '#00B386', textDecorationLine: 'underline', }}>Process!</Text>
+        <Text style={{ color: '#00B386', textDecorationLine: 'underline', }}>Process!</Text>
       </Text>
     ),
     subtitle: "Effortlessly scan items, and list more products while tracking live prices, item details, and more.",
@@ -39,12 +39,12 @@ const onboardingData = [
   {
     title: (
       <Text>
-        Secure your <Text style={{color: '#00B386', textDecorationLine: 'underline', }}>Scans!</Text>
+        Secure your <Text style={{ color: '#00B386', textDecorationLine: 'underline', }}>Scans!</Text>
       </Text>
     ),
     subtitle: "Efficiently store and review scan history, and manage inventory with precision.",
     image: require('../../../assets/ob_img4.png'), // Add your image path
-    styles: { width: wp(90), height: hp(37)}
+    styles: { width: wp(90), height: hp(37) }
   },
 ];
 
@@ -53,11 +53,11 @@ const OnboardingScreen = ({ navigation }) => {
   const carouselRef = useRef(null);
 
   const renderItem = ({ item }) => (
-    <View style={{...styles.slide}}>
-      <Image source={item.image} style={{...item.styles}} />
+    <View style={{ ...styles.slide }}>
+      <Image source={item.image} style={{ ...item.styles }} resizeMode="contain" animated={true} />
       <View>
-      <Text style={styles.title}>{item.title}</Text>
-      <Text style={styles.subtitle}>{item.subtitle}</Text>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.subtitle}>{item.subtitle}</Text>
       </View>
     </View>
   );
@@ -67,19 +67,21 @@ const OnboardingScreen = ({ navigation }) => {
       <Pagination
         dotsLength={onboardingData.length}
         activeDotIndex={activeIndex}
-        // containerStyle={{ paddingVertical: 8 }}
         dotStyle={{
-          width: 20,
-          height: 10,
+          width: wp(8),
+          height: hp(1.1),
           borderRadius: 5,
           backgroundColor: '#14BA9C',
+          marginHorizontal: wp(-1.1), // Adjust spacing between dots
         }}
         inactiveDotStyle={{
-          width: 10
+          width: 10,
+          marginHorizontal: wp(0.5), // Same spacing for inactive dots
         }}
         inactiveDotOpacity={0.4}
-        inactiveDotScale={0.6}
+        inactiveDotScale={0.9}
       />
+
     );
   };
 
@@ -114,7 +116,7 @@ const OnboardingScreen = ({ navigation }) => {
         snapToInterval={width}  // Ensures snapping to one item
       />
       <View style={styles.arrowContainer}>
-        {activeIndex < onboardingData.length - 1 &&(pagination())}
+        {activeIndex < onboardingData.length - 1 && (pagination())}
         {activeIndex < onboardingData.length - 1 && (
           <TouchableOpacity style={styles.nextButton} onPress={handleNext}>
             <AntDesign name="arrowright" size={30} color="#fff" style={styles.nextArrow} />
@@ -122,11 +124,11 @@ const OnboardingScreen = ({ navigation }) => {
         )}
         {activeIndex === onboardingData.length - 1 && (
           <TouchableOpacity style={styles.gettingStarted} onPress={() => navigation.navigate('SignUp')}>
-            <Text style={{fontFamily: 'Nunito-SemiBold', color: '#fff', fontSize: hp(2.5)}}>Get started</Text>
+            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#fff', fontSize: hp(2.5) }}>Get started</Text>
           </TouchableOpacity>
         )}
       </View>
-    </View>
+    </View >
   );
 };
 
@@ -137,7 +139,7 @@ const styles = StyleSheet.create({
   },
   slide: {
     marginTop: hp(5),
-    height : hp(70),
+    height: hp(70),
     // flex: 2,
     justifyContent: 'space-evenly',
     alignItems: 'center',
@@ -191,17 +193,17 @@ const styles = StyleSheet.create({
   },
   nextButton: {
     width: wp(16),
-    height: hp(8),
+    height: wp(16),
     backgroundColor: '#130160',
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center'
   },
   highlightedText: {
-    color: '#00B386', 
-    textDecorationLine: 'underline', 
+    color: '#00B386',
+    textDecorationLine: 'underline',
   },
-  gettingStarted : {
+  gettingStarted: {
     backgroundColor: '#130160',
     width: '100%',
     height: hp(7.5),

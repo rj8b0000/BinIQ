@@ -51,15 +51,15 @@ const SignUp = () => {
                 <TouchableOpacity style={styles.gettingStarted} onPress={() => navigation.navigate('QuizScreen')}>
                     <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#fff', fontSize: hp(2.5) }}>Sign Up</Text>
                 </TouchableOpacity>
-                <View style = {{flexDirection: 'row', alignSelf: 'center', marginVertical: '9%'}}> 
-                <Text style={{color: '#524B6B', fontSize: hp(2.3), fontFamily: 'Nunito-SemiBold', textAlign: 'center'}}>
-                    have an account yet? {''}
-                </Text>
-                <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                <Text style={{color: '#14BA9C', fontSize: hp(2.3), fontFamily: 'Nunito-SemiBold', textAlign: 'center', textDecorationLine: 'underline'}}>
-                        Login
+                <View style={{ flexDirection: 'row', alignSelf: 'center', marginVertical: '9%' }}>
+                    <Text style={{ color: '#524B6B', fontSize: hp(2.3), fontFamily: 'Nunito-SemiBold', textAlign: 'center' }}>
+                        have an account yet? {''}
                     </Text>
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                        <Text style={{ color: '#14BA9C', fontSize: hp(2.3), fontFamily: 'Nunito-SemiBold', textAlign: 'center', textDecorationLine: 'underline' }}>
+                            Login
+                        </Text>
+                    </TouchableOpacity>
                 </View>
             </ImageBackground>
         </ScrollView>

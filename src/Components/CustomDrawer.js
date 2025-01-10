@@ -12,6 +12,13 @@ import {
 } from "react-native"
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-native-responsive-screen"
 import Ionicons from "react-native-vector-icons/Ionicons"
+import EditProfile from '../../assets/EditProfile.svg';
+import Feedback from '../../assets/FeedBack.svg';
+import ChangePassword from '../../assets/ChangePassword.svg';
+import Help from '../../assets/Help.svg';
+import ReferallProgram from '../../assets/ReferallProgram.svg';
+import Settings from '../../assets/Settings.svg';
+
 
 const { width } = Dimensions.get("window")
 
@@ -28,13 +35,12 @@ const CustomDrawer = ({ isOpen, closeDrawer }) => {
   }, [isOpen])
 
   const menuItems = [
-    // { icon: "person-outline", label: "Edit Profile", goto:  'EditProfile' },
-    { icon: "notifications-outline", label: "Notification", goto : 'Notifications' },
-    { icon: "chatbox-outline", label: "Feedback", goto : 'Feedback'},
-    // { icon: "lock-closed-outline", label: "Change Password", goto: 'null'},
-    { icon: "help-circle-outline", label: "Help", goto: 'HelpAndSupport'},
-    { icon: "gift-outline", label: "Referral Program", goto : 'ReferFriend'},
-    // { icon: "settings-outline", label: "Settings"}
+    { icon: <EditProfile />, label: "Edit Profile", goto: 'UserProfileScreen' },
+    { icon: <Feedback />, label: "Feedback", goto: 'Feedback' },
+    { icon: <ChangePassword />, label: "Change Password", goto: 'ChangePassword' },
+    { icon: <Help />, label: "Help", goto: 'HelpAndSupport' },
+    { icon: <ReferallProgram />, label: "Referral Program", goto: 'ReferFriend' },
+    { icon: <Settings />, label: "Settings", goto: 'SettingsScreen' },
   ]
 
   return (
@@ -52,14 +58,18 @@ const CustomDrawer = ({ isOpen, closeDrawer }) => {
       <ScrollView style={styles.menuItems}>
         {menuItems.map((item, index) => (
           <TouchableOpacity key={index} style={styles.menuItem} onPress={() => navigation.navigate(item.goto)}>
-            <Ionicons name={item.icon} size={24} color="#14BA9C" />
-            <Text style={styles.menuItemLabel}>{item.label}</Text>
+            <View style={{ width: '9%' }}>
+              {item.icon}
+            </View>
+            <View>
+              <Text style={styles.menuItemLabel}>{item.label}</Text>
+            </View>
           </TouchableOpacity>
         ))}
-             <TouchableOpacity style={styles.logoutButton}>
-        <Ionicons name="log-out-outline" size={24} color="red" />
-        <Text style={styles.logoutText}>Logout</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.logoutButton}>
+          <Ionicons name="log-out-outline" size={24} color="red" />
+          <Text style={styles.logoutText}>Logout</Text>
+        </TouchableOpacity>
       </ScrollView>
     </Animated.View>
   )
@@ -91,13 +101,13 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   },
   profilePicture: {
-    width: 80,
-    height: 80,
+    width: wp(20),
+    height: wp(20),
     borderRadius: 40,
     marginBottom: 10
   },
   profileName: {
-    fontSize: hp(2.7),
+    fontSize: hp(2.2),
     color: '#0D0D26',
     fontFamily: 'Nunito-Bold'
   },
@@ -107,11 +117,11 @@ const styles = StyleSheet.create({
   menuItem: {
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 15
+    paddingVertical: '4.5%'
   },
   menuItemLabel: {
     marginLeft: 15,
-    fontSize: hp(2.3),
+    fontSize: hp(2),
     color: '#0D0D26',
     fontFamily: 'Nunito-SemiBold'
   },
@@ -124,7 +134,7 @@ const styles = StyleSheet.create({
   logoutText: {
     marginLeft: 15,
     color: "red",
-    fontSize: hp(2.3),
+    fontSize: hp(2),
     fontFamily: 'Nunito-SemiBold'
   }
 })
