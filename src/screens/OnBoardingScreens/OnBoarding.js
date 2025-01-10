@@ -21,7 +21,7 @@ const onboardingData = [
         <Text style={{ color: '#00B386', textDecorationLine: 'underline', }}>Course!</Text>
       </Text>
     ),
-    subtitle: "Enroll in our reselling training tailored to enhance your skills, industry knowledge, and reach goals.",
+    subtitle: (<Text style={{ color: '#524B6B', fontFamily: 'DMSans_18pt-Regular', fontSize: wp(3.8) }}>Discover hidden gems near you.</Text>),
     image: require('../../../assets/ob_img2.png'), // Add your image path
     styles: { width: wp(82), height: hp(35) }
   },
@@ -32,7 +32,7 @@ const onboardingData = [
         <Text style={{ color: '#00B386', textDecorationLine: 'underline', }}>Process!</Text>
       </Text>
     ),
-    subtitle: "Effortlessly scan items, and list more products while tracking live prices, item details, and more.",
+    subtitle: (<Text style={{ color: '#524B6B', fontFamily: 'DMSans_18pt-Regular', fontSize: wp(3.8) }}>Discover hidden gems near you.</Text>),
     image: require('../../../assets/ob_img3.png'), // Add your image path
     styles: { width: wp(80), height: hp(35) }
   },
@@ -42,7 +42,7 @@ const onboardingData = [
         Secure your <Text style={{ color: '#00B386', textDecorationLine: 'underline', }}>Scans!</Text>
       </Text>
     ),
-    subtitle: "Efficiently store and review scan history, and manage inventory with precision.",
+    subtitle: (<Text style={{ color: '#524B6B', fontFamily: 'DMSans_18pt-Regular', fontSize: wp(3.8) }}>Discover hidden gems near you.</Text>),
     image: require('../../../assets/ob_img4.png'), // Add your image path
     styles: { width: wp(90), height: hp(37) }
   },

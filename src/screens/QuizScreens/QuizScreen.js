@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         // marginTop: hp(4),
-        marginVertical: '7%'
+        marginVertical: '7%',
     },
     progressDot: {
         width: wp(12),
@@ -319,15 +319,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#00d084', // Active progress color
     },
     questionText: {
-        fontSize: 18,
-        marginBottom: 20,
+        fontSize: wp(4.6),
+        marginBottom: '6%',
         textAlign: 'left',
-        fontFamily: 'Nunito-Regular',
-        color: '#000'
+        fontFamily: 'DMSans-SemiBold',
+        color: '#130160',
     },
     optionButton: {
         width: wp(90),
-        height: hp(6.5),
+        height: hp(8.6),
         marginBottom: hp(3),
         borderRadius: 8,
         backgroundColor: '#ffffff',
@@ -354,8 +354,9 @@ const styles = StyleSheet.create({
         borderColor: '#00d084',
     },
     optionText: {
-        fontSize: 16,
+        fontSize: wp(4),
         color: '#333333',
+        fontFamily: 'DMSans-Regular'
     },
     textInput: {
         marginTop: '5%',

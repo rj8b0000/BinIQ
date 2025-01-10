@@ -196,7 +196,6 @@ const AppNavigator = () => {
                     component={SelectPlan}
                     options={{ headerShown: false }}
                 />
-
             </Stack.Navigator>
         </NavigationContainer>
     )
