@@ -29,152 +29,164 @@ import SingleItemPage from '../MainScreens/SingleItemPage'
 import TopBinsItems from '../MainScreens/TopBinsItems'
 import NearByBins from '../MainScreens/NearByBins'
 import PromoScreen from '../QuizScreens/PromoScreen'
+import SelectUserRole from '../OnBoardingScreens/SelectUserRole'
+import SelectPlan from '../OnBoardingScreens/SelectPlan'
 
 const AppNavigator = () => {
     const Stack = createStackNavigator();
-  const [hideSplashScreen, setHideSplashScreen] = useState(true);
+    const [hideSplashScreen, setHideSplashScreen] = useState(true);
 
-  return (
-    <NavigationContainer>
-        <Stack.Navigator>
-            <Stack.Screen
-                name='SplashScreen'
-                component={SplashScreen}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='OnBoarding'
-                component={OnboardingScreen}
-                options={{headerShown: false}}
-            />
-             <Stack.Screen
-                name='GettingStarted'
-                component={GettingStarted}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='SignUp'
-                component={SignUp}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='Login'
-                component={Login}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='ForgotPassword'
-                component={ForgotPassword}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='OTPEntry'
-                component={OTPEntry}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='SuccessScreen'
-                component={SuccessScreen}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='QuizScreen'
-                component={QuizScreen}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='ErrorScreen'
-                component={ErrorScreen}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='HomeNavigataor'
-                component={BottomNavigator}
-                options={{headerShown : false}}
-            />
-            <Stack.Screen
-                name='BinStore'
-                component={BinStorePage}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='IQPortal'
-                component={IQPortal}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='CourseDetails'
-                component={CourseDetails}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='Tutorials'
-                component={Tutorials}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='SearchScreen'
-                component={SearchScreen}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='Notifications'
-                component={Notification}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='FAQs'
-                component={FAQs}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='HelpAndSupport'
-                component={HelpAndSupport}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='Feedback'
-                component={Feedback}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='FeedbackText'
-                component={FeedbackText}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='ReferFriend'
-                component={ReferFriend}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='ShareReferLink'
-                component={ShareReferLink}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='SinglePageItem'
-                component={SingleItemPage}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='TopBinItems'
-                component={TopBinsItems}
-                options={{headerShown: false}}
-            />
-                        <Stack.Screen
-                name='TopBinsNearMe'
-                component={NearByBins}
-                options={{headerShown: false}}
-            />
-            <Stack.Screen
-                name='PromoScreen'
-                component={PromoScreen}
-                options={{headerShown: false}}
-            />
-        </Stack.Navigator>
-    </NavigationContainer>
-  )
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen
+                    name='SplashScreen'
+                    component={SplashScreen}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='OnBoarding'
+                    component={OnboardingScreen}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='GettingStarted'
+                    component={GettingStarted}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='SignUp'
+                    component={SignUp}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='Login'
+                    component={Login}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='ForgotPassword'
+                    component={ForgotPassword}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='OTPEntry'
+                    component={OTPEntry}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='SuccessScreen'
+                    component={SuccessScreen}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='QuizScreen'
+                    component={QuizScreen}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='ErrorScreen'
+                    component={ErrorScreen}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='HomeNavigataor'
+                    component={BottomNavigator}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='BinStore'
+                    component={BinStorePage}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='IQPortal'
+                    component={IQPortal}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='CourseDetails'
+                    component={CourseDetails}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='Tutorials'
+                    component={Tutorials}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='SearchScreen'
+                    component={SearchScreen}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='Notifications'
+                    component={Notification}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='FAQs'
+                    component={FAQs}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='HelpAndSupport'
+                    component={HelpAndSupport}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='Feedback'
+                    component={Feedback}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='FeedbackText'
+                    component={FeedbackText}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='ReferFriend'
+                    component={ReferFriend}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='ShareReferLink'
+                    component={ShareReferLink}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='SinglePageItem'
+                    component={SingleItemPage}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='TopBinItems'
+                    component={TopBinsItems}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='TopBinsNearMe'
+                    component={NearByBins}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='PromoScreen'
+                    component={PromoScreen}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='SelectUserRole'
+                    component={SelectUserRole}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='SelectPlan'
+                    component={SelectPlan}
+                    options={{ headerShown: false }}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
+    )
 }
 
 export default AppNavigator

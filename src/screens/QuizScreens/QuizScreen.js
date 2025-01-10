@@ -12,8 +12,8 @@ const QuizScreen = () => {
     const questions = [
         {
             id: 1,
-            question: 'How long have you been involved in reselling?',
-            options: ['Less than a year', '1-5 years', 'Over 5 years'],
+            question: 'Select Your Reselling Expertise Level:',
+            options: ['Newbie: Just starting out in the reselling world.', "Experienced: I've made several sales and am comfortable with the basics.", "Advanced: I have substantial experience and consistently profit.", "Expert: I'm a seasoned pro with deep market knowledge.", "Bin Store Owner: I own and operate my own bin store."],
         },
         {
             id: 2,
@@ -35,14 +35,14 @@ const QuizScreen = () => {
         {
             id: 5,
             question: 'What are your short-term goals (1-2 years) with reselling?',
-            options: ['finding profitable inventory', 'listing items', 'managing inventory', 'shipping logistics/returns', 'more sales', 'scaling up','Others'],
+            options: ['finding profitable inventory', 'listing items', 'managing inventory', 'shipping logistics/returns', 'more sales', 'scaling up', 'Others'],
             isOtherOption: true, // Flag for text input when 'Others' is selected
         },
         {
             id: 6,
             question: 'Are you interested in educational resources or training that could help improve your reselling skills?',
             options: [],
-            isOtherOption: true, 
+            isOtherOption: true,
         },
     ];
     const [currentQuestion, setCurrentQuestion] = useState(0); // Tracks the current question
@@ -62,16 +62,16 @@ const QuizScreen = () => {
     };
     const handlePreviousQuestion = () => {
         if (currentQuestion > 0) {
-          setCurrentQuestion((prev) => prev - 1);
+            setCurrentQuestion((prev) => prev - 1);
         }
-      };
+    };
 
     return (
         <View style={styles.container}>
             <StatusBar translucent={true} backgroundColor={'transparent'} />
             <View style={{ justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', marginTop: hp(7), paddingHorizontal: '5%' }}>
-                <Pressable onPress={handlePreviousQuestion}> 
-                <MaterialIcons name='arrow-back-ios' size={24} color={'#0D0D26'} />
+                <Pressable onPress={handlePreviousQuestion}>
+                    <MaterialIcons name='arrow-back-ios' size={24} color={'#0D0D26'} />
                 </Pressable>
                 <Image source={require('../../../assets/logo.png')} style={styles.logo} />
             </View>
@@ -112,7 +112,7 @@ const QuizScreen = () => {
                             onChangeText={setOtherText}
                         />
                     )}
-                     {/* {questions[currentQuestion].isOtherOption && answers[currentQuestion] === 'Others' && (
+                    {/* {questions[currentQuestion].isOtherOption && answers[currentQuestion] === 'Others' && (
                         <TextInput
                             style={styles.textInput}
                             placeholder="Please specify..."
@@ -123,23 +123,23 @@ const QuizScreen = () => {
                     {questions[currentQuestion].id === 2 && (
                         <TextInput
                             style={styles.textInput}
-                            placeholder= '..................'
-                            placeholderTextColor={'#000'}
+                            placeholder='________________________'
+                            placeholderTextColor={'gray'}
                             value={otherText}
                             onChangeText={setOtherText}
                         />
                     )}
-                                        {questions[currentQuestion].id === 6 && (
+                    {questions[currentQuestion].id === 6 && (
                         <TextInput
                             style={styles.textInput}
-                            placeholder= '..................'
+                            placeholder='________________________'
                             placeholderTextColor={'#000'}
                             value={otherText}
                             onChangeText={setOtherText}
                         />
                     )}
                     {
-                        questions[currentQuestion].id === 4 && answers[currentQuestion] === 'Yes' &&(
+                        questions[currentQuestion].id === 4 && answers[currentQuestion] === 'Yes' && (
                             navigation.navigate('PromoScreen')
                         )
                     }
@@ -150,12 +150,12 @@ const QuizScreen = () => {
                         <AntDesign name="arrowright" size={30} color="#fff" style={styles.nextArrow} />
                     </TouchableOpacity>
 
-                ): (
+                ) : (
                     <View style={styles.enrollNowContainer}>
-                    <Pressable style={styles.button} onPress={() => navigation.navigate('HomeNavigataor')}>
-                        <Text style={styles.buttonText}>ENROLL NOW</Text>
-                    </Pressable>
-                </View>
+                        <Pressable style={styles.button} onPress={() => navigation.navigate('HomeNavigataor')}>
+                            <Text style={styles.buttonText}>ENROLL NOW</Text>
+                        </Pressable>
+                    </View>
                 )}
             </View>
             <ImageBackground source={require('../../../assets/vector_3.png')} style={styles.vector2} />
@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         // marginTop: hp(4),
-        marginVertical: '7%'
+        marginVertical: '7%',
     },
     progressDot: {
         width: wp(12),
@@ -300,15 +300,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#00d084', // Active progress color
     },
     questionText: {
-        fontSize: 18,
-        marginBottom: 20,
+        fontSize: wp(4.6),
+        marginBottom: '6%',
         textAlign: 'left',
-        fontFamily: 'Nunito-Regular',
-        color: '#000'
+        fontFamily: 'DMSans-SemiBold',
+        color: '#130160',
     },
     optionButton: {
         width: wp(90),
-        height: hp(6.5),
+        height: hp(8.6),
         marginBottom: hp(3),
         borderRadius: 8,
         backgroundColor: '#ffffff',
@@ -322,8 +322,9 @@ const styles = StyleSheet.create({
         borderColor: '#00d084',
     },
     optionText: {
-        fontSize: 16,
+        fontSize: wp(4),
         color: '#333333',
+        fontFamily: 'DMSans-Regular'
     },
     textInput: {
         marginTop: '5%',
@@ -334,7 +335,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         height: hp(10)
     },
-    textInputForQue3 : {
+    textInputForQue3: {
         marginTop: '2%',
         paddingHorizontal: '5%',
         borderColor: '#ccc',
@@ -347,7 +348,7 @@ const styles = StyleSheet.create({
     },
     nextButton: {
         width: wp(16),
-        height: hp(8),
+        height: wp(16),
         backgroundColor: '#130160',
         borderRadius: 100,
         justifyContent: 'center',
