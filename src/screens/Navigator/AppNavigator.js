@@ -33,6 +33,8 @@ import SettingsScreen from '../MainScreens/SettingsScreen'
 import ChangePassword from '../AuthenticationScreens/ChangePassword'
 import SelectUserRole from '../OnBoardingScreens/SelectUserRole'
 import SelectPlan from '../OnBoardingScreens/SelectPlan'
+import FreeSubscription from '../SubscriptionScreens/FreeSubscription'
+import PayWall from '../SubscriptionScreens/PayWall'
 
 const AppNavigator = () => {
     const Stack = createStackNavigator();
@@ -194,6 +196,16 @@ const AppNavigator = () => {
                 <Stack.Screen
                     name='SelectPlan'
                     component={SelectPlan}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='FreeSubscription'
+                    component={FreeSubscription}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='PayWall'
+                    component={PayWall}
                     options={{ headerShown: false }}
                 />
             </Stack.Navigator>

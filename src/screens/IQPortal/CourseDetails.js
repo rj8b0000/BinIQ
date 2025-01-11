@@ -33,53 +33,53 @@ const CourseDetails = () => {
                                 <Text style={{ fontFamily: 'Nunito-Bold', color: '#000', fontSize: hp(2) }}> 4.5/5.0</Text>
                             </View>
                             <View style={styles.tutDetails}>
-                                <Text style={{ fontFamily: 'Nunito-Regular', fontSize: hp(2.1), color: '#0D0140' }}><Text style={{ color: '#14BA9C' }}>10</Text> Video{' '}•</Text>
-                                <Text style={{ fontFamily: 'Nunito-Regular', fontSize: hp(2.1), color: '#0D0140' }}><Text style={{ color: '#14BA9C' }}>FULL</Text> PDF{' '}•</Text>
+                                <Text style={{ fontFamily: 'Nunito-Regular', fontSize: hp(1.8), color: '#0D0140' }}><Text style={{ color: '#14BA9C' }}>10</Text> Video{' '}•</Text>
+                                <Text style={{ fontFamily: 'Nunito-Regular', fontSize: hp(1.8), color: '#0D0140' }}><Text style={{ color: '#14BA9C' }}>FULL</Text> PDF{' '}•</Text>
                             </View>
                         </View>
                     </View>
-                </ImageBackground>
-                <View style={styles.buyPalletsDetails}>
-                    <Text style={{ fontFamily: 'Nunito-Bold', color: '#150B3D', fontSize: hp(2.3) }}>About Course</Text>
-                    <Text style={{ fontFamily: 'Nunito-Regular', color: '#524B6B', fontSize: hp(2.1), marginVertical: '0.5%' }}>
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem ...
-                    </Text>
-                    <View style={{ borderRadius: 6, width: '35%', height: hp(5.2), justifyContent: 'center', alignItems: 'center', backgroundColor: '#e3dcff', marginVertical: '3%' }}>
-                        <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#0D0140', fontSize: hp(2.1) }}>Read more</Text>
-                    </View>
-                </View>
-                <View style={{ marginBottom: hp(16) }}>
                     <View style={styles.buyPalletsDetails}>
-                        <Text style={{ fontFamily: 'Nunito-Bold', color: '#150B3D', fontSize: hp(2.3), marginVertical: '2%' }}>Requirements</Text>
-                    </View>
-                    <View style={styles.pointContainer}>
-                        <Text style={styles.bullet}>{'\u2022'}</Text>
-                        <Text style={styles.pointText}>
-                            Sed ut perspiciatis unde omnis iste natus error sit.
+                        <Text style={{ fontFamily: 'Nunito-Bold', color: '#150B3D', fontSize: hp(2.3) }}>About Course</Text>
+                        <Text style={{ fontFamily: 'Nunito-Regular', color: '#524B6B', fontSize: hp(2.1), marginVertical: '0.5%' }}>
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem ...
                         </Text>
+                        <View style={{ borderRadius: 6, width: '35%', height: hp(5.2), justifyContent: 'center', alignItems: 'center', backgroundColor: '#e3dcff', marginVertical: '3%' }}>
+                            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#0D0140', fontSize: hp(2.1) }}>Read more</Text>
+                        </View>
                     </View>
-                    <View style={styles.pointContainer}>
-                        <Text style={styles.bullet}>{'\u2022'}</Text>
-                        <Text style={styles.pointText}>
-                            Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur & adipisci velit.
-                        </Text>
+                    <View style={{ marginBottom: hp(16) }}>
+                        <View style={styles.buyPalletsDetails}>
+                            <Text style={{ fontFamily: 'Nunito-Bold', color: '#150B3D', fontSize: hp(2.3), marginVertical: '2%' }}>Requirements</Text>
+                        </View>
+                        <View style={styles.pointContainer}>
+                            <Text style={styles.bullet}>{'\u2022'}</Text>
+                            <Text style={styles.pointText}>
+                                Sed ut perspiciatis unde omnis iste natus error sit.
+                            </Text>
+                        </View>
+                        <View style={styles.pointContainer}>
+                            <Text style={styles.bullet}>{'\u2022'}</Text>
+                            <Text style={styles.pointText}>
+                                Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur & adipisci velit.
+                            </Text>
+                        </View>
+                        <View style={styles.pointContainer}>
+                            <Text style={styles.bullet}>{'\u2022'}</Text>
+                            <Text style={styles.pointText}>
+                                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
+                            </Text>
+                        </View>
+                        <View style={styles.pointContainer}>
+                            <Text style={styles.bullet}>{'\u2022'}</Text>
+                            <Text style={styles.pointText}>
+                                Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.
+                            </Text>
+                        </View>
                     </View>
-                    <View style={styles.pointContainer}>
-                        <Text style={styles.bullet}>{'\u2022'}</Text>
-                        <Text style={styles.pointText}>
-                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
-                        </Text>
-                    </View>
-                    <View style={styles.pointContainer}>
-                        <Text style={styles.bullet}>{'\u2022'}</Text>
-                        <Text style={styles.pointText}>
-                            Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.
-                        </Text>
-                    </View>
-                </View>
+                </ImageBackground>
             </ScrollView>
             <View style={styles.enrollNowContainer}>
-                <Pressable style={styles.button}>
+                <Pressable style={styles.button} onPress={() => navigation.navigate('Tutorials')}>
                     <Text style={styles.buttonText}>ENROLL NOW</Text>
                 </Pressable>
             </View>
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
         width: wp(90),
         marginHorizontal: wp(5),
         marginVertical: hp(2),
-        height: hp(50),
+        height: hp(47),
     },
     tabImg: {
         width: '100%',
@@ -142,13 +142,13 @@ const styles = StyleSheet.create({
         paddingVertical: '3%'
     },
     imgContentTitle: {
-        fontSize: hp(2.4),
+        fontSize: hp(2.2),
         color: '#0D0140',
         fontFamily: 'Nunito-Bold',
         textAlign: 'center'
     },
     review: {
-        width: '50%',
+        width: '47%',
         marginVertical: '1%',
         flexDirection: 'row',
         justifyContent: 'flex-end'

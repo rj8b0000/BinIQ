@@ -22,15 +22,29 @@ import FilterIcon from '../../../assets/FilterIcon.svg';
 import VictoryPie from 'victory-native';
 import Svg, { Text as SvgText } from 'react-native-svg';
 import PieGraph from '../../Components/PieGraph';
+import * as Progress from 'react-native-progress';
 
 const { width } = Dimensions.get('window');
 const ScanHistoryScreen = () => {
   const navigation = useNavigation();
   return (
     <View style={{ width: '100%' }}>
-      <View style={{ width: wp(100), height: hp(13), justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ fontSize: wp(4), fontFamily: 'Nunito-Regular', color: '#130160' }}>Available balance</Text>
-        <Text style={{ fontFamily: 'Nunito-SemiBold', fontSize: wp(9), color: '#130160' }}>20%</Text>
+      <View style={{ width: '95%', alignSelf: 'center', marginVertical: '5%' }}>
+        <Progress.Bar
+          progress={progress}
+          width={null}
+          height={10}
+          borderWidth={0}
+          borderRadius={5}
+          color="#FFA726" // Orange color for the progress
+          unfilledColor="#90CAF9" // Light blue color for the remaining
+        />
+        <View style={{ marginVertical: '2%' }}>
+          <Text style={{ fontFamily: 'Nunito-Bold', color: '#130160', fontSize: wp(4.5) }}>Available balance</Text>
+          <Text style={{ fontFamily: 'Nunito-Bold', color: '#130160', fontSize: wp(5) }}>
+            <Text style={{ fontFamily: 'Nunito-Bold', color: '#FFBB36', fontSize: wp(5) }}>{currentBalance}</Text>/{maxBalance}
+          </Text>
+        </View>
       </View>
       <View style={{ ...styles.searchParent, marginBottom: '4%' }}>
         <Pressable style={styles.searchContainer}>
@@ -151,9 +165,22 @@ const ScanHistoryScreen = () => {
 const MyItemsScreen = () => {
   return (
     <View style={{ marginBottom: '22%' }}>
-      <View style={{ width: wp(100), height: hp(13), justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ fontSize: wp(4), fontFamily: 'Nunito-Regular', color: '#130160' }}>Available balance</Text>
-        <Text style={{ fontFamily: 'Nunito-SemiBold', fontSize: wp(9), color: '#130160' }}>20%</Text>
+      <View style={{ width: '95%', alignSelf: 'center', marginVertical: '5%' }}>
+        <Progress.Bar
+          progress={progress}
+          width={null}
+          height={10}
+          borderWidth={0}
+          borderRadius={5}
+          color="#FFA726" // Orange color for the progress
+          unfilledColor="#90CAF9" // Light blue color for the remaining
+        />
+        <View style={{ marginVertical: '2%' }}>
+          <Text style={{ fontFamily: 'Nunito-Bold', color: '#130160', fontSize: wp(4.5) }}>Available balance</Text>
+          <Text style={{ fontFamily: 'Nunito-Bold', color: '#130160', fontSize: wp(5) }}>
+            <Text style={{ fontFamily: 'Nunito-Bold', color: '#FFBB36', fontSize: wp(5) }}>{currentBalance}</Text>/{maxBalance}
+          </Text>
+        </View>
       </View>
       <View style={styles.searchParent}>
         <Pressable style={styles.searchContainer}>
@@ -186,10 +213,11 @@ const MyItemsScreen = () => {
 const AllTotalScans = () => {
   return (
     <View style={{ marginBottom: '22%' }}>
-      <View style={{ width: wp(100), height: hp(13), justifyContent: 'center', alignItems: 'center' }}>
+      {/* <View style={{ width: wp(100), height: hp(13), justifyContent: 'center', alignItems: 'center' }}>
         <Text style={{ fontSize: wp(4), fontFamily: 'Nunito-Regular', color: '#130160' }}>Available balance</Text>
         <Text style={{ fontFamily: 'Nunito-SemiBold', fontSize: wp(9), color: '#130160' }}>20%</Text>
-      </View>
+      </View> */}
+      <View style={{ height: hp(4) }} />
       <View style={styles.searchParent}>
         <Pressable style={styles.searchContainer}>
           <View style={styles.cameraButton}>
@@ -237,6 +265,9 @@ const ProductCard = ({ product }) => {
     </TouchableOpacity>
   )
 }
+const progress = 0.2; // 20% progress
+const maxBalance = 100;
+const currentBalance = progress * maxBalance;
 const products = [
   {
     id: "1",
@@ -290,6 +321,7 @@ const products = [
 const MyLibrary = () => {
   const [activeTab, setActiveTab] = useState('scan');
   const navigation = useNavigation();
+
 
   return (
     <View style={styles.container}>

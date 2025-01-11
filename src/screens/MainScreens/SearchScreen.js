@@ -13,6 +13,7 @@ import {
   StatusBar,
   ImageBackground,
   Pressable,
+  ScrollView,
 } from 'react-native';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -24,19 +25,22 @@ import { Navigation } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
 import SearchIcon from '../../../assets/SearchIcon.svg';
 import CameraIcon from '../../../assets/CameraIcon.svg'
+import { Star, Heart } from "lucide-react-native";
 import FilterIcon from '../../../assets/FilterIcon.svg'
 
 const { width } = Dimensions.get('window');
 
 const dummyRecentSearches = ['Toothpaste', 'Body Lotion', 'Hair Oil'];
-const dummyPopularStores = ['Reseller 1', 'Reseller 2', 'Reseller 3', 'Reseller 4', 'Reseller 5', 'Reseller 6'];
+const dummyPopularStores = ['Reseller 1', 'Reseller 2', 'Reseller 3'];
 const dummyCategories = ['Books', 'Pan', 'Bedsheet', 'Bins', 'Chopper', 'Clocks'];
 
 const SearchScreen = () => {
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [activeFilter, setActiveFilter] = useState('active');
   const [value, setValue] = useState(0);
   const navigation = useNavigation();
+  // const [priceRange, setPriceRange] = useState({ min: '', max: '' });
 
   const renderRecentSearch = ({ item }) => (
     <View style={styles.recentSearchItem}>
@@ -57,7 +61,21 @@ const SearchScreen = () => {
       accessibilityLabel={`View ${item}`}
       accessibilityRole="button"
     >
-      <Text style={styles.popularStoreText}>{item}</Text>
+      <View style={{ width: '100%', height: '60%' }}>
+        <Image source={require('../../../assets/dummy_product.png')} style={{ width: '100%', height: '100%' }} />
+      </View>
+      <View style={{ width: '100%', height: '23%' }}>
+        <Text style={{ fontFamily: 'DMSans-SemiBold', color: '#130160', fontSize: hp(1.8) }}>FLIP $ FIND</Text>
+        <Text style={{ fontFamily: 'DMSans-SemiBold', color: '#14BA9C', fontSize: hp(1.5) }}>Florida, US</Text>
+      </View>
+      <View style={styles.ratingContainer}>
+        <Text style={styles.reviews}>3-4KM{' '}</Text>
+        <Star size={12} color="#FFD700" fill="#FFD700" />
+        <Text style={styles.rating}>4.6</Text>
+        <TouchableOpacity style={styles.heartButton}>
+          <Heart size={13} color="red" />
+        </TouchableOpacity>
+      </View>
     </TouchableOpacity>
   );
 
@@ -80,7 +98,7 @@ const SearchScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <StatusBar translucent={true} backgroundColor={'transparent'} />
       <ImageBackground
         source={require('../../../assets/vector_1.png')}
@@ -100,12 +118,12 @@ const SearchScreen = () => {
             <View style={styles.cameraButton}>
               <SearchIcon />
             </View>
-            <Text style={styles.input}>search for anything</Text>
+            <TextInput style={styles.input} placeholder='Search' placeholderTextColor={'#C4C4C4'} />
             <View style={styles.searchButton}>
               <CameraIcon />
             </View>
           </Pressable>
-          <TouchableOpacity style={styles.menuButton}>
+          <TouchableOpacity style={styles.menuButton} onPress={handleFilterButtonPress}>
             <FilterIcon size={10} />
           </TouchableOpacity>
         </View>
@@ -122,7 +140,7 @@ const SearchScreen = () => {
             <Text style={styles.noHistoryText}>You don't have any search history</Text>
           )}
 
-          <Text style={styles.sectionTitle}>Popular Bin stores</Text>
+          <Text style={styles.sectionTitle}>Top Bin stores</Text>
           <FlatList
             data={dummyPopularStores}
             renderItem={renderPopularStore}
@@ -153,7 +171,7 @@ const SearchScreen = () => {
                     <Text style={styles.doneButton}>Done</Text>
                   </TouchableOpacity>
                 </View>
-
+                <Text style={{ fontSize: hp(2.2), fontFamily: 'Nunito-Bold', color: '#524B6B' }}>Search</Text>
                 {/* Search Input */}
                 <TextInput
                   style={styles.categoryInput}
@@ -161,8 +179,66 @@ const SearchScreen = () => {
                   placeholderTextColor="#999"
                   accessibilityLabel="Add a category"
                 />
+                <Text style={{ fontSize: hp(2), fontFamily: 'Nunito-Bold', color: '#524B6B', marginVertical: '5%' }}>Quick Filter</Text>
+                <View style={styles.quickFilters}>
+                  <View style={{ width: '100%', height: hp(5), flexDirection: 'row', borderRadius: 20, backgroundColor: '#f5f5f5' }}>
+                    {['Active Items', 'Sold Items', 'New Arrivals'].map((filter) => (
+                      <TouchableOpacity
+                        key={filter}
+                        style={[
+                          styles.filterChip,
+                          activeFilter === filter.toLowerCase() && styles.activeFilterChip,
+                        ]}
+                        onPress={() => setActiveFilter(filter.toLowerCase())}
+                      >
+                        <Text
+                          style={[
+                            styles.filterChipText,
+                            activeFilter === filter.toLowerCase() && styles.activeFilterChipText,
+                          ]}
+                        >
+                          {filter}
+                        </Text>
+                      </TouchableOpacity>
+                    ))}
+                  </View>
+                </View>
+                {/* Price Range */}
+                <View style={{ marginVertical: '5%' }}>
+                  <Text style={{ fontSize: hp(2), fontFamily: 'Nunito-Bold', color: '#524B6B', marginVertical: '5%' }}>Price Range</Text>
+                  <View style={styles.priceInputs}>
+                    <TextInput
+                      style={styles.priceInput}
+                      placeholder="Min"
+                      keyboardType="numeric"
+                      placeholderTextColor={'#666'}
+                    />
+                    <TextInput
+                      style={styles.priceInput}
+                      placeholder="Max"
+                      keyboardType="numeric"
+                      placeholderTextColor={'#666'}
+                    />
+                  </View>
+                  <View style={styles.priceRangeContainer}>
+                    <Text style={styles.price}>${value}</Text>
 
+                    <Text style={styles.price}>$10,00</Text>
+                  </View>
+                  <Slider
+                    style={styles.slider}
+                    minimumValue={0}
+                    maximumValue={1000}
+                    step={1}
+                    value={value}
+                    onValueChange={(value) => setValue(value)}
+                    minimumTrackTintColor="#14BA9C"
+                    maximumTrackTintColor="#E4E5E7"
+                    thumbTintColor="#14BA9C"
+                  />
+                </View>
                 {/* Category Chips */}
+                <Text style={{ fontSize: hp(2), fontFamily: 'Nunito-Bold', color: '#524B6B', marginVertical: '5%' }}>Categories</Text>
                 <View style={styles.categoriesContainer}>
                   {dummyCategories.map((category) => (
                     <TouchableOpacity
@@ -183,30 +259,6 @@ const SearchScreen = () => {
                     </TouchableOpacity>
                   ))}
                 </View>
-
-                {/* Price Range */}
-                <View style={{ marginVertical: '5%' }}>
-                  <Text style={styles.priceRangeTitle}>Price range</Text>
-                  <Text style={styles.priceRangeSubtitle}>The average price is 80</Text>
-                </View>
-
-                <View style={styles.priceRangeContainer}>
-                  <Text style={styles.price}>${value}</Text>
-
-                  <Text style={styles.price}>$10,00</Text>
-
-                </View>
-                <Slider
-                  style={styles.slider}
-                  minimumValue={80}
-                  maximumValue={1000}
-                  step={1}
-                  value={value}
-                  onValueChange={(value) => setValue(value)}
-                  minimumTrackTintColor="#14BA9C"
-                  maximumTrackTintColor="#E4E5E7"
-                  thumbTintColor="#14BA9C"
-                />
 
                 {/* Reset and Apply Buttons */}
                 <View style={styles.buttonContainer}>
@@ -230,7 +282,7 @@ const SearchScreen = () => {
           </Modal>
         </View>
       </ImageBackground>
-    </View>
+    </ScrollView>
 
   );
 };
@@ -267,7 +319,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     color: 'gray',
     marginRight: '2%',
-    borderWidth: 1,
     borderColor: '#356899',
     height: hp(6.5),
     width: wp(70),
@@ -307,15 +358,17 @@ const styles = StyleSheet.create({
     fontSize: hp(2.1)
   },
   popularStoreItem: {
-    backgroundColor: '#F6F2F2B0',
+    backgroundColor: '#FFFFFF',
     padding: 8,
     borderRadius: 8,
     width: (wp(85)) / 3,
     alignItems: 'center',
     marginVertical: '2%',
     marginHorizontal: '1%',
+    justifyContent: 'space-between',
     borderWidth: 0.5,
-    borderColor: '#C4C4C4'
+    borderColor: '#C4C4C4',
+    height: hp(22)
   },
   popularStoreText: {
     textAlign: 'center',
@@ -345,12 +398,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    // backgroundColor: 'trasparent',
+    backgroundColor: '#fff',
     borderWidth: 1,
     borderRadius: 12,
     marginRight: 10,
-    borderColor: '#99ABC678',
-    height: hp(6),
+    borderColor: '#356899',
+    height: hp(6.3),
   },
   cameraButton: {
     padding: 10,
@@ -413,11 +466,11 @@ const styles = StyleSheet.create({
     fontSize: hp(2.1),
     fontFamily: 'Nunito-SemiBold',
     color: '#333',
+    marginVertical: '4%'
   },
   categoriesContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop: 15,
   },
   categoryChip: {
     flexDirection: 'row',
@@ -453,7 +506,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 10,
   },
   priceRangeValue: {
     fontSize: 16,
@@ -491,12 +543,75 @@ const styles = StyleSheet.create({
   },
   price: {
     fontFamily: 'Nunito-Bold',
-    fontSize: hp(2.4),
-    color: '#000'
+    fontSize: hp(2),
+    color: '#14BA9C'
   },
   slider: {
     width: '100%',
-    marginVertical: '5%'
+    marginVertical: '2%',
+    borderColor: '#000'
+  },
+  ratingContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 4,
+    width: '100%'
+  },
+  rating: {
+    // marginLeft: 4,
+    fontSize: hp(1.5),
+    fontWeight: "bold",
+    color: '#000'
+  },
+  reviews: {
+    // marginLeft: 4,
+    fontSize: hp(1.4),
+    color: "#000"
+  },
+  heartButton: {
+    position: "absolute",
+    bottom: '2%',
+    right: '1%',
+    borderRadius: 15,
+    // padding: 5
+  },
+  filterChip: {
+    paddingVertical: 8,
+    // paddingHorizontal: 16,
+    borderRadius: 20,
+    backgroundColor: '#f5f5f5',
+    marginRight: 8,
+    width: '32%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  activeFilterChip: {
+    backgroundColor: '#00BFA5',
+  },
+  filterChipText: {
+    color: '#666',
+    fontSize: hp(1.7),
+    fontFamily: 'Nunito-SemiBold'
+  },
+  activeFilterChipText: {
+    color: 'white',
+  },
+  quickFilters: {
+    flexDirection: 'row',
+  },
+  priceInputs: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 12,
+  },
+  priceInput: {
+    width: '48%',
+    paddingHorizontal: '3%',
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 8,
+    color: '#000',
+    height: hp(6)
   },
 });
 
