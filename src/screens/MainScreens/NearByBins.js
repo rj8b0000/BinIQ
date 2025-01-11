@@ -11,59 +11,60 @@ import {
   ImageBackground,
   StatusBar,
   Pressable,
-  Image
+  Image,
+  TextInput
 } from 'react-native';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+import SearchIcon from '../../../assets/SearchIcon.svg';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import SearchBar from 'react-native-search-bar';
-
+import CameraIcon from '../../../assets/CameraIcon.svg';
+import FilterIcon from '../../../assets/FilterIcon.svg';
 const { width } = Dimensions.get('window');
 
 // Component for individual list item
 
 
 // Component for the My Items tab
-  const topBins = [
-    {
-      id: 1,
-      image: require('../../../assets/flip_find.png'),
-      title: 'FLIP $ FIND',
-      location: 'Florida US',
-      distance: '3.4KM',
-      review: '4.2'
-    },
-    {
-      id: 2,
-      image: require('../../../assets/hidden_finds.png'),
-      title: 'HIDDED FINDS',
-      location: 'Florida US',
-      distance: '3.4KM',
-      review: '4.2'
-    },
-    {
-      id: 3,
-      image: require('../../../assets/flip_find.png'),
-      title: 'FLIP $ FIND',
-      location: 'Florida US',
-      distance: '3.4KM',
-      review: '4.2'
-    },
-    {
-      id: 4,
-      image: require('../../../assets/hidden_finds.png'),
-      title: 'HIDDED FINDS',
-      location: 'Florida US',
-      distance: '3.4KM',
-      review: '4.2'
-    },
-  ]
+const topBins = [
+  {
+    id: 1,
+    image: require('../../../assets/flip_find.png'),
+    title: 'FLIP $ FIND',
+    location: 'Florida US',
+    distance: '3.4KM',
+    review: '4.2'
+  },
+  {
+    id: 2,
+    image: require('../../../assets/hidden_finds.png'),
+    title: 'HIDDED FINDS',
+    location: 'Florida US',
+    distance: '3.4KM',
+    review: '4.2'
+  },
+  {
+    id: 3,
+    image: require('../../../assets/flip_find.png'),
+    title: 'FLIP $ FIND',
+    location: 'Florida US',
+    distance: '3.4KM',
+    review: '4.2'
+  },
+  {
+    id: 4,
+    image: require('../../../assets/hidden_finds.png'),
+    title: 'HIDDED FINDS',
+    location: 'Florida US',
+    distance: '3.4KM',
+    review: '4.2'
+  },
+]
+
 
 const renderMyFavourites = ({ item }) => (
-  <View style={{ width: wp(47), height: hp(26)}}>
+  <View style={{ width: wp(47), height: hp(26) }}>
     <View style={{ width: wp(45), height: hp(26), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6' }}>
       <Image source={item.image} style={{ width: wp(45), height: hp(13), borderRadius: 5 }} />
       <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
@@ -84,21 +85,22 @@ const NearByBins = () => {
   const navigation = useNavigation();
 
   const renderItem = ({ item }) => {
-    return(
-      <TouchableOpacity style={{ width: wp(43.6), height: hp(23), borderRadius: 10, borderWidth: 0.5, borderColor: '#e6e6e6', backgroundColor: '#fff',marginHorizontal: '1%', marginVertical: '3%'}} onPress={() => navigation.navigate('BinStore')}>
-      <Image source={item.image} style={{ width: wp(43.6), height: hp(13), borderRadius: 10 }} />
-      <View style={{ margin: '6%', flexDirection: 'row', justifyContent: 'space-between' }}>
-        <View>
-          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#0049AF', fontSize: hp(1.8) }}>{item.title}</Text>
-          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.3) }}>{item.location}</Text>
-          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5) }}>{item.distance}</Text>
+    return (
+      <TouchableOpacity style={{ width: wp(43.6), height: hp(23), borderRadius: 10, borderWidth: 0.5, borderColor: '#e6e6e6', backgroundColor: '#fff', marginHorizontal: '1%', marginVertical: '3%' }} onPress={() => navigation.navigate('BinStore')}>
+        <Image source={item.image} style={{ width: wp(43.6), height: hp(13), borderRadius: 10 }} />
+        <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
+        <View style={{ margin: '6%', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <View>
+            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#0049AF', fontSize: hp(1.8) }}>{item.title}</Text>
+            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.3) }}>{item.location}</Text>
+            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5) }}>{item.distance}</Text>
+          </View>
+          <View style={{ backgroundColor: '#FFBB36', height: hp(2), width: wp(8), flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', padding: '1.5%', borderRadius: 4 }}>
+            <FontAwesome name='star' size={8} color={'#fff'} />
+            <Text style={{ color: '#fff', fontFamily: 'Nunito-Regular', fontSize: hp(1) }}>{item.review}</Text>
+          </View>
         </View>
-        <View style={{ backgroundColor: '#FFBB36', height: hp(2), width: wp(8), flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', padding: '1.5%', borderRadius: 4 }}>
-          <FontAwesome name='star' size={8} color={'#fff'} />
-          <Text style={{ color: '#fff', fontFamily: 'Nunito-Regular', fontSize: hp(1)}}>{item.review}</Text>
-        </View>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
     )
   };
 
@@ -117,26 +119,32 @@ const NearByBins = () => {
             </Pressable>
             <Text style={styles.headerText}>Top Bins Near Me</Text>
           </View>
-        </View> 
-        <View style={{flexDirection: 'row', alignItems: 'center', marginHorizontal: '3%'}}>
-        <Pressable style={styles.searchContainer} onPress={() => navigation.navigate('SearchScreen')}>
-            <Text style={styles.input}>search for anything</Text>
-            <View>
-              <Image source={require('../../../assets/search.png')} style={{ width: wp(6) }} />
+        </View>
+        <View style={styles.searchParent}>
+          <Pressable style={styles.searchContainer}>
+            <View style={styles.cameraButton}>
+              <SearchIcon />
+            </View>
+            <TextInput style={styles.input} placeholder='search for anything' placeholderTextColor={'#C4C4C4'} />
+            <View style={styles.searchButton}>
+              <CameraIcon />
             </View>
           </Pressable>
+          <TouchableOpacity style={styles.menuButton}>
+            <FilterIcon size={10} />
+          </TouchableOpacity>
         </View>
-        <View style={{ flex: 1, width: '100%'}}>
-        <View style={{width: '100%', marginHorizontal: '4%'}}>
-      <FlatList
-        data={topBins}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-        numColumns={2}
-        showsHorizontalScrollIndicator={false}
-      />
-      </View>
-  </View>
+        <View style={{ flex: 1, width: '100%' }}>
+          <View style={{ width: '100%', marginHorizontal: '4%' }}>
+            <FlatList
+              data={topBins}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.id.toString()}
+              numColumns={2}
+              showsHorizontalScrollIndicator={false}
+            />
+          </View>
+        </View>
       </ImageBackground>
     </View>
   );
@@ -276,39 +284,78 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingVertical: '10%'
-},
-button: {
+  },
+  button: {
     backgroundColor: '#1a237e', // Dark purple color
     width: '80%',
     height: hp(5.6),
     borderRadius: 10,
     justifyContent: 'center',
     elevation: 3, // This creates the shadow for the button
-},
-buttonText: {
+  },
+  buttonText: {
     color: 'white',
     fontSize: hp(1.9),
     fontFamily: 'Nunito-Bold',
     textAlign: 'center',
-},
-searchContainer: {
-  flex: 1,
-  flexDirection: 'row',
-  alignItems: 'center',
-  // backgroundColor: 'trasparent',
-  borderWidth: 1,
-  borderRadius: 12,
-  marginRight: 10,
-  borderColor: '#99ABC678',
-  height: hp(6),
-  marginVertical: '2.5%',
-  paddingHorizontal: '3%'
-},
-input: {
-  flex: 1,
-  fontSize: hp(2.2),
-  fontFamily: 'Nunito-Regular',
-  paddingVertical: 8,
-  color: '#999'
-},
+  },
+  searchContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    // backgroundColor: 'trasparent',
+    borderWidth: 1,
+    borderRadius: 12,
+    marginRight: 10,
+    borderColor: '#99ABC678',
+    height: hp(6),
+    marginVertical: '2.5%',
+    paddingHorizontal: '3%'
+  },
+  input: {
+    flex: 1,
+    fontSize: hp(2.2),
+    fontFamily: 'Nunito-Regular',
+    paddingVertical: 8,
+    color: '#999'
+  },
+  searchParent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: '3%',
+    marginVertical: '5%',
+  },
+  searchContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: 12,
+    marginRight: 10,
+    borderColor: '#99ABC678',
+    height: hp(6.5),
+    backgroundColor: '#F2F2F2'
+  },
+  cameraButton: {
+    padding: 10,
+  },
+  input: {
+    flex: 1,
+    fontSize: hp(2.2),
+    fontFamily: 'Nunito-Regular',
+    paddingVertical: 8,
+    color: '#999'
+  },
+  searchButton: {
+    padding: 10,
+  },
+  menuButton: {
+    backgroundColor: '#130160',
+    padding: 10,
+    borderRadius: 12,
+    height: hp(6.5),
+    width: wp(14),
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
 });

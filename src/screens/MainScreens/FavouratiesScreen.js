@@ -246,12 +246,12 @@ const FavouratiesScreen = () => {
               <MyItemsScreen />
             </ScrollView>
           }
+          <View style={styles.enrollNowContainer}>
+            <Pressable style={styles.button} onPress={() => navigation.navigate('HomeNavigataor')}>
+              <Text style={styles.buttonText}>ADD TO LIBRARY</Text>
+            </Pressable>
+          </View>
         </ScrollView>
-        <View style={styles.enrollNowContainer}>
-          <Pressable style={styles.button} onPress={() => navigation.navigate('HomeNavigataor')}>
-            <Text style={styles.buttonText}>ADD TO LIBRARY</Text>
-          </Pressable>
-        </View>
       </ImageBackground>
     </View>
   );
@@ -336,6 +336,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
+    // backgroundColor: 'red'
   },
   sectionTitle: {
     fontSize: 12,
@@ -384,11 +385,8 @@ const styles = StyleSheet.create({
     height: hp(50),
   },
   enrollNowContainer: {
-    position: 'absolute',
-    elevation: 5,
     width: wp(85),
     height: hp(13),
-    backgroundColor: '#fff',
     bottom: 0,
     alignSelf: 'center',
     borderTopRightRadius: 10,

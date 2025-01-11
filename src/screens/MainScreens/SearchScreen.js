@@ -24,6 +24,7 @@ import { Navigation } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
 import SearchIcon from '../../../assets/SearchIcon.svg';
 import CameraIcon from '../../../assets/CameraIcon.svg'
+import FilterIcon from '../../../assets/FilterIcon.svg'
 
 const { width } = Dimensions.get('window');
 
@@ -97,19 +98,15 @@ const SearchScreen = () => {
         <View style={styles.searchParent}>
           <Pressable style={styles.searchContainer}>
             <View style={styles.cameraButton}>
-              <CameraIcon />
-            </View>
-            <TextInput
-              placeholder='search for anything'
-              placeholderTextColor={'#999'}
-              style={styles.input}
-            />
-            <View style={styles.searchButton}>
               <SearchIcon />
             </View>
+            <Text style={styles.input}>search for anything</Text>
+            <View style={styles.searchButton}>
+              <CameraIcon />
+            </View>
           </Pressable>
-          <TouchableOpacity style={styles.menuButton} onPress={handleFilterButtonPress}>
-            <FontAwesome6 name='bars-staggered' size={18} color={'#fff'} />
+          <TouchableOpacity style={styles.menuButton}>
+            <FilterIcon size={10} />
           </TouchableOpacity>
         </View>
         <View style={{ marginHorizontal: '5%' }}>
@@ -369,10 +366,10 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   menuButton: {
-    backgroundColor: '#14BA9C',
+    backgroundColor: '#130160',
     padding: 10,
     borderRadius: 12,
-    height: hp(6),
+    height: hp(6.5),
     width: wp(14),
     justifyContent: 'center',
     alignItems: 'center'

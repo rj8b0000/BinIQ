@@ -163,7 +163,7 @@ const HomeScreen = ({ openDrawer }) => {
     {
       id: 3,
       image: require('../../../assets/slider_1.png'),
-      styles: { width: wp(90), height: hp(43) }
+      styles: { width: wp(90), height: hp(53) }
     },
   ]
   const myFavourites = [
@@ -322,7 +322,7 @@ const HomeScreen = ({ openDrawer }) => {
   };
   const renderItem = ({ item }) => (
     // <View style={{paddingHorizontal: '0.1%'}}>
-    <Pressable style={{ width: wp(50), height: hp(23), marginVertical: '7%' }} onPress={() => navigation.navigate('BinStore')}>
+    <Pressable style={{ width: wp(50), height: hp(23), marginVertical: '7%' }} onPress={() => navigation.navigate('TopBinsNearMe')}>
       <View style={{ width: wp(47), height: hp(21.5), borderRadius: 10, borderWidth: 0.4, borderColor: '#999' }}>
         <Image source={item.image} style={{ width: wp(47), height: hp(12), borderRadius: 10 }} />
         <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
@@ -457,9 +457,12 @@ const HomeScreen = ({ openDrawer }) => {
           </View>
         ) :
           carouselImages[activeSlide]?.id === 3 ? (
-            <View style={{ width: wp(100), height: hp(15), paddingHorizontal: '10%', justifyContent: 'center' }}>
+            <View style={{ width: wp(100), height: hp(15), paddingHorizontal: '12%', justifyContent: 'center', position: 'absolute', bottom: '19%' }}>
               <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.2) }}>KNOWLEDGE IS OPPORTUNITIES</Text>
               <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#667085', fontSize: hp(1.4) }}>Ready to become a Bin IQ PRO? In this training learn the secrets of pinpointing the best bin stores, selecting the right items, listing effectively, and selling strategically with our proven BinIQ blueprint.</Text>
+              <View style={styles.cardButton}>
+                <Text style={{ color: '#fff', fontFamily: 'Nunito-SemiBold', fontSize: hp(1.4), textAlign: 'center' }}>KEEP GOING</Text>
+              </View>
             </View>
           ) : null
         }
@@ -468,9 +471,12 @@ const HomeScreen = ({ openDrawer }) => {
       {/* TOP BINS NEAR ME  */}
       <View style={{ flex: 1, width: '100%', height: hp(35), marginTop: '4%' }}>
         <View style={{ marginTop: '7%', paddingHorizontal: '5%' }}>
-          <TouchableOpacity onPress={() => navigation.navigate('TopBinsNearMe')}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: '2.5%' }}>
             <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.3), color: '#000000' }}>TOP BINS NEAR ME</Text>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('TopBinsNearMe')}>
+              <Text style={{ color: '#524B6B', fontSize: hp(1.9), textDecorationLine: 'underline' }}>View All</Text>
+            </TouchableOpacity>
+          </View>
           <FlatList
             data={topBins}
             renderItem={renderItem}
@@ -483,9 +489,12 @@ const HomeScreen = ({ openDrawer }) => {
       {/* PRODUCTS  */}
       <View style={{ flex: 1, width: '100%', height: hp(30) }}>
         <View style={{ marginVertical: '0%', paddingHorizontal: '5%' }}>
-          <TouchableOpacity onPress={() => navigation.navigate('TopBinItems')}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: '2.5%' }}>
             <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.3), color: '#000000' }}>TOP BIN ITEM</Text>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('TopBinItems')}>
+              <Text style={{ color: '#524B6B', fontSize: hp(1.9), textDecorationLine: 'underline' }}>View All</Text>
+            </TouchableOpacity>
+          </View>
           <FlatList
             data={products}
             renderItem={renderProductsItem}
@@ -498,9 +507,12 @@ const HomeScreen = ({ openDrawer }) => {
       {/* MY FAVOURITES  */}
       <View style={{ flex: 1, width: '100%', height: hp(35) }}>
         <View style={{ marginVertical: '0%', paddingHorizontal: '3%' }}>
-          <TouchableOpacity onPress={() => navigation.navigate('FavouritesScreen')}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: '2.5%' }}>
             <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.3), color: '#000000' }}>MY FAVOURITES</Text>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('FavouritesScreen')}>
+              <Text style={{ color: '#524B6B', fontSize: hp(1.9), textDecorationLine: 'underline' }}>View All</Text>
+            </TouchableOpacity>
+          </View>
           <View style={{ marginVertical: '3%' }}>
             <FlatList
               data={myFavourites}
@@ -515,9 +527,12 @@ const HomeScreen = ({ openDrawer }) => {
       {/* RESELLER IO PORTAL  */}
       <View style={{ flex: 1, width: '100%', height: hp(42) }}>
         <View style={{ marginVertical: '0%', paddingHorizontal: '3%' }}>
-          <TouchableOpacity onPress={() => navigation.navigate('IQPortal')}>
-            <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.2), color: '#000000' }}>RESELLER IQ PORTAL</Text>
-          </TouchableOpacity>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: '2.5%' }}>
+            <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.3), color: '#000000' }}>RESELLER IQ PORTAL</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('IQPortal')}>
+              <Text style={{ color: '#524B6B', fontSize: hp(1.9), textDecorationLine: 'underline' }}>View All</Text>
+            </TouchableOpacity>
+          </View>
           <View style={{ marginVertical: '4%' }}>
             <FlatList
               data={resellerIQPortal}
@@ -603,5 +618,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-
+  cardButton: {
+    backgroundColor: '#130160',
+    width: '40%',
+    height: hp(3.5),
+    marginVertical: '3%',
+    borderRadius: 5,
+    justifyContent: 'center'
+  },
 })
