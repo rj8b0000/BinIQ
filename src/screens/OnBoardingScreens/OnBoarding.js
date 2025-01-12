@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, StatusBar 
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import ObImg5 from '../../../assets/ob_img5.svg';
 
 
 const { width, height } = Dimensions.get('window');
@@ -12,6 +13,12 @@ const onboardingData = [
     title: (<Text>Largest Network of{' '}<Text style={{ color: '#00B386', textDecorationLine: 'underline', }}>Amazon Bin Store</Text> in the Nation!</Text>),
     subtitle: "Discover hidden gems near you.",
     image: require('../../../assets/ob_img1.gif'),
+    styles: { width: wp(80), height: hp(37) }
+  },
+  {
+    title: (<Text>Largest Network of{' '}<Text style={{ color: '#00B386', textDecorationLine: 'underline', }}>Amazon Bin Store</Text> in the Nation!</Text>),
+    subtitle: "Discover hidden gems near you.",
+    image: require('../../../assets/ob_img_5.png'),
     styles: { width: wp(80), height: hp(37) }
   },
   {
@@ -55,7 +62,7 @@ const OnboardingScreen = ({ navigation }) => {
   const renderItem = ({ item }) => (
     <View style={{ ...styles.slide }}>
       <Image source={item.image} style={{ ...item.styles }} resizeMode="contain" animated={true} />
-      <View>
+      <View style={{ width: '90%' }}>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.subtitle}>{item.subtitle}</Text>
       </View>
@@ -123,7 +130,7 @@ const OnboardingScreen = ({ navigation }) => {
           </TouchableOpacity>
         )}
         {activeIndex === onboardingData.length - 1 && (
-          <TouchableOpacity style={styles.gettingStarted} onPress={() => navigation.navigate('SignUp')}>
+          <TouchableOpacity style={styles.gettingStarted} onPress={() => navigation.navigate('SelectPlan')}>
             <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#fff', fontSize: hp(2.5) }}>Get started</Text>
           </TouchableOpacity>
         )}

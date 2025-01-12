@@ -42,7 +42,9 @@ const AppNavigator = () => {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator
+            // initialRouteName='PayWall'
+            >
                 <Stack.Screen
                     name='SplashScreen'
                     component={SplashScreen}

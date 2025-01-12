@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, StatusBar, ImageBackground } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, StatusBar, ImageBackground, Pressable } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
@@ -12,6 +12,7 @@ import { baseGestureHandlerProps } from 'react-native-gesture-handler/lib/typesc
 const { width, height } = Dimensions.get('window');
 const SelectPlan = ({ navigation }) => {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [selectPlan, setSelectPlan] = useState(null);
     const carouselRef = useRef(null);
 
     const pagination = () => {
@@ -63,36 +64,36 @@ const SelectPlan = ({ navigation }) => {
                             <Text style={{ fontFamily: 'Nunito-Regular', fontSize: hp(2), color: '#524B6B' }}>Select The Plan That Best Suits Your Needs !</Text>
                         </View>
                         <View style={{ height: hp(26), width: '100%', flexDirection: 'row', justifyContent: 'space-between' }}>
-                            <View style={{ height: hp(26), width: '48%', justifyContent: 'space-between' }}>
+                            <Pressable style={{ height: hp(26), width: '48%', justifyContent: 'space-between' }} onPress={() => setSelectPlan('free')}>
                                 <LinearGradient
                                     colors={['#D6F0E7', '#E4F3EE']} // Gradient colors
                                     start={{ x: 0, y: 0 }} // Start position of the gradient
                                     end={{ x: 0, y: 1 }}   // End position of the gradient
-                                    style={{ borderWidth: 1, height: hp(22), width: '100%', backgroundColor: 'pink', borderRadius: 15, borderColor: '#14BA9C', justifyContent: 'center', alignItems: 'center' }}
+                                    style={{ borderWidth: selectPlan === 'free' ? 2 : 1, height: hp(22), width: '100%', backgroundColor: 'pink', borderRadius: 15, borderColor: '#14BA9C', justifyContent: 'center', alignItems: 'center' }}
                                 >
                                     <View>
                                         <FreePlan />
                                     </View>
                                 </LinearGradient>
-                                <Text style={{ textAlign: 'center', fontFamily: 'Nunito-SemiBold', color: '#130160', fontSize: wp(4.2) }}>Reseller</Text>
-                            </View>
-                            <View style={{ height: hp(26), width: '48%', justifyContent: 'space-between' }}>
+                                <Text style={{ textAlign: 'center', fontFamily: 'Nunito-SemiBold', color: '#130160', fontSize: wp(4.2) }}>Free Plan</Text>
+                            </Pressable>
+                            <Pressable style={{ height: hp(26), width: '48%', justifyContent: 'space-between' }} onPress={() => setSelectPlan('premium')}>
                                 <LinearGradient
                                     colors={['#D6F0E7', '#E4F3EE']} // Gradient colors
                                     start={{ x: 0, y: 0 }} // Start position of the gradient
                                     end={{ x: 0, y: 1 }}   // End position of the gradient
-                                    style={{ borderWidth: 1, height: hp(22), width: '100%', borderRadius: 15, borderColor: '#14BA9C', justifyContent: 'center', alignItems: 'center' }}
+                                    style={{ borderWidth: selectPlan === 'premium' ? 2 : 1, height: hp(22), width: '100%', borderRadius: 15, borderColor: '#14BA9C', justifyContent: 'center', alignItems: 'center' }}
                                 >
                                     <View>
                                         <PremiumPlan />
                                     </View>
                                 </LinearGradient>
-                                <Text style={{ textAlign: 'center', fontFamily: 'Nunito-SemiBold', color: '#130160', fontSize: wp(4.2) }}>Reseller</Text>
-                            </View>
+                                <Text style={{ textAlign: 'center', fontFamily: 'Nunito-SemiBold', color: '#130160', fontSize: wp(4.2) }}>Premium Plan</Text>
+                            </Pressable>
                         </View>
                     </View>
                 </View>
-                <TouchableOpacity style={styles.gettingStarted} onPress={() => navigation.navigate('SignUp')}>
+                <TouchableOpacity style={styles.gettingStarted} onPress={() => navigation.navigate(selectPlan === 'free' ? 'FreeSubscription' : 'PayWall')}>
                     <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#fff', fontSize: hp(2.4) }}>Select Plan</Text>
                 </TouchableOpacity>
             </ImageBackground>
@@ -163,7 +164,7 @@ const styles = StyleSheet.create({
     gettingStarted: {
         position: 'absolute',
         backgroundColor: '#130160',
-        width: '95%',
+        width: '90%',
         height: hp(7),
         borderRadius: 10,
         justifyContent: 'center',

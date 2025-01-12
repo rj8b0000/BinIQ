@@ -286,27 +286,27 @@ const BinStorePage = () => {
                         </Pressable>
                     </View>
                 </View>
-                <View style={{ width: '95%', alignSelf: 'center', justifyContent: 'space-between', height: hp(23), flexDirection: 'row', marginTop: '13%' }}>
+                <View style={{ width: '95%', alignSelf: 'center', justifyContent: 'space-between', height: hp(23), flexDirection: 'row', marginTop: '5%' }}>
                     <View style={{ width: '45%', height: '100%', justifyContent: 'center' }}>
                         <HiddenFindsImg width={'95%'} />
                     </View>
                     <View style={{ width: '55%' }}>
                         <View style={{ width: '97%', alignSelf: 'flex-end', height: '100%', flexDirection: 'column' }}>
-                            <View style={{ height: '23%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: '2%' }}>
+                            <View style={{ height: '23%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: '2%', width: '93%' }}>
                                 <Text style={{ fontFamily: 'Roboto-SemiBold', borderColor: '#fff', color: '#fff', fontSize: hp(3) }}>
                                     Hidden Finds
                                 </Text>
-                                <BoldTick />
+                                <BoldTick width={20} />
                             </View>
                             <View style={{ height: '35%', flexDirection: 'row' }}>
                                 <View style={{ width: '50%', height: '100%', paddingLeft: '1%', justifyContent: 'center' }}>
-                                    <Text style={{ fontFamily: 'Roboto-ExtraBold', borderColor: '#fff', color: '#fff', fontSize: hp(3.4) }}>
+                                    <Text style={{ fontFamily: 'Roboto-ExtraBold', borderColor: '#fff', color: '#fff', fontSize: hp(3.2) }}>
                                         11K {'\n'}
                                         <Text style={{ fontSize: hp(1.8) }}>Followers</Text>
                                     </Text>
                                 </View>
                                 <View style={{ width: '50%', height: '100%', paddingLeft: '1%', justifyContent: 'center' }}>
-                                    <Text style={{ fontFamily: 'Roboto-ExtraBold', borderColor: '#fff', color: '#fff', fontSize: hp(3.4) }}>
+                                    <Text style={{ fontFamily: 'Roboto-ExtraBold', borderColor: '#fff', color: '#fff', fontSize: hp(3.2) }}>
                                         12K {'\n'}
                                         <Text style={{ fontSize: hp(1.8) }}>Likes</Text>
                                     </Text>
@@ -317,7 +317,7 @@ const BinStorePage = () => {
                                     www.hiddenfinds.com
                                 </Text>
                             </View>
-                            <View style={{ height: '26%', justifyContent: 'center' }}>
+                            <View style={{ height: '23%', marginTop: '3%', justifyContent: 'center', width: '90%' }}>
                                 <View style={{ width: '100%', height: '85%', backgroundColor: '#fff', borderRadius: 7, justifyContent: 'center', alignItems: 'center', borderWidth: 2, borderColor: '#14BA9C' }}>
                                     <Text style={{ color: '#14BA9C', fontSize: hp(2.3), fontFamily: 'DMSans-SemiBold' }}>Follow</Text>
                                 </View>
@@ -403,6 +403,7 @@ const BinStorePage = () => {
                         renderItem={({ item }) => (
                             <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('SinglePageItem')}>
                                 <Image source={require('../../../assets/dummy_product.png')} style={styles.image} />
+                                <Ionicons name='heart' size={hp(2.5)} color={'#EE2525'} style={{ position: 'absolute', right: '9%', top: '4%' }} />
                                 <Text style={styles.name}>{item.name}</Text>
                                 <Text style={styles.subtitle}>{item.subtitle}</Text>
                                 <View style={styles.ratingContainer}>
@@ -410,9 +411,6 @@ const BinStorePage = () => {
                                     <Text style={styles.rating}>{item.rating}</Text>
                                     <Text style={styles.reviews}>{item.reviews} Reviews</Text>
                                 </View>
-                                <TouchableOpacity style={styles.heartButton}>
-                                    <Heart size={15} color="red" />
-                                </TouchableOpacity>
                             </TouchableOpacity>
                         )}
                         keyExtractor={item => item.id}
@@ -442,7 +440,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'black',
         width: '100%',
-        height: hp(45),
+        height: hp(41),
         // position: 'absolute',
         borderBottomEndRadius: 20,
         borderBottomLeftRadius: 20,
@@ -507,7 +505,9 @@ const styles = StyleSheet.create({
         marginHorizontal: '5%',
         marginVertical: '4%',
         flexDirection: 'row',
-        marginTop: '7%'
+        marginTop: '7%',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     content: {
         width: '50%',
@@ -515,7 +515,8 @@ const styles = StyleSheet.create({
     review: {
         width: '50%',
         flexDirection: 'row',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
+        alignItems: 'center'
     },
     contentDetails: {
         width: '90%',

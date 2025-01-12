@@ -16,6 +16,8 @@ import {
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import Heart_Icon from '../../../assets/heart_icon.svg';
+import Share_Icon from '../../../assets/share_icon.svg';
 
 const { width } = Dimensions.get('window');
 const SingleItemPage = () => {
@@ -72,13 +74,20 @@ const SingleItemPage = () => {
                         </Pressable>
                         <Text style={styles.headerText}>Item</Text>
                     </View>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '23%' }}>
+                        <Pressable onPress={() => navigation.goBack()}>
+                            <Heart_Icon height={hp(4)} />
+                        </Pressable>
+                        <Pressable onPress={() => navigation.goBack()}>
+                            <Share_Icon height={hp(4)} />
+                        </Pressable>
+                    </View>
                 </View>
-                <View style={{ width: '90%', height: hp(25), marginHorizontal: '5%', borderRadius: 10, marginVertical: '5%' }}>
+                <View style={{ width: '90%', height: hp(27), marginHorizontal: '5%', borderRadius: 10, marginVertical: '5%' }}>
                     <Image source={require('../../../assets/specific_item.png')} style={{ width: '100%', height: '100%', borderRadius: 10 }} />
                 </View>
                 <View style={{ paddingHorizontal: '5%' }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Text style={styles.title}>Nike Sneakers</Text>
+                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center' }}>
                         <View style={styles.ratingContainer}>
                             <Ionicons name="star" size={18} color="#FFD700" />
                             <Ionicons name="star" size={18} color="#FFD700" />
@@ -93,6 +102,19 @@ const SingleItemPage = () => {
                         <Text style={styles.discountedPrice}>₹1,500</Text>
                         <Text style={styles.discount}>50% Off</Text>
                     </View>
+                    <View style={styles.detailsContainer}>
+                        <Text style={styles.title}>Wireless Bluetooth Mouse with USB Receiver</Text>
+                        <View style={{ marginVertical: '1%' }}>
+                            <Text style={styles.detailsTitle}>Item Details</Text>
+                            <Text style={styles.detailsText}>
+                                A high-quality wireless mouse compatible with PCs, laptops, and tablets. Features a sleek design, USB receiver, and adjustable DPI settings for smooth navigation. More.....
+                            </Text>
+                        </View>
+                        <View style={{ marginVertical: '1%' }}>
+                            <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2), color: '#000', marginBottom: 4, }}>Category: <Text style={{ fontFamily: 'Nunito-SemiBold', fontSize: hp(1.9), color: '#666' }}>Electronics</Text></Text>
+                            <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2), color: '#000', marginBottom: 4, }}>UPC #: <Text style={{ fontFamily: 'Nunito-SemiBold', fontSize: hp(1.7), color: '#666' }}>2233243432432</Text></Text>
+                        </View>
+                    </View>
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity style={styles.button}>
                             <Ionicons name="heart-outline" size={18} color="#000" />
@@ -102,19 +124,8 @@ const SingleItemPage = () => {
                             <Text style={styles.buttonText}>See More</Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.detailsContainer}>
-                        <Text style={styles.detailsTitle}>Item Details</Text>
-                        <Text style={styles.detailsText}>
-                            Perhaps the most iconic sneaker of all-time, this original "Chicago" colorway is the cornerstone to any sneaker collection. Made famous in 1985 by Michael Jordan, the shoe has stood the test of time, becoming the most famous colorway of the Air Jordan 1. This 2015 release saw the...
-                        </Text>
-                    </View>
-                    <View style={styles.categoryBtnContainer}>
-                        <TouchableOpacity style={styles.categoryBtn}>
-                            <Text style={styles.ctgryText}>Category - 1</Text>
-                        </TouchableOpacity>
-                    </View>
                     <View style={{ marginVertical: '3%' }}>
-                        <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.3), color: '#000000', marginVertical: '5%' }}>SIMILAR PRODUCTS</Text>
+                        <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.3), color: '#000000', marginVertical: '5%' }}>SIMILAR ITEMS</Text>
                         <View style={{ flex: 1, width: '100%', alignItems: 'center' }}>
                             <FlatList
                                 data={myFavourites}
@@ -160,11 +171,6 @@ const styles = StyleSheet.create({
     backButton: {
         fontSize: 24,
         marginRight: 16,
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: 'black',
     },
     tabContainer: {
         flexDirection: 'row',
@@ -298,7 +304,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'Nunito-Bold',
-        fontSize: 20,
+        fontSize: hp(2.5),
         marginBottom: 8,
         color: 'black'
     },
@@ -316,6 +322,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: '1%',
+        marginTop: '3.5%'
     },
     originalPrice: {
         fontFamily: 'Nunito-Regular',
@@ -338,7 +345,6 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: '1%',
     },
     categoryBtnContainer: {
         flexDirection: 'row',
@@ -381,7 +387,7 @@ const styles = StyleSheet.create({
         fontSize: wp(5.1)
     },
     detailsContainer: {
-        marginBottom: '7%',
+        marginVertical: '6%',
     },
     detailsTitle: {
         fontFamily: 'Nunito-Bold',

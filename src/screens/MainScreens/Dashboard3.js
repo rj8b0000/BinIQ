@@ -5,7 +5,7 @@ import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-nat
 import Svg, { Line, Path } from "react-native-svg"; // For horizontal progress (e.g., Education Level)
 import ProgressBar from "../../Components/ProgressBar";
 
-const Dashboard = ({ percentage = 70 }) => {
+const Dashboard3 = ({ percentage = 70 }) => {
     const size = Dimensions.get('window').width * 0.2;
     const strokeWidth = wp(2);
     const center = size / 2;
@@ -24,7 +24,6 @@ const Dashboard = ({ percentage = 70 }) => {
 
     return (
         <View style={styles.container}>
-            {/* Header */}
             <View style={styles.header}>
                 <View style={{ flex: 1 }}>
                     <Text style={styles.greeting}>
@@ -37,97 +36,14 @@ const Dashboard = ({ percentage = 70 }) => {
                     style={styles.profileImage}
                 />
             </View>
-
-            {/* Main Cards */}
-            <View style={styles.cardsContainer}>
-                {/* Upgrade Storage */}
-                <View style={styles.card}>
-                    <Text style={styles.uppercardTitle}>UPGRADE STORAGE</Text>
-                    <Circle
-                        size={hp(10)}
-                        progress={0.8}
-                        showsText={true}
-                        thickness={5}
-                        color="#3CD4B8"
-                        unfilledColor="#DDF4DF"
-                        textStyle={styles.progressText}
-                        style={styles.firstCardProgressBar}
-                    />
-                    <View style={styles.graphDetailsView}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <View style={{ width: wp(2), height: wp(2), backgroundColor: '#0049AF', borderRadius: 3 }} />
-                            <Text style={{ color: '#000', fontFamily: 'Nunito-Bold', fontSize: hp(1.2) }}> Total Scans </Text>
-                        </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <View style={{ width: wp(2), height: wp(2), backgroundColor: '#FFBB36', borderRadius: 3 }} />
-                            <Text style={{ color: '#000', fontFamily: 'Nunito-Bold', fontSize: hp(1.2) }}> Remaining Scans</Text>
-                        </View>
-                    </View>
-                    <View style={styles.cardText}>
-                        <Text style={{ color: '#524B6B', fontFamily: 'Nunito-SemiBold', fontSize: hp(1.3) }}>Awesome job! Youve scanned 6,000 items already.You have 4,000 more scans available—lets find more hidden treasures!</Text>
-                    </View>
-                </View>
-
-                {/* Unlock Education */}
-                <View style={styles.card}>
-                    <Text style={styles.uppercardTitle}>UNLOCK EDUCATIONS</Text>
-                    <Circle
-                        size={hp(7)}
-                        progress={0.3}
-                        showsText={true}
-                        thickness={4}
-                        color="#3CD4B8"
-                        unfilledColor="#DDF4DF"
-                        textStyle={styles.progressText}
-                        style={styles.firstCardProgressBar}
-                    />
-                    <View style={styles.card2Text}>
-                        <Text style={{ color: '#524B6B', fontFamily: 'Nunito-SemiBold', fontSize: hp(1.2) }}>You're on a roll! You've finished 3 courses. Keep going to unlock the full library of courses and boost your skills!</Text>
-                    </View>
-                    <View style={styles.cardButton}>
-                        <Text style={{ color: '#fff', fontFamily: 'Nunito-SemiBold', fontSize: hp(1.4), textAlign: 'center' }}>KEEP GOING</Text>
-                    </View>
-                </View>
+            <View style={{ justifyContent: 'center', alignItems: 'center', width: wp(90), height: hp(40), marginTop: '10%' }}>
+                <Image source={require('../../../assets/slider_1.png')} style={{ width: wp(99), height: hp(53) }} />
             </View>
-
-            {/* Bottom Cards */}
-            <View style={styles.bottomCardsContainer}>
-                {/* Current Plan */}
-                <View style={styles.smallCard}>
-                    <Text style={styles.uppercardTitle}>CURRENT PLAN</Text>
-                    <ProgressBar progress={50} tier="Tier 1" />
-                </View>
-
-                {/* Education Level */}
-                <View style={styles.smallCard}>
-                    <Text style={styles.bottomcard2Title}>EDUCATION{'\n'}LEVEL</Text>
-                    <View style={styles.progressContainer}>
-                        <Svg width={size} height={size / 2 + strokeWidth / 2}>
-                            {/* Background path */}
-                            <Path
-                                d={semiCircle}
-                                fill="none"
-                                stroke="#E5E5E5"
-                                strokeWidth={strokeWidth}
-                            />
-                            {/* Progress path */}
-                            <Path
-                                d={semiCircle}
-                                fill="none"
-                                stroke="#14BA9C"
-                                strokeWidth={strokeWidth}
-                                strokeDasharray={strokeDasharray}
-                                strokeLinecap="round"
-                            />
-                        </Svg>
-                        <Text style={styles.percentageText}>{percentage}%</Text>
-                    </View>
-                </View>
-
-                {/* Inventory Level */}
-                <View style={styles.smallCard}>
-                    <Text style={styles.bottomcard2Title}>INVENTORY LEVEL</Text>
-                    <ProgressBar progress={50} tier="700 Items" />
+            <View style={{ width: wp(90), height: hp(15), paddingHorizontal: '5%', justifyContent: 'center', position: 'absolute', bottom: '8%' }}>
+                <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.2) }}>KNOWLEDGE IS OPPORTUNITIES</Text>
+                <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#667085', fontSize: hp(1.4) }}>Ready to become a Bin IQ PRO? In this training learn the secrets of pinpointing the best bin stores, selecting the right items, listing effectively, and selling strategically with our proven BinIQ blueprint.</Text>
+                <View style={styles.cardButton}>
+                    <Text style={{ color: '#fff', fontFamily: 'Nunito-SemiBold', fontSize: hp(1.4), textAlign: 'center' }}>KEEP GOING</Text>
                 </View>
             </View>
         </View >
@@ -137,13 +53,13 @@ const Dashboard = ({ percentage = 70 }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // backgroundColor: "#f8f9fa",
-        paddingVertical: 16,
+        // backgroundColor: "#f8f9fa", 
     },
     header: {
         flexDirection: "row",
         alignItems: "center",
-        marginBottom: 16,
+        marginTop: '5%',
+        // marginBottom: 16,
     },
     greeting: {
         fontSize: hp(2.4),
@@ -265,11 +181,11 @@ const styles = StyleSheet.create({
     },
     cardButton: {
         backgroundColor: '#130160',
-        width: '80%',
-        height: hp(3),
-        margin: '10%',
+        width: '45%',
+        height: hp(3.5),
+        marginTop: '3%',
         borderRadius: 5,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     title: {
         fontSize: 24,
@@ -297,4 +213,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Dashboard;
+export default Dashboard3;

@@ -19,6 +19,8 @@ import MenuIcon from '../../../assets/MenuIcon.svg';
 import BinFinderIcon from '../../../assets/BinFinderIcon.svg';
 import SettingsIcon from '../../../assets/SettingsIcon.svg';
 import Dashboard from './Dashboard';
+import Dashboard2 from './Dashboard2';
+import Dashboard3 from './Dashboard3';
 
 const { width, height } = Dimensions.get('window');
 const HomeScreen = ({ openDrawer }) => {
@@ -282,27 +284,8 @@ const HomeScreen = ({ openDrawer }) => {
   const renderCarouselItem = ({ item, index }) => {
     if (item.isMap) {
       return (
-        <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: '4%', width: wp(90), height: wp(90), overflow: 'hidden', alignSelf: 'center' }}>
-          <MapView
-            style={{ ...item.styles }}
-            initialRegion={{
-              latitude: 37.78825,
-              longitude: -122.4324,
-              latitudeDelta: 0.0722,
-              longitudeDelta: 0.0221,
-            }}
-          >
-            {locations.map(location => (
-              <Marker
-                key={location.id}
-                coordinate={{
-                  latitude: location.latitude,
-                  longitude: location.longitude,
-                }}
-                title={location.title}
-              />
-            ))}
-          </MapView>
+        <View style={{ width: wp(90), height: '100%', overflow: 'hidden', alignSelf: 'center' }}>
+          <Dashboard2 />
         </View>
       );
     }
@@ -315,15 +298,18 @@ const HomeScreen = ({ openDrawer }) => {
 
     }
     return (
-      <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: '9%', width: wp(100), height: hp(40) }}>
-        <Image source={item.image} style={item.styles} />
+      // <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: '9%', width: wp(100), height: hp(40), backgroundColor: 'red' }}>
+      //   <Image source={item.image} style={item.styles} />
+      // </View>
+      <View style={{ width: wp(90), height: '100%', overflow: 'hidden', alignSelf: 'center' }}>
+        <Dashboard3 />
       </View>
     )
   };
   const renderItem = ({ item }) => (
     // <View style={{paddingHorizontal: '0.1%'}}>
     <Pressable style={{ width: wp(50), height: hp(23), marginVertical: '7%' }} onPress={() => navigation.navigate('TopBinsNearMe')}>
-      <View style={{ width: wp(47), height: hp(21.5), borderRadius: 10, borderWidth: 0.4, borderColor: '#999' }}>
+      <View style={{ width: wp(47), height: hp(21.5), borderRadius: 10, elevation: 2, backgroundColor: '#fff' }}>
         <Image source={item.image} style={{ width: wp(47), height: hp(12), borderRadius: 10 }} />
         <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
         <View style={{ margin: '5%', flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -341,8 +327,8 @@ const HomeScreen = ({ openDrawer }) => {
     </Pressable>
   );
   const renderProductsItem = ({ item }) => (
-    <TouchableOpacity style={{ width: wp(50), height: hp(23), marginVertical: '5%' }} onPress={() => navigation.navigate('TopBinItems')}>
-      <View style={{ width: wp(47), height: hp(21), borderRadius: 10, borderWidth: 0.5, borderColor: '#999' }}>
+    <Pressable style={{ width: wp(50), height: hp(23), marginVertical: '5%' }} onPress={() => navigation.navigate('TopBinItems')}>
+      <View style={{ width: wp(47), height: hp(21), borderRadius: 10, elevation: 2, backgroundColor: '#fff' }}>
         <Image source={item.image} style={{ width: wp(46), height: hp(12) }} />
         <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
         <View style={{ margin: '3%', flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -353,11 +339,11 @@ const HomeScreen = ({ openDrawer }) => {
           </View>
         </View>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
   const renderMyFavourites = ({ item }) => (
-    <TouchableOpacity style={{ width: wp(44), height: hp(26) }}>
-      <View style={{ width: wp(42), height: hp(26), borderRadius: 5, borderWidth: 0.5, borderColor: '#e6e6e6' }}>
+    <Pressable style={{ width: wp(44), height: hp(26) }}>
+      <View style={{ width: wp(42), height: hp(25), borderRadius: 5, elevation: 2, backgroundColor: '#fff' }}>
         <Image source={item.image} style={{ width: wp(42), height: hp(13), borderRadius: 5 }} />
         <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
         <View style={{ paddingHorizontal: '1%' }}>
@@ -370,7 +356,7 @@ const HomeScreen = ({ openDrawer }) => {
           </View>
         </View>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
   const renderResellerPortal = ({ item }) => (
     <TouchableOpacity style={{ width: wp(44), height: hp(24) }}>
@@ -409,18 +395,18 @@ const HomeScreen = ({ openDrawer }) => {
   return (
     <ScrollView style={{ flex: 1, backgroundColor: '#fff' }} showsVerticalScrollIndicator={false}>
       <StatusBar translucent={true} backgroundColor={'transparent'} />
-      <ImageBackground source={require('../../../assets/home_bg.jpg')} style={styles.vector}>
+      <ImageBackground source={require('../../../assets/vector_1.png')} style={styles.vector}>
         <View style={{ marginTop: '6%' }}>
           <View style={{ width: wp(90), height: hp(5), alignSelf: 'center', marginVertical: '4%', flexDirection: 'row', justifyContent: 'space-between' }}>
             <View style={{ width: '28%', height: '100%', justifyContent: 'center', alignItems: 'flex-start' }}>
               <BinIQIcon />
             </View>
-            <View style={{ width: '45%', height: '100%', flexDirection: 'row' }}>
+            <View style={{ width: '45%', height: '100%', flexDirection: 'row', alignItems: 'center', paddingRight: '4%' }}>
               <Pressable onPress={() => navigation.navigate('ReferFriend')}>
-                <GetButton />
+                <GetButton height={hp(3.5)} />
               </Pressable>
               <Pressable style={{ width: '23%', height: '100%', justifyContent: 'center', alignItems: 'flex-end', paddingRight: '2%' }} onPress={() => navigation.navigate('Notifications')}>
-                <Notification />
+                <Notification height={hp(4)} />
               </Pressable>
             </View>
           </View>
@@ -449,23 +435,38 @@ const HomeScreen = ({ openDrawer }) => {
           loop={true}
           onSnapToItem={(index) => setActiveSlide(index)}
         />
-        {carouselImages[activeSlide]?.id === 2 ? (
+        {/* {carouselImages[activeSlide]?.id === 2 ? (
           <View style={{ width: wp(100), height: hp(14), paddingHorizontal: '10%', justifyContent: 'center' }}>
             <BinFinderIcon />
             <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.6) }}>BIN FINDER</Text>
             <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#667085', fontSize: hp(1.7) }}>Discover Hidden Gems Near You</Text>
           </View>
-        ) :
-          carouselImages[activeSlide]?.id === 3 ? (
-            <View style={{ width: wp(100), height: hp(15), paddingHorizontal: '12%', justifyContent: 'center', position: 'absolute', bottom: '19%' }}>
-              <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.2) }}>KNOWLEDGE IS OPPORTUNITIES</Text>
-              <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#667085', fontSize: hp(1.4) }}>Ready to become a Bin IQ PRO? In this training learn the secrets of pinpointing the best bin stores, selecting the right items, listing effectively, and selling strategically with our proven BinIQ blueprint.</Text>
-              <View style={styles.cardButton}>
-                <Text style={{ color: '#fff', fontFamily: 'Nunito-SemiBold', fontSize: hp(1.4), textAlign: 'center' }}>KEEP GOING</Text>
-              </View>
-            </View>
-          ) : null
-        }
+          ) :
+            carouselImages[activeSlide]?.id === 3 ? (
+              <>
+                <View style={styles.header}>
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.greeting}>
+                      Hello, <Text style={styles.name}>Lee Carter</Text>
+                    </Text>
+                    <Text style={styles.subtext}>Here's what you've been up to lately!</Text>
+                  </View>
+                  <Image
+                    source={require('../../../assets/dashboard_profile.png')} // Replace with profile picture
+                    style={styles.profileImage}
+                  />
+                </View>
+                <View style={{ width: wp(100), height: hp(15), paddingHorizontal: '12%', justifyContent: 'center', backgroundColor: 'green' }}>
+                  <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.2) }}>KNOWLEDGE IS OPPORTUNITIES</Text>
+                  <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#667085', fontSize: hp(1.4) }}>Ready to become a Bin IQ PRO? In this training learn the secrets of pinpointing the best bin stores, selecting the right items, listing effectively, and selling strategically with our proven BinIQ blueprint.</Text>
+                  <View style={styles.cardButton}>
+                    <Text style={{ color: '#fff', fontFamily: 'Nunito-SemiBold', fontSize: hp(1.4), textAlign: 'center' }}>KEEP GOING</Text>
+                  </View>
+                </View>
+              </>
+        )
+          : null
+        } */}
         {pagination()}
       </ImageBackground>
       {/* TOP BINS NEAR ME  */}
@@ -533,14 +534,38 @@ const HomeScreen = ({ openDrawer }) => {
               <Text style={{ color: '#524B6B', fontSize: hp(1.9), textDecorationLine: 'underline' }}>View All</Text>
             </TouchableOpacity>
           </View>
-          <View style={{ marginVertical: '4%' }}>
-            <FlatList
+          <View style={{ marginVertical: '4%', flexDirection: 'row', width: '100%', justifyContent: 'space-between' }}>
+            {/* <FlatList
               data={resellerIQPortal}
               renderItem={renderResellerPortal}
               keyExtractor={(item) => item.id.toString()}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
-            />
+            /> */}
+            <TouchableOpacity style={{ width: wp(45), height: hp(24) }}>
+              <Pressable style={{ width: wp(45), height: hp(22), borderRadius: 5, elevation: 2, backgroundColor: '#fff' }}>
+                <Image source={require('../../../assets/reseller_training.png')} style={{ width: wp(45), height: hp(11), borderRadius: 5 }} />
+                <View style={{ margin: '3%', flexDirection: 'row', justifyContent: 'space-between' }}>
+                  <View>
+                    <Text style={{ fontFamily: 'Nunito-ExtraBold', color: '#0049AF', fontSize: hp(1.7) }}>{'How to start a Bin Store'}</Text>
+                    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.2), marginVertical: '1%' }}>{'Bin Store'}</Text>
+                    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5), marginTop: '5%' }}>{'Full Video • With PDF'}</Text>
+                  </View>
+                </View>
+              </Pressable>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ width: wp(45), height: hp(24) }} onPress={() => navigation.navigate('IQPortal')}>
+              <Pressable style={{ width: wp(45), height: hp(22), borderRadius: 5, elevation: 2, backgroundColor: '#fff' }}>
+                <Image source={require('../../../assets/reseller_training.png')} style={{ width: wp(45), height: hp(11), borderRadius: 5 }} />
+                <View style={{ margin: '3%', flexDirection: 'row', justifyContent: 'space-between' }}>
+                  <View>
+                    <Text style={{ fontFamily: 'Nunito-ExtraBold', color: '#0049AF', fontSize: hp(1.7) }}>{'How to start a Bin Store'}</Text>
+                    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(2.2), marginVertical: '1%' }}>{'Reseller Training'}</Text>
+                    <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.5), marginTop: '5%' }}>{'Full Video • With PDF'}</Text>
+                  </View>
+                </View>
+              </Pressable>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -625,5 +650,30 @@ const styles = StyleSheet.create({
     marginVertical: '3%',
     borderRadius: 5,
     justifyContent: 'center'
+  },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 16,
+  },
+  greeting: {
+    fontSize: hp(2.4),
+    fontFamily: 'Nunito-Bold',
+    color: '#000'
+  },
+  name: {
+    color: "#000",
+    fontFamily: 'Nunito-Bold',
+    textDecorationLine: 'underline'
+  },
+  subtext: {
+    fontSize: wp(3.5),
+    color: "#000",
+    fontFamily: 'Nunito-Bold',
+  },
+  profileImage: {
+    width: wp(11),
+    height: wp(11),
+    borderRadius: 25,
   },
 })

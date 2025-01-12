@@ -8,9 +8,12 @@ const PayWall = () => {
     return (
         <View style={styles.container}>
             <View style={{ height: hp(7) }} />
+            <View style={{ width: '100%', height: hp(18), alignItems: 'center' }}>
+                <Image source={require('../../../assets/animated_tick.gif')} style={{ width: '50%', height: '100%' }} />
+            </View>
             <View style={{ height: hp(50), marginTop: '10%', marginHorizontal: '7.5%', justifyContent: 'space-between' }}>
                 <View style={{ height: '23%' }}>
-                    <Text style={{ fontFamily: 'Nunito-Bold', color: '#14BA9C', fontSize: wp(7) }}>Access Your Library Today!</Text>
+                    <Text style={{ fontFamily: 'Nunito-Bold', color: '#14BA9C', fontSize: wp(7), textAlign: 'center' }}>Access Your Library Today!</Text>
                 </View>
                 <View style={{ height: '70%', justifyContent: 'space-between' }}>
                     <View style={{ flexDirection: 'row' }}>

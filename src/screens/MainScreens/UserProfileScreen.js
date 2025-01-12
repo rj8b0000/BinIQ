@@ -243,7 +243,7 @@ export default function UserProfileScreen({ openDrawer }) {
           </View>
         </View>
         <TouchableOpacity style={styles.gettingStarted} onPress={() => navigation.navigate('QuizScreen')}>
-          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#fff', fontSize: hp(2.5) }}>Sign Up</Text>
+          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#fff', fontSize: hp(2.5) }}>Save Profile</Text>
         </TouchableOpacity>
       </ImageBackground>
       <View style={{ height: hp(7) }} />

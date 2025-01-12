@@ -22,12 +22,6 @@ const QuizScreen = () => {
             isOtherOption: true, // Flag for text input when 'Others' is selected
         },
         {
-            id: 3,
-            question: 'What are your short-term goals (1-2 years) with reselling?',
-            options: ['Part-time income', 'Six-figure income', 'Scale your business', 'Start a bin store', 'Others'],
-            isOtherOption: true, // Flag for text input when 'Others' is selected
-        },
-        {
             id: 4,
             question: 'Are you interested in educational resources or training that could help improve your reselling skills?',
             options: ['Yes', 'No'],
@@ -40,6 +34,12 @@ const QuizScreen = () => {
         },
         {
             id: 6,
+            question: 'What are your long-term goals (1-2 years) with reselling?',
+            options: ['finding profitable inventory', 'listing items', 'managing inventory', 'shipping logistics/returns', 'more sales', 'scaling up', 'Others'],
+            isOtherOption: true, // Flag for text input when 'Others' is selected
+        },
+        {
+            id: 7,
             question: 'Are you interested in educational resources or training that could help improve your reselling skills?',
             options: [],
             isOtherOption: true,
@@ -148,7 +148,7 @@ const QuizScreen = () => {
                             onChangeText={setOtherText}
                         />
                     )}
-                    {questions[currentQuestion].id === 6 && (
+                    {questions[currentQuestion].id === 6 && questions[currentQuestion].id === 5 && (
                         <TextInput
                             style={styles.textInput}
                             placeholder='________________________'

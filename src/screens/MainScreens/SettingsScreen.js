@@ -74,7 +74,7 @@ export default function SettingsScreen({ openDrawer }) {
               <Text style={styles.settingText}>Change Passoword</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.settingItem}>
+          {/* <TouchableOpacity style={styles.settingItem}>
             <View style={styles.settingLeft}>
               <LanguageIcon />
               <Text style={styles.settingText}>Language</Text>
@@ -87,7 +87,7 @@ export default function SettingsScreen({ openDrawer }) {
               <Text style={styles.settingText}>Theme</Text>
             </View>
             <Ionicons name="chevron-forward" size={hp(3.1)} color="#150B3D" />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TouchableOpacity style={styles.settingItem}>
             <View style={styles.settingLeft}>
               <DeleteIcon />
@@ -100,8 +100,8 @@ export default function SettingsScreen({ openDrawer }) {
 
           {/* about  */}
 
-          <View style={{ height: hp(3) }} />
-          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#95969D', fontSize: wp(4.6), marginVertical: '1%' }}>About</Text>
+          {/* <View style={{ height: hp(3) }} /> */}
+          {/* <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#95969D', fontSize: wp(4.6), marginVertical: '1%' }}>About</Text>
           <TouchableOpacity style={styles.settingItem}>
             <View style={styles.settingLeft}>
               <PrivacyIcon />
@@ -126,8 +126,8 @@ export default function SettingsScreen({ openDrawer }) {
             <View style={styles.settingLeft}>
               <SupportIcon />
               <Text style={styles.settingText}>Support</Text>
-            </View>
-            <Ionicons name="chevron-forward" size={hp(3.1)} color="#150B3D" />
+            </View> */}
+          {/* <Ionicons name="chevron-forward" size={hp(3.1)} color="#150B3D" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.settingItem}>
             <View style={styles.settingLeft}>
@@ -135,12 +135,12 @@ export default function SettingsScreen({ openDrawer }) {
               <Text style={styles.settingText}>About</Text>
             </View>
             <Ionicons name="chevron-forward" size={hp(3.1)} color="#150B3D" />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <View style={{ height: hp(8) }} />
         </View>
       </ImageBackground>
       <ImageBackground source={require('../../../assets/vector_2.png')} style={styles.vector2} />
-    </ScrollView>
+    </ScrollView >
   )
 }
 
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
   vector: {
     flex: 1,
     width: wp(100),
-    // height: hp(104),
+    height: hp(104),
   },
   vector2: {
     flex: 1,

@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     gettingStarted: {
         position: 'absolute',
         backgroundColor: '#130160',
-        width: '95%',
+        width: '90%',
         height: hp(7),
         borderRadius: 10,
         justifyContent: 'center',

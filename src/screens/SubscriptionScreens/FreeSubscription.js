@@ -3,8 +3,10 @@ import React from 'react'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import GreenCheck from '../../../assets/green_check.svg'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import { useNavigation } from '@react-navigation/native'
 
 const FreeSubscription = () => {
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <View style={{ height: hp(7) }} />
@@ -71,7 +73,7 @@ const FreeSubscription = () => {
                         </View>
                     </View>
                 </View>
-                <TouchableOpacity style={styles.gettingStarted} onPress={() => navigation.navigate('HomeNavigataor')}>
+                <TouchableOpacity style={styles.gettingStarted} onPress={() => navigation.navigate('SignUp')}>
                     <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#fff', fontSize: hp(2.5) }}>Continue</Text>
                 </TouchableOpacity>
             </View>

@@ -10,6 +10,7 @@ import CameraIcon from '../../../assets/CameraIcon.svg';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Slider from '@react-native-community/slider';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
 
 
 const MapScreen = () => {
@@ -142,14 +143,14 @@ const MapScreen = () => {
           </View>
         </View>
         <View style={styles.searchParent}>
-          <Pressable style={styles.searchContainer} onPress={() => navigation.navigate('SearchScreen')}>
+          <Pressable style={styles.searchContainer}>
             <View style={styles.cameraButton}>
               <SearchIcon />
             </View>
             <Text style={styles.input}>search for anything</Text>
-            <View style={styles.searchButton}>
+            <Pressable style={styles.searchButton} onPress={() => launchCamera()}>
               <CameraIcon />
-            </View>
+            </Pressable>
           </Pressable>
           <TouchableOpacity style={styles.menuButton} onPress={handleFilterButtonPress}>
             <MapFilterIcon />
