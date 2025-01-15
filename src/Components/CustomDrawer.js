@@ -35,7 +35,7 @@ const CustomDrawer = ({ isOpen, closeDrawer }) => {
   }, [isOpen])
 
   const menuItems = [
-    { icon: <EditProfile />, label: "Edit Profile", goto: 'UserProfileScreen' },
+    { icon: <EditProfile />, label: "Edit Profile", goto: 'EditProfileScreen' },
     { icon: <Feedback />, label: "Feedback", goto: 'Feedback' },
     { icon: <ChangePassword />, label: "Change Password", goto: 'ChangePassword' },
     { icon: <Help />, label: "Help", goto: 'HelpAndSupport' },

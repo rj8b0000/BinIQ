@@ -27,6 +27,42 @@ import * as Progress from 'react-native-progress';
 const { width } = Dimensions.get('window');
 const ScanHistoryScreen = () => {
   const navigation = useNavigation();
+  const renderItem = ({ item }) => {
+    return (
+      // <Pressable style={{ width: wp(50), height: hp(23), marginVertical: '7%' }} onPress={() => navigation.navigate('TopBinsNearMe')}>
+      //   <View style={{ width: wp(47), height: hp(21.5), borderRadius: 10, elevation: 2, backgroundColor: '#fff' }}>
+      //     <Image source={item.image} style={{ width: wp(47), height: hp(12), borderRadius: 10 }} />
+      //     {/* <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} /> */}
+      //     <View style={{ margin: '5%', flexDirection: 'row', justifyContent: 'space-between' }}>
+      //       <View>
+      //         <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#0049AF', fontSize: hp(2) }}>{item.title}</Text>
+      //         <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.6) }}>{item.location}</Text>
+      //         <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.4) }}>{item.distance}</Text>
+      //       </View>
+      //       <View style={{ backgroundColor: '#FFBB36', height: hp(2.3), width: wp(11), flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', padding: '1.4%', borderRadius: 4 }}>
+      //         {/* <FontAwesome name='star' size={12} color={'#fff'} /> */}
+      //         <Text style={{ color: '#fff', fontFamily: 'Nunito-Regular', fontSize: hp(1.6) }}>{item.review}</Text>
+      //       </View>
+      //     </View>
+      //   </View>
+      // </Pressable>
+      // <View style={{ flex: 1 }}>
+      <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('SinglePageItem')}>
+        <Image source={require('../../../assets/dummy_product.png')} style={styles.image} />
+        <Text style={styles.name}>{item.name}</Text>
+        <Text style={styles.subtitle}>{item.subtitle}</Text>
+        <View style={styles.ratingContainer}>
+          <Star size={12} color="#FFD700" fill="#FFD700" />
+          <Text style={styles.rating}>{item.rating}</Text>
+          <Text style={styles.reviews}>{item.reviews} Reviews</Text>
+        </View>
+        <TouchableOpacity style={styles.heartButton}>
+          <Heart size={13} color="red" />
+        </TouchableOpacity>
+      </TouchableOpacity>
+      // </View>
+    )
+  }
   return (
     <View style={{ width: '100%' }}>
       <View style={{ width: '95%', alignSelf: 'center', marginVertical: '5%' }}>
@@ -52,13 +88,7 @@ const ScanHistoryScreen = () => {
             <SearchIcon />
           </View>
           <Text style={styles.input}>search for anything</Text>
-          <View style={styles.searchButton}>
-            <CameraIcon />
-          </View>
         </Pressable>
-        <TouchableOpacity style={styles.menuButton}>
-          <FilterIcon size={10} />
-        </TouchableOpacity>
       </View>
       <View style={{ height: hp(38), flexDirection: 'row' }}>
         <View style={{ width: '72%', justifyContent: 'space-around', alignItems: 'center' }}>
@@ -138,24 +168,12 @@ const ScanHistoryScreen = () => {
       <View style={{ flex: 1, width: '100%', marginBottom: '22%' }}>
         <FlatList
           data={products}
-          renderItem={({ item }) => (
-            <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('SinglePageItem')}>
-              <Image source={require('../../../assets/dummy_product.png')} style={styles.image} />
-              <Text style={styles.name}>{item.name}</Text>
-              <Text style={styles.subtitle}>{item.subtitle}</Text>
-              <View style={styles.ratingContainer}>
-                <Star size={12} color="#FFD700" fill="#FFD700" />
-                <Text style={styles.rating}>{item.rating}</Text>
-                <Text style={styles.reviews}>{item.reviews} Reviews</Text>
-              </View>
-              <TouchableOpacity style={styles.heartButton}>
-                <Heart size={15} color="red" />
-              </TouchableOpacity>
-            </TouchableOpacity>
-          )}
+          renderItem={renderItem}
           keyExtractor={item => item.id}
           numColumns={3}
-          contentContainerStyle={styles.grid}
+          // columnWrapperStyle={{ justifyContent: 'space-between', marginVertical: '5%' }}
+          showsVerticalScrollIndicator={false}
+        // contentContainerStyle={{ paddingHorizontal: 10 }}
         />
       </View>
     </View>
@@ -188,24 +206,18 @@ const MyItemsScreen = () => {
             <SearchIcon />
           </View>
           <Text style={styles.input}>search for anything</Text>
-          <View style={styles.searchButton}>
-            <CameraIcon />
-          </View>
         </Pressable>
-        <TouchableOpacity style={styles.menuButton}>
-          <FilterIcon size={10} />
-        </TouchableOpacity>
       </View>
       <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: '7%', paddingHorizontal: '2%' }}>
-        <Text style={{ color: '#000000', fontFamily: 'Nunito-Bold', fontSize: hp(2.5) }}>SCANS HISTORY</Text>
+        <Text style={{ color: '#000000', fontFamily: 'Nunito-Bold', fontSize: hp(2.2) }}>SCANS HISTORY</Text>
         <Text style={{ color: '#524B6B', fontSize: hp(2), textDecorationLine: 'underline' }}>View All</Text>
       </View>
       <FlatList
         data={products}
         renderItem={({ item }) => <ProductCard product={item} />}
         keyExtractor={item => item.id}
-        numColumns={2}
-        contentContainerStyle={styles.grid}
+        numColumns={3}
+      // contentContainerStyle={styles.grid}
       />
     </View>
   );
@@ -213,10 +225,6 @@ const MyItemsScreen = () => {
 const AllTotalScans = () => {
   return (
     <View style={{ marginBottom: '22%' }}>
-      {/* <View style={{ width: wp(100), height: hp(13), justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ fontSize: wp(4), fontFamily: 'Nunito-Regular', color: '#130160' }}>Available balance</Text>
-        <Text style={{ fontFamily: 'Nunito-SemiBold', fontSize: wp(9), color: '#130160' }}>20%</Text>
-      </View> */}
       <View style={{ height: hp(4) }} />
       <View style={styles.searchParent}>
         <Pressable style={styles.searchContainer}>
@@ -224,23 +232,17 @@ const AllTotalScans = () => {
             <SearchIcon />
           </View>
           <Text style={styles.input}>search for anything</Text>
-          <View style={styles.searchButton}>
-            <CameraIcon />
-          </View>
         </Pressable>
-        <TouchableOpacity style={styles.menuButton}>
-          <FilterIcon size={10} />
-        </TouchableOpacity>
       </View>
       <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: '7%', paddingHorizontal: '2%' }}>
-        <Text style={{ color: '#000000', fontFamily: 'Nunito-Bold', fontSize: hp(2.5) }}>MY SCAN</Text>
+        <Text style={{ color: '#000000', fontFamily: 'Nunito-Bold', fontSize: hp(2.2) }}>MY SCAN</Text>
         <Text style={{ color: '#524B6B', fontSize: hp(2), textDecorationLine: 'underline' }}>View All</Text>
       </View>
       <FlatList
         data={products}
         renderItem={({ item }) => <ProductCard product={item} />}
         keyExtractor={item => item.id}
-        numColumns={2}
+        numColumns={3}
         contentContainerStyle={styles.grid}
         columnWrapperStyle={{ justifyContent: 'space-between' }}
       />
@@ -317,6 +319,72 @@ const products = [
     reviews: 88,
     image: "https://placeholder.com/150"
   }
+]
+const topBins = [
+  {
+    id: 1,
+    image: require('../../../assets/flip_find.png'),
+    title: 'FLIP $ FIND',
+    location: 'Florida US',
+    distance: '3.4KM',
+    review: '4.2'
+  },
+  {
+    id: 2,
+    image: require('../../../assets/hidden_finds.png'),
+    title: 'HIDDED FINDS',
+    location: 'Florida US',
+    distance: '3.4KM',
+    review: '4.2'
+  },
+  {
+    id: 3,
+    image: require('../../../assets/flip_find.png'),
+    title: 'FLIP $ FIND',
+    location: 'Florida US',
+    distance: '3.4KM',
+    review: '4.2'
+  },
+  {
+    id: 4,
+    image: require('../../../assets/hidden_finds.png'),
+    title: 'HIDDED FINDS',
+    location: 'Florida US',
+    distance: '3.4KM',
+    review: '4.2'
+  },
+  {
+    id: 5,
+    image: require('../../../assets/flip_find.png'),
+    title: 'FLIP $ FIND',
+    location: 'Florida US',
+    distance: '3.4KM',
+    review: '4.2'
+  },
+  {
+    id: 6,
+    image: require('../../../assets/hidden_finds.png'),
+    title: 'HIDDED FINDS',
+    location: 'Florida US',
+    distance: '3.4KM',
+    review: '4.2'
+  },
+  {
+    id: 7,
+    image: require('../../../assets/flip_find.png'),
+    title: 'FLIP $ FIND',
+    location: 'Florida US',
+    distance: '3.4KM',
+    review: '4.2'
+  },
+  {
+    id: 8,
+    image: require('../../../assets/hidden_finds.png'),
+    title: 'HIDDED FINDS',
+    location: 'Florida US',
+    distance: '3.4KM',
+    review: '4.2'
+  },
 ]
 const MyLibrary = () => {
   const [activeTab, setActiveTab] = useState('scan');
@@ -503,7 +571,7 @@ const styles = StyleSheet.create({
     height: hp(50),
   },
   card: {
-    width: '30%', // Adjust the width to allow space between columns
+    width: '20%', // Adjust the width to allow space between columns
     flex: 1,
     backgroundColor: "#fff",
     borderRadius: 8,
@@ -513,24 +581,24 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
-    marginHorizontal: '0.5%',
-    marginBottom: '2%', // Add spacing between rows
+    marginHorizontal: '0.85%',
+    marginBottom: '5%', // Add spacing between rows
   },
   image: {
     width: '100%',
     marginBottom: 10,
   },
   name: {
-    fontSize: hp(1.45),
-    fontWeight: '500',
+    fontSize: hp(1.36),
     marginBottom: 4,
-    color: '#000'
+    color: '#000',
+    fontFamily: 'DMSans-SemiBold'
   },
   subtitle: {
-    fontSize: hp(1.7),
+    fontSize: hp(1.5),
     color: "#14BA9C",
-    fontWeight: 'bold',
-    marginBottom: 8
+    fontFamily: 'DMSans-SemiBold',
+    marginBottom: '8%',
   },
   ratingContainer: {
     flexDirection: "row",
@@ -539,7 +607,7 @@ const styles = StyleSheet.create({
   },
   rating: {
     // marginLeft: 4,
-    fontSize: hp(1.5),
+    fontSize: hp(1.3),
     fontWeight: "bold",
     color: '#000'
   },
@@ -566,10 +634,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderRadius: 12,
-    marginRight: 10,
+    // marginRight: 10,
     borderColor: '#99ABC678',
     height: hp(6.5),
-    backgroundColor: '#F2F2F2'
+    backgroundColor: '#F2F2F2',
+    width: '100%'
   },
   cameraButton: {
     padding: 10,

@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import {
   View,
   Text,
@@ -22,10 +22,15 @@ import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons"
 import EditImage from '../../../assets/EditImage.svg'
 import DropDownPicker from "react-native-dropdown-picker"
 import { CreditCardInput } from "react-native-creditcard"
-
+import DatePicker from 'react-native-date-picker'
+import CalenderIcon from '../../../assets/CalenderIcon.svg'
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import { format } from 'date-fns';
+import PhoneInput from "react-native-phone-number-input"
+import Feather from 'react-native-vector-icons/Feather';
 
 const { width, height } = Dimensions.get('window')
-export default function UserProfileScreen({ openDrawer }) {
+const UserProfileScreen = ({ openDrawer }) => {
   const [isEnabled, setIsEnabled] = React.useState(false)
   const toggleSwitch = () => setIsEnabled(previousState => !previousState)
   const navigation = useNavigation();
@@ -35,6 +40,18 @@ export default function UserProfileScreen({ openDrawer }) {
   const [value, setValue] = useState('Madhya Pradesh'); // Default selected value
   const [valueMonth, setValueMonth] = useState('January'); // Default selected value
   const [valueYear, setValueYear] = useState('1999'); // Default selected value
+  const [date, setDate] = useState('')
+  const [openDateModal, setOpenDateModal] = useState(false)
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [formattedValue, setFormattedValue] = useState(0);
+  const phoneInput = useRef(null)
+  const [selectedGender, setSelectedGender] = useState(null); // Tracks the selected gender
+
+  const genders = [
+    { id: 'male', label: 'Male' },
+    { id: 'female', label: 'Female' },
+    { id: 'others', label: 'Others' },
+  ];
   const [items, setItems] = useState([
     { label: 'Madhya Pradesh', value: 'Madhya Pradesh' },
     { label: 'Maharashtra', value: 'Maharashtra' },
@@ -76,21 +93,25 @@ export default function UserProfileScreen({ openDrawer }) {
             </Pressable>
             <Text style={styles.headerText}>Profile</Text>
           </View>
+          {/* <TouchableOpacity onPress={openDrawer}>
+            <Feather name='settings' color='gray' size={22} />
+          </TouchableOpacity> */}
         </View>
         <View style={styles.profileSection}>
           <Image
             source={require("../../../assets/profile_img.png")}
             style={styles.profilePicture}
           />
-          <TouchableOpacity style={styles.editBtn}>
+          <TouchableOpacity style={styles.editBtn} onPress={() => navigation.navigate('EditProfileScreen')}>
             <EditImage width={wp(3)} />
           </TouchableOpacity>
         </View>
         <View style={{ padding: '5%' }}>
-          <View style={{ marginBottom: '5%' }}>
-            <Text style={{ fontFamily: 'Nunito-SemiBold', fontSize: wp(5), color: '#000000' }}>Personal Details</Text>
+          <View style={{ marginBottom: '5%', flexDirection: 'row' }}>
+            <Text style={{ fontFamily: 'Nunito-Bold', fontSize: wp(5), color: '#14BA9C', textDecorationLine: 'underline' }}>Expertise Level:</Text>
+            <Text style={{ fontFamily: 'Nunito-Regular', fontSize: wp(5), color: '#000' }}>{' '}Advanced</Text>
           </View>
-          <Text style={styles.label}>Email</Text>
+          <Text style={styles.label}>Full name</Text>
           <View style={{ backgroundColor: '#fff', width: '100%', height: hp(6.5), alignSelf: 'center', borderRadius: 8, marginVertical: '2%', paddingHorizontal: '5%', justifyContent: 'center', borderWidth: 0.4, borderColor: '#524B6B' }}>
             <TextInput
               placeholder='John Doe'
@@ -99,18 +120,87 @@ export default function UserProfileScreen({ openDrawer }) {
               placeholderTextColor={'gray'}
             />
           </View>
-          <Text style={styles.label}>Password</Text>
+          <Text style={styles.label}>Date of Birth</Text>
+          <View style={{ backgroundColor: '#fff', width: '100%', height: hp(6.5), borderRadius: 8, marginVertical: '2%', paddingHorizontal: '4%', justifyContent: 'center', borderWidth: 0.4, borderColor: '#524B6B', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', }}>
+            <TextInput
+              placeholder='Select your DOB'
+              value={date}
+              style={{ fontFamily: 'Nunito-Regular', color: '#000', fontSize: hp(2.2), width: '48%' }}
+              placeholderTextColor={'gray'}
+              editable={false}
+            />
+            <TouchableOpacity onPress={() => setOpenDateModal(true)}>
+              <AntDesign name='calendar' size={25} color={'#000'} />
+            </TouchableOpacity>
+            <DatePicker
+              modal
+              open={openDateModal}
+              date={new Date()}
+              onConfirm={(date) => {
+                setOpenDateModal(false)
+                setDate(format(date, 'dd-MM-yyyy'))
+              }}
+              onCancel={() => {
+                setOpenDateModal(false)
+              }}
+              mode='date'
+            />
+          </View>
+          <Text style={styles.label}>Email Address</Text>
           <View style={{ backgroundColor: '#fff', width: '100%', height: hp(6.5), alignSelf: 'center', borderRadius: 8, marginVertical: '2%', paddingHorizontal: '5%', justifyContent: 'center', borderWidth: 0.4, borderColor: '#524B6B' }}>
             <TextInput
               placeholder='johndoe@gmail.com'
-              value='************'
               style={{ fontFamily: 'Nunito-Regular', color: '#000', fontSize: hp(2.2) }}
               placeholderTextColor={'gray'}
             />
           </View>
-          <TouchableOpacity style={{ marginTop: '2%', marginBottom: '3.3%' }} onPress={() => navigation.navigate('ChangePassword')}>
-            <Text style={{ color: '#14BA9C', textAlign: 'right', fontFamily: 'DMSans-Regular', textDecorationLine: 'underline' }}>Change Password</Text>
-          </TouchableOpacity>
+          <Text style={styles.label}>Gender</Text>
+          <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between' }}>
+            {genders.map((gender) => (
+              <TouchableOpacity
+                key={gender.id}
+                onPress={() => setSelectedGender(gender.id)}
+                style={{
+                  backgroundColor: '#fff',
+                  width: '32%',
+                  height: hp(6.5),
+                  alignSelf: 'center',
+                  borderRadius: 8,
+                  marginVertical: '2%',
+                  paddingHorizontal: '5%',
+                  justifyContent: 'center',
+                  borderWidth: 0.4,
+                  borderColor: '#524B6B',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  gap: 5,
+                }}
+              >
+                <View
+                  style={{
+                    width: wp(6),
+                    height: wp(6),
+                    borderWidth: 1.5,
+                    borderColor: '#000',
+                    padding: '2%',
+                    borderRadius: 10,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      backgroundColor: selectedGender === gender.id ? '#14BA9C' : '#fff',
+                      borderRadius: 10,
+                    }}
+                  />
+                </View>
+                <Text style={{ fontFamily: 'DMSans-Regular', color: '#000', fontSize: hp(2) }}>
+                  {gender.label}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
           <Text style={styles.label}>Phone Number</Text>
           <View style={{ backgroundColor: '#fff', width: '100%', height: hp(6.5), alignSelf: 'center', borderRadius: 8, marginVertical: '2%', paddingHorizontal: '5%', justifyContent: 'center', borderWidth: 0.4, borderColor: '#524B6B' }}>
             <TextInput
@@ -120,9 +210,17 @@ export default function UserProfileScreen({ openDrawer }) {
               placeholderTextColor={'gray'}
             />
           </View>
+          <Text style={styles.label}>Location</Text>
+          <View style={{ backgroundColor: '#fff', width: '100%', height: hp(6.5), alignSelf: 'center', borderRadius: 8, marginVertical: '2%', paddingHorizontal: '5%', justifyContent: 'center', borderWidth: 0.4, borderColor: '#524B6B' }}>
+            <TextInput
+              placeholder='johndoe@gmail.com'
+              value='Indore MP'
+              style={{ fontFamily: 'Nunito-Regular', color: '#000', fontSize: hp(2.2) }}
+              placeholderTextColor={'gray'}
+            />
+          </View>
         </View>
-        <View style={{ borderWidth: 0.3, borderColor: '#C4C4C4', width: wp(90), alignSelf: 'center', marginTop: '6%' }} />
-        <View style={{ padding: '5%' }}>
+        {/* <View style={{ padding: '5%' }}>
           <View style={{ marginBottom: '5%' }}>
             <Text style={{ fontFamily: 'Nunito-SemiBold', fontSize: wp(5), color: '#000000' }}>Business Address Details</Text>
           </View>
@@ -176,8 +274,8 @@ export default function UserProfileScreen({ openDrawer }) {
               placeholderTextColor={'gray'}
             />
           </View>
-        </View>
-        <View style={{ borderWidth: 0.3, borderColor: '#C4C4C4', width: wp(90), alignSelf: 'center', marginTop: '6%' }} />
+        </View> */}
+        {/* <View style={{ borderWidth: 0.3, borderColor: '#C4C4C4', width: wp(90), alignSelf: 'center', marginTop: '6%' }} />
         <View style={{ padding: '5%' }}>
           <View style={{ marginBottom: '5%' }}>
             <Text style={{ fontFamily: 'Nunito-SemiBold', fontSize: wp(5), color: '#000000' }}>Card Information</Text>
@@ -241,16 +339,18 @@ export default function UserProfileScreen({ openDrawer }) {
               placeholderTextColor="gray"
             />
           </View>
-        </View>
-        <TouchableOpacity style={styles.gettingStarted} onPress={() => navigation.navigate('QuizScreen')}>
-          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#fff', fontSize: hp(2.5) }}>Save Profile</Text>
-        </TouchableOpacity>
+        </View> */}
       </ImageBackground>
+      <View style={{ borderWidth: 0.3, borderColor: '#C4C4C4', width: wp(90), alignSelf: 'center', marginTop: '10%' }} />
+      <TouchableOpacity style={styles.gettingStarted} onPress={() => navigation.navigate('QuizScreen')}>
+        <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#fff', fontSize: hp(2.5) }}>Update Profile</Text>
+      </TouchableOpacity>
       <View style={{ height: hp(7) }} />
       <ImageBackground source={require('../../../assets/vector_2.png')} style={styles.vector2} />
     </ScrollView>
   )
 }
+export default UserProfileScreen;
 
 const styles = StyleSheet.create({
   backgroundImage: {
@@ -264,6 +364,7 @@ const styles = StyleSheet.create({
   vector: {
     flex: 1,
     width: wp(100),
+    height: hp(100)
   },
   vector2: {
     flex: 1,

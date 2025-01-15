@@ -56,15 +56,15 @@ const Dashboard = ({ percentage = 70 }) => {
                     <View style={styles.graphDetailsView}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                             <View style={{ width: wp(2), height: wp(2), backgroundColor: '#0049AF', borderRadius: 3 }} />
-                            <Text style={{ color: '#000', fontFamily: 'Nunito-Bold', fontSize: hp(1.2) }}> Total Scans </Text>
+                            <Text style={{ color: '#000', fontFamily: 'Nunito-Bold', fontSize: hp(1.1) }}> Total Scans </Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                             <View style={{ width: wp(2), height: wp(2), backgroundColor: '#FFBB36', borderRadius: 3 }} />
-                            <Text style={{ color: '#000', fontFamily: 'Nunito-Bold', fontSize: hp(1.2) }}> Remaining Scans</Text>
+                            <Text style={{ color: '#000', fontFamily: 'Nunito-Bold', fontSize: hp(1.1) }}> Remaining Scans</Text>
                         </View>
                     </View>
                     <View style={styles.cardText}>
-                        <Text style={{ color: '#524B6B', fontFamily: 'Nunito-SemiBold', fontSize: hp(1.3) }}>Awesome job! Youve scanned 6,000 items already.You have 4,000 more scans available—lets find more hidden treasures!</Text>
+                        <Text style={{ color: '#524B6B', fontFamily: 'Nunito-SemiBold', fontSize: hp(1.2) }}>Awesome job! Youve scanned 6,000 items already.You have 4,000 more scans available—lets find more hidden treasures!</Text>
                     </View>
                 </View>
 
@@ -258,7 +258,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     cardText: {
-        padding: '1%'
+        padding: '1%',
+        paddingHorizontal: '5%'
     },
     card2Text: {
         paddingHorizontal: '5%'

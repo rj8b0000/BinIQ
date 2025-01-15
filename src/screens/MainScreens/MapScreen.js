@@ -139,7 +139,7 @@ const MapScreen = () => {
             <Pressable onPress={() => navigation.goBack()}>
               <MaterialIcons name='arrow-back-ios' color={'#0D0D26'} size={25} />
             </Pressable>
-            <Text style={styles.headerText}>Map</Text>
+            <Text style={styles.headerText}>Bin Finder</Text>
           </View>
         </View>
         <View style={styles.searchParent}>

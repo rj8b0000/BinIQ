@@ -327,8 +327,8 @@ const HomeScreen = ({ openDrawer }) => {
     </Pressable>
   );
   const renderProductsItem = ({ item }) => (
-    <Pressable style={{ width: wp(50), height: hp(23), marginVertical: '5%' }} onPress={() => navigation.navigate('TopBinItems')}>
-      <View style={{ width: wp(47), height: hp(21), borderRadius: 10, elevation: 2, backgroundColor: '#fff' }}>
+    <Pressable style={{ width: wp(51), height: hp(23), marginVertical: '5%' }} onPress={() => navigation.navigate('TopBinItems')}>
+      <View style={{ width: wp(47), height: hp(21), borderRadius: 10, elevation: 2, backgroundColor: '#fff', paddingLeft: '1%' }}>
         <Image source={item.image} style={{ width: wp(46), height: hp(12) }} />
         <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
         <View style={{ margin: '3%', flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -342,12 +342,12 @@ const HomeScreen = ({ openDrawer }) => {
     </Pressable>
   );
   const renderMyFavourites = ({ item }) => (
-    <Pressable style={{ width: wp(44), height: hp(26) }}>
+    <Pressable style={{ width: wp(45), height: hp(26) }}>
       <View style={{ width: wp(42), height: hp(25), borderRadius: 5, elevation: 2, backgroundColor: '#fff' }}>
         <Image source={item.image} style={{ width: wp(42), height: hp(13), borderRadius: 5 }} />
         <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
-        <View style={{ paddingHorizontal: '1%' }}>
-          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.5), margin: '0.5%' }}>{item.description}</Text>
+        <View style={{ paddingHorizontal: '2.5%' }}>
+          <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.5), margin: '0.5%', }}>{item.description}</Text>
         </View>
         <View style={{ position: 'absolute', bottom: '2%', paddingHorizontal: '3%' }}>
           <View>
@@ -543,7 +543,7 @@ const HomeScreen = ({ openDrawer }) => {
               showsHorizontalScrollIndicator={false}
             /> */}
             <TouchableOpacity style={{ width: wp(45), height: hp(24) }}>
-              <Pressable style={{ width: wp(45), height: hp(22), borderRadius: 5, elevation: 2, backgroundColor: '#fff' }}>
+              <Pressable style={{ width: wp(45), height: hp(22), borderRadius: 5, elevation: 2, backgroundColor: '#fff', paddingLeft: '1%' }}>
                 <Image source={require('../../../assets/reseller_training.png')} style={{ width: wp(45), height: hp(11), borderRadius: 5 }} />
                 <View style={{ margin: '3%', flexDirection: 'row', justifyContent: 'space-between' }}>
                   <View>
@@ -555,7 +555,7 @@ const HomeScreen = ({ openDrawer }) => {
               </Pressable>
             </TouchableOpacity>
             <TouchableOpacity style={{ width: wp(45), height: hp(24) }} onPress={() => navigation.navigate('IQPortal')}>
-              <Pressable style={{ width: wp(45), height: hp(22), borderRadius: 5, elevation: 2, backgroundColor: '#fff' }}>
+              <Pressable style={{ width: wp(45), height: hp(22), borderRadius: 5, elevation: 2, backgroundColor: '#fff', paddingLeft: '1%' }}>
                 <Image source={require('../../../assets/reseller_training.png')} style={{ width: wp(45), height: hp(11), borderRadius: 5 }} />
                 <View style={{ margin: '3%', flexDirection: 'row', justifyContent: 'space-between' }}>
                   <View>

@@ -10,7 +10,6 @@ const ForgotPassword = () => {
     const [isEmailSelected, setIsEmailSelected] = useState(true);
     const [phoneNumber, setPhoneNumber] = useState('');
     const [formattedValue, setFormattedValue] = useState(0);
-
     const phoneInput = useRef(null)
     return (
         <ScrollView style={styles.container}>

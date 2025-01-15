@@ -35,6 +35,7 @@ import SelectUserRole from '../OnBoardingScreens/SelectUserRole'
 import SelectPlan from '../OnBoardingScreens/SelectPlan'
 import FreeSubscription from '../SubscriptionScreens/FreeSubscription'
 import PayWall from '../SubscriptionScreens/PayWall'
+import EditProfileScreen from '../MainScreens/EditProfileScreen'
 
 const AppNavigator = () => {
     const Stack = createStackNavigator();
@@ -208,6 +209,11 @@ const AppNavigator = () => {
                 <Stack.Screen
                     name='PayWall'
                     component={PayWall}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name='EditProfileScreen'
+                    component={EditProfileScreen}
                     options={{ headerShown: false }}
                 />
             </Stack.Navigator>
