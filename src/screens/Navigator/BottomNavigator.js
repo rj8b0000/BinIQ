@@ -128,7 +128,7 @@ const BottomNavigator = () => {
                                         <Library size={hp(3.5)} />
                                 }
                             </View>
-                        )
+                        ),
                     }}
                     listeners={({ navigation, route }) => ({
                         // Onpress Update....
