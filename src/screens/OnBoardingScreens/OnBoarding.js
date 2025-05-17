@@ -1,68 +1,125 @@
-import React, { useRef, useState } from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, StatusBar } from 'react-native';
-import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
-import AntDesign from 'react-native-vector-icons/AntDesign'
+import React, {useRef, useState} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
+  StatusBar,
+} from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import ObImg5 from '../../../assets/ob_img5.svg';
 
-
-const { width, height } = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 
 const onboardingData = [
+  // {
+  //   title: (<Text>Largest Network of{' '}<Text style={{ color: '#00B386', textDecorationLine: 'underline', }}>Amazon Bin Store</Text> in the Nation!</Text>),
+  //   subtitle: "Discover hidden gems near you.",
+  //   image: require('../../../assets/ob_img1.gif'),
+  //   styles: { width: wp(80), height: hp(37) }
+  // },
   {
-    title: (<Text>Largest Network of{' '}<Text style={{ color: '#00B386', textDecorationLine: 'underline', }}>Amazon Bin Store</Text> in the Nation!</Text>),
-    subtitle: "Discover hidden gems near you.",
-    image: require('../../../assets/ob_img1.gif'),
-    styles: { width: wp(80), height: hp(37) }
-  },
-  {
-    title: (<Text>Largest Network of{' '}<Text style={{ color: '#00B386', textDecorationLine: 'underline', }}>Amazon Bin Store</Text> in the Nation!</Text>),
-    subtitle: "Discover hidden gems near you.",
+    title: (
+      <Text>
+        Largest Network of{' '}
+        <Text style={{color: '#00B386', textDecorationLine: 'underline'}}>
+          Amazon Bin Store
+        </Text>{' '}
+        in the Nation!
+      </Text>
+    ),
+    subtitle: 'Discover hidden gems near you.',
     image: require('../../../assets/ob_img_5.png'),
-    styles: { width: wp(80), height: hp(37) }
+    styles: {width: wp(80), height: hp(37)},
   },
   {
     title: (
       <Text>
         Select Your{' '}
-        <Text style={{ color: '#00B386', textDecorationLine: 'underline', }}>Course!</Text>
+        <Text style={{color: '#00B386', textDecorationLine: 'underline'}}>
+          Course!
+        </Text>
       </Text>
     ),
-    subtitle: (<Text style={{ color: '#524B6B', fontFamily: 'DMSans_18pt-Regular', fontSize: wp(3.8) }}>Discover hidden gems near you.</Text>),
+    subtitle: (
+      <Text
+        style={{
+          color: '#524B6B',
+          fontFamily: 'DMSans_18pt-Regular',
+          fontSize: wp(3.8),
+        }}>
+        Discover hidden gems near you.
+      </Text>
+    ),
     image: require('../../../assets/ob_img2.png'), // Add your image path
-    styles: { width: wp(82), height: hp(35) }
+    styles: {width: wp(82), height: hp(35)},
   },
   {
     title: (
       <Text>
         Streamline your{' '}
-        <Text style={{ color: '#00B386', textDecorationLine: 'underline', }}>Process!</Text>
+        <Text style={{color: '#00B386', textDecorationLine: 'underline'}}>
+          Process!
+        </Text>
       </Text>
     ),
-    subtitle: (<Text style={{ color: '#524B6B', fontFamily: 'DMSans_18pt-Regular', fontSize: wp(3.8) }}>Discover hidden gems near you.</Text>),
+    subtitle: (
+      <Text
+        style={{
+          color: '#524B6B',
+          fontFamily: 'DMSans_18pt-Regular',
+          fontSize: wp(3.8),
+        }}>
+        Discover hidden gems near you.
+      </Text>
+    ),
     image: require('../../../assets/ob_img3.png'), // Add your image path
-    styles: { width: wp(80), height: hp(35) }
+    styles: {width: wp(80), height: hp(35)},
   },
   {
     title: (
       <Text>
-        Secure your <Text style={{ color: '#00B386', textDecorationLine: 'underline', }}>Scans!</Text>
+        Secure your{' '}
+        <Text style={{color: '#00B386', textDecorationLine: 'underline'}}>
+          Scans!
+        </Text>
       </Text>
     ),
-    subtitle: (<Text style={{ color: '#524B6B', fontFamily: 'DMSans_18pt-Regular', fontSize: wp(3.8) }}>Discover hidden gems near you.</Text>),
+    subtitle: (
+      <Text
+        style={{
+          color: '#524B6B',
+          fontFamily: 'DMSans_18pt-Regular',
+          fontSize: wp(3.8),
+        }}>
+        Discover hidden gems near you.
+      </Text>
+    ),
     image: require('../../../assets/ob_img4.png'), // Add your image path
-    styles: { width: wp(90), height: hp(37) }
+    styles: {width: wp(90), height: hp(37)},
   },
 ];
 
-const OnboardingScreen = ({ navigation }) => {
+const OnboardingScreen = ({navigation}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const carouselRef = useRef(null);
 
-  const renderItem = ({ item }) => (
-    <View style={{ ...styles.slide }}>
-      <Image source={item.image} style={{ ...item.styles }} resizeMode="contain" animated={true} />
-      <View style={{ width: '90%' }}>
+  const renderItem = ({item}) => (
+    <View style={{...styles.slide}}>
+      <Image
+        source={item.image}
+        style={{...item.styles}}
+        resizeMode="contain"
+        animated={true}
+      />
+      <View style={{width: '90%'}}>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.subtitle}>{item.subtitle}</Text>
       </View>
@@ -88,7 +145,6 @@ const OnboardingScreen = ({ navigation }) => {
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.9}
       />
-
     );
   };
 
@@ -110,7 +166,10 @@ const OnboardingScreen = ({ navigation }) => {
     <View style={styles.container}>
       <StatusBar translucent={true} backgroundColor="transparent" />
       <View style={styles.logoHeader}>
-        <Image source={require('../../../assets/logo.png')} style={styles.logo} />
+        <Image
+          source={require('../../../assets/logo.png')}
+          style={styles.logo}
+        />
       </View>
       <Carousel
         ref={carouselRef}
@@ -118,31 +177,45 @@ const OnboardingScreen = ({ navigation }) => {
         renderItem={renderItem}
         sliderWidth={width}
         itemWidth={width}
-        onSnapToItem={(index) => setActiveIndex(index)}
-        decelerationRate='fast'
-        snapToInterval={width}  // Ensures snapping to one item
+        onSnapToItem={index => setActiveIndex(index)}
+        decelerationRate="fast"
+        snapToInterval={width} // Ensures snapping to one item
       />
       <View style={styles.arrowContainer}>
-        {activeIndex < onboardingData.length - 1 && (pagination())}
+        {activeIndex < onboardingData.length - 1 && pagination()}
         {activeIndex < onboardingData.length - 1 && (
           <TouchableOpacity style={styles.nextButton} onPress={handleNext}>
-            <AntDesign name="arrowright" size={30} color="#fff" style={styles.nextArrow} />
+            <AntDesign
+              name="arrowright"
+              size={30}
+              color="#fff"
+              style={styles.nextArrow}
+            />
           </TouchableOpacity>
         )}
         {activeIndex === onboardingData.length - 1 && (
-          <TouchableOpacity style={styles.gettingStarted} onPress={() => navigation.navigate('SelectPlan')}>
-            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#fff', fontSize: hp(2.5) }}>Get started</Text>
+          <TouchableOpacity
+            style={styles.gettingStarted}
+            onPress={() => navigation.navigate('SelectPlan')}>
+            <Text
+              style={{
+                fontFamily: 'Nunito-SemiBold',
+                color: '#fff',
+                fontSize: hp(2.5),
+              }}>
+              Get started
+            </Text>
           </TouchableOpacity>
         )}
       </View>
-    </View >
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
   },
   slide: {
     marginTop: hp(5),
@@ -204,7 +277,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#130160',
     borderRadius: 100,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   highlightedText: {
     color: '#00B386',
@@ -216,8 +289,8 @@ const styles = StyleSheet.create({
     height: hp(7.5),
     borderRadius: 10,
     justifyContent: 'center',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 });
 
 export default OnboardingScreen;

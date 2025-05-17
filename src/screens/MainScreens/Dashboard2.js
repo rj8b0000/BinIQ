@@ -17,6 +17,25 @@ const Dashboard2 = () => {
   ];
   return (
     <>
+      <View style={{width: wp(100), height: hp(14), justifyContent: 'center'}}>
+        <BinFinderIcon />
+        <Text
+          style={{
+            fontFamily: 'Nunito-SemiBold',
+            color: '#000',
+            fontSize: hp(2.6),
+          }}>
+          BIN FINDER
+        </Text>
+        <Text
+          style={{
+            fontFamily: 'Nunito-SemiBold',
+            color: '#667085',
+            fontSize: hp(1.7),
+          }}>
+          Discover Hidden Gems Near You
+        </Text>
+      </View>
       <View
         style={{
           justifyContent: 'center',
@@ -47,25 +66,6 @@ const Dashboard2 = () => {
                         />
                     ))}
                 </MapView> */}
-      </View>
-      <View style={{width: wp(100), height: hp(14), justifyContent: 'center'}}>
-        <BinFinderIcon />
-        <Text
-          style={{
-            fontFamily: 'Nunito-SemiBold',
-            color: '#000',
-            fontSize: hp(2.6),
-          }}>
-          BIN FINDER
-        </Text>
-        <Text
-          style={{
-            fontFamily: 'Nunito-SemiBold',
-            color: '#667085',
-            fontSize: hp(1.7),
-          }}>
-          Discover Hidden Gems Near You
-        </Text>
       </View>
     </>
   );

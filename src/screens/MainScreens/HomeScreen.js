@@ -169,13 +169,13 @@ const HomeScreen = ({openDrawer}) => {
   const carouselImages = [
     {
       id: 1,
-      isDashboard: true,
-      styles: {width: wp(90), height: hp(43)},
+      isMap: true,
+      styles: {width: wp(100), height: hp(100)},
     },
     {
       id: 2,
-      isMap: true,
-      styles: {width: wp(100), height: hp(100)},
+      isDashboard: true,
+      styles: {width: wp(90), height: hp(43)},
     },
     {
       id: 3,
@@ -324,9 +324,6 @@ const HomeScreen = ({openDrawer}) => {
       );
     }
     return (
-      // <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: '9%', width: wp(100), height: hp(40), backgroundColor: 'red' }}>
-      //   <Image source={item.image} style={item.styles} />
-      // </View>
       <View
         style={{
           width: wp(90),
@@ -732,7 +729,7 @@ const HomeScreen = ({openDrawer}) => {
                 fontSize: hp(2.3),
                 color: '#000000',
               }}>
-              TOP BINS NEAR ME
+              Bin Stores Near Me
             </Text>
             <TouchableOpacity
               onPress={() => navigation.navigate('TopBinsNearMe')}>
@@ -770,7 +767,7 @@ const HomeScreen = ({openDrawer}) => {
                 fontSize: hp(2.3),
                 color: '#000000',
               }}>
-              TOP BIN ITEM
+              TOP BIN ITEMS
             </Text>
             <TouchableOpacity
               onPress={() => navigation.navigate('TopBinItems')}>
