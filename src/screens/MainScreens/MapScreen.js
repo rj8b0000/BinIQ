@@ -1,33 +1,88 @@
-import React, { useState } from 'react';
-import { Image, Pressable, StatusBar, StyleSheet, Text, View, TouchableOpacity, Modal, TextInput, AccessibilityInfo, FlatList, TouchableWithoutFeedback } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
-import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import React, {useState} from 'react';
+import {
+  Image,
+  Pressable,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Modal,
+  TextInput,
+  AccessibilityInfo,
+  FlatList,
+  TouchableWithoutFeedback,
+} from 'react-native';
+// import MapView, { Marker } from 'react-native-maps';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import MapFilterIcon from '../../../assets/MapFilterIcon.svg';
 import SearchIcon from '../../../assets/SearchIcon.svg';
 import CameraIcon from '../../../assets/CameraIcon.svg';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Slider from '@react-native-community/slider';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
-
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 const MapScreen = () => {
   const navigation = useNavigation();
 
   // Dummy location data
   const [markers, setMarkers] = useState([
-    { id: 1, title: "Location 1", coordinate: { latitude: 37.78825, longitude: -122.4324 } },
-    { id: 2, title: "Location 2", coordinate: { latitude: 37.78925, longitude: -122.4354 } },
-    { id: 3, title: "Location 3", coordinate: { latitude: 37.79025, longitude: -122.4364 } },
-    { id: 4, title: "Location 4", coordinate: { latitude: 37.79125, longitude: -122.4374 } },
-    { id: 5, title: "Location 5", coordinate: { latitude: 37.79225, longitude: -122.4384 } },
-    { id: 6, title: "Location 6", coordinate: { latitude: 37.79325, longitude: -122.4394 } },
-    { id: 7, title: "Location 7", coordinate: { latitude: 37.79425, longitude: -122.4404 } },
-    { id: 8, title: "Location 8", coordinate: { latitude: 37.79525, longitude: -122.4414 } },
-    { id: 9, title: "Location 9", coordinate: { latitude: 37.79625, longitude: -122.4424 } },
-    { id: 10, title: "Location 10", coordinate: { latitude: 37.79725, longitude: -122.4434 } },
+    {
+      id: 1,
+      title: 'Location 1',
+      coordinate: {latitude: 37.78825, longitude: -122.4324},
+    },
+    {
+      id: 2,
+      title: 'Location 2',
+      coordinate: {latitude: 37.78925, longitude: -122.4354},
+    },
+    {
+      id: 3,
+      title: 'Location 3',
+      coordinate: {latitude: 37.79025, longitude: -122.4364},
+    },
+    {
+      id: 4,
+      title: 'Location 4',
+      coordinate: {latitude: 37.79125, longitude: -122.4374},
+    },
+    {
+      id: 5,
+      title: 'Location 5',
+      coordinate: {latitude: 37.79225, longitude: -122.4384},
+    },
+    {
+      id: 6,
+      title: 'Location 6',
+      coordinate: {latitude: 37.79325, longitude: -122.4394},
+    },
+    {
+      id: 7,
+      title: 'Location 7',
+      coordinate: {latitude: 37.79425, longitude: -122.4404},
+    },
+    {
+      id: 8,
+      title: 'Location 8',
+      coordinate: {latitude: 37.79525, longitude: -122.4414},
+    },
+    {
+      id: 9,
+      title: 'Location 9',
+      coordinate: {latitude: 37.79625, longitude: -122.4424},
+    },
+    {
+      id: 10,
+      title: 'Location 10',
+      coordinate: {latitude: 37.79725, longitude: -122.4434},
+    },
   ]);
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -42,7 +97,14 @@ const MapScreen = () => {
     setShowFilterModal(false);
     AccessibilityInfo.announceForAccessibility('Filter modal closed');
   };
-  const dummyCategories = ['Books', 'Pan', 'Bedsheet', 'Bins', 'Chopper', 'Clocks'];
+  const dummyCategories = [
+    'Books',
+    'Pan',
+    'Bedsheet',
+    'Bins',
+    'Chopper',
+    'Clocks',
+  ];
   const topBins = [
     {
       id: 1,
@@ -50,7 +112,7 @@ const MapScreen = () => {
       title: 'FLIP $ FIND',
       location: 'Florida US',
       distance: '3.4KM',
-      review: '4.2'
+      review: '4.2',
     },
     {
       id: 2,
@@ -58,7 +120,7 @@ const MapScreen = () => {
       title: 'HIDDED FINDS',
       location: 'Florida US',
       distance: '3.4KM',
-      review: '4.2'
+      review: '4.2',
     },
     {
       id: 3,
@@ -66,7 +128,7 @@ const MapScreen = () => {
       title: 'FLIP $ FIND',
       location: 'Florida US',
       distance: '3.4KM',
-      review: '4.2'
+      review: '4.2',
     },
     {
       id: 4,
@@ -74,7 +136,7 @@ const MapScreen = () => {
       title: 'HIDDED FINDS',
       location: 'Florida US',
       distance: '3.4KM',
-      review: '4.2'
+      review: '4.2',
     },
     {
       id: 5,
@@ -82,7 +144,7 @@ const MapScreen = () => {
       title: 'FLIP $ FIND',
       location: 'Florida US',
       distance: '3.4KM',
-      review: '4.2'
+      review: '4.2',
     },
     {
       id: 6,
@@ -90,7 +152,7 @@ const MapScreen = () => {
       title: 'HIDDED FINDS',
       location: 'Florida US',
       distance: '3.4KM',
-      review: '4.2'
+      review: '4.2',
     },
     {
       id: 7,
@@ -98,7 +160,7 @@ const MapScreen = () => {
       title: 'FLIP $ FIND',
       location: 'Florida US',
       distance: '3.4KM',
-      review: '4.2'
+      review: '4.2',
     },
     {
       id: 8,
@@ -106,24 +168,84 @@ const MapScreen = () => {
       title: 'HIDDED FINDS',
       location: 'Florida US',
       distance: '3.4KM',
-      review: '4.2'
+      review: '4.2',
     },
-  ]
-  const renderItem = ({ item }) => (
+  ];
+  const renderItem = ({item}) => (
     // <View style={{paddingHorizontal: '0.1%'}}>
-    <Pressable style={{ width: wp(50), height: hp(23), marginVertical: '4%' }} onPress={() => navigation.navigate('TopBinsNearMe')}>
-      <View style={{ width: wp(47), height: hp(21.5), borderRadius: 10, borderWidth: 0.4, borderColor: '#999' }}>
-        <Image source={item.image} style={{ width: wp(47), height: hp(12), borderRadius: 10 }} />
-        <Ionicons name='heart' size={hp(3)} color={'#EE2525'} style={{ position: 'absolute', right: '2%', top: '2%' }} />
-        <View style={{ margin: '5%', flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Pressable
+      style={{width: wp(50), height: hp(23), marginVertical: '4%'}}
+      onPress={() => navigation.navigate('TopBinsNearMe')}>
+      <View
+        style={{
+          width: wp(47),
+          height: hp(21.5),
+          borderRadius: 10,
+          borderWidth: 0.4,
+          borderColor: '#999',
+        }}>
+        <Image
+          source={item.image}
+          style={{width: wp(47), height: hp(12), borderRadius: 10}}
+        />
+        <Ionicons
+          name="heart"
+          size={hp(3)}
+          color={'#EE2525'}
+          style={{position: 'absolute', right: '2%', top: '2%'}}
+        />
+        <View
+          style={{
+            margin: '5%',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}>
           <View>
-            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#0049AF', fontSize: hp(2) }}>{item.title}</Text>
-            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#000', fontSize: hp(1.6) }}>{item.location}</Text>
-            <Text style={{ fontFamily: 'Nunito-SemiBold', color: '#14BA9C', fontSize: hp(1.4) }}>{item.distance}</Text>
+            <Text
+              style={{
+                fontFamily: 'Nunito-SemiBold',
+                color: '#0049AF',
+                fontSize: hp(2),
+              }}>
+              {item.title}
+            </Text>
+            <Text
+              style={{
+                fontFamily: 'Nunito-SemiBold',
+                color: '#000',
+                fontSize: hp(1.6),
+              }}>
+              {item.location}
+            </Text>
+            <Text
+              style={{
+                fontFamily: 'Nunito-SemiBold',
+                color: '#14BA9C',
+                fontSize: hp(1.4),
+              }}>
+              {item.distance}
+            </Text>
           </View>
-          <View style={{ backgroundColor: '#FFBB36', height: hp(2.3), width: wp(11), flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', padding: '1.4%', borderRadius: 4 }}>
-            <FontAwesome name='star' size={12} color={'#fff'} />
-            <Text style={{ color: '#fff', fontFamily: 'Nunito-Regular', fontSize: hp(1.6) }}>{item.review}</Text>
+          <View
+            style={{
+              backgroundColor: '#FFBB36',
+              height: hp(2.3),
+              width: wp(11),
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              alignItems: 'center',
+              padding: '1.4%',
+              borderRadius: 4,
+            }}>
+            <FontAwesome name="star" size={12} color={'#fff'} />
+            <Text
+              style={{
+                color: '#fff',
+                fontFamily: 'Nunito-Regular',
+                fontSize: hp(1.6),
+              }}>
+              {item.review}
+            </Text>
           </View>
         </View>
       </View>
@@ -132,12 +254,15 @@ const MapScreen = () => {
   return (
     <View style={styles.container}>
       <StatusBar translucent={true} backgroundColor={'transparent'} />
-      <View
-      >
+      <View>
         <View style={styles.header}>
           <View style={styles.headerChild}>
             <Pressable onPress={() => navigation.goBack()}>
-              <MaterialIcons name='arrow-back-ios' color={'#0D0D26'} size={25} />
+              <MaterialIcons
+                name="arrow-back-ios"
+                color={'#0D0D26'}
+                size={25}
+              />
             </Pressable>
             <Text style={styles.headerText}>Bin Finder</Text>
           </View>
@@ -148,15 +273,19 @@ const MapScreen = () => {
               <SearchIcon />
             </View>
             <Text style={styles.input}>search for anything</Text>
-            <Pressable style={styles.searchButton} onPress={() => launchCamera()}>
+            <Pressable
+              style={styles.searchButton}
+              onPress={() => launchCamera()}>
               <CameraIcon />
             </Pressable>
           </Pressable>
-          <TouchableOpacity style={styles.menuButton} onPress={handleFilterButtonPress}>
+          <TouchableOpacity
+            style={styles.menuButton}
+            onPress={handleFilterButtonPress}>
             <MapFilterIcon />
           </TouchableOpacity>
         </View>
-        <MapView
+        {/* <MapView
           style={styles.map}
           initialRegion={{
             latitude: 37.78825,
@@ -173,7 +302,7 @@ const MapScreen = () => {
               pinColor={'red'} // Custom pin color
             />
           ))}
-        </MapView>
+        </MapView> */}
         {/* <Modal
           visible={showFilterModal}
           animationType="slide"
@@ -217,34 +346,62 @@ const MapScreen = () => {
           visible={showFilterModal}
           animationType="slide"
           transparent={true}
-          onRequestClose={handleCloseFilterModal}
-        >
+          onRequestClose={handleCloseFilterModal}>
           <TouchableWithoutFeedback onPress={handleCloseFilterModal}>
             <View style={styles.modalContainer}>
               <View style={styles.modalContent}>
-                <View style={{ flex: 1, width: '100%', height: hp(35), marginTop: '4%' }}>
-                  <View style={{ marginTop: '7%', paddingHorizontal: '5%' }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: '6%' }}>
-                      <Text style={{ fontFamily: 'Nunito-Bold', fontSize: hp(2.3), color: '#000000' }}>Bins Near Me</Text>
-                      <TouchableOpacity onPress={() => navigation.navigate('TopBinsNearMe')}>
-                        <Text style={{ color: '#524B6B', fontSize: hp(1.9), textDecorationLine: 'underline' }}>View All</Text>
+                <View
+                  style={{
+                    flex: 1,
+                    width: '100%',
+                    height: hp(35),
+                    marginTop: '4%',
+                  }}>
+                  <View style={{marginTop: '7%', paddingHorizontal: '5%'}}>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        marginVertical: '6%',
+                      }}>
+                      <Text
+                        style={{
+                          fontFamily: 'Nunito-Bold',
+                          fontSize: hp(2.3),
+                          color: '#000000',
+                        }}>
+                        Bins Near Me
+                      </Text>
+                      <TouchableOpacity
+                        onPress={() => navigation.navigate('TopBinsNearMe')}>
+                        <Text
+                          style={{
+                            color: '#524B6B',
+                            fontSize: hp(1.9),
+                            textDecorationLine: 'underline',
+                          }}>
+                          View All
+                        </Text>
                       </TouchableOpacity>
                     </View>
                     <FlatList
                       data={topBins}
                       renderItem={renderItem}
-                      keyExtractor={(item) => item.id.toString()}
+                      keyExtractor={item => item.id.toString()}
                       horizontal={true}
                       showsHorizontalScrollIndicator={false}
                     />
                   </View>
-                  <View style={{ paddingHorizontal: '5%' }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    </View>
+                  <View style={{paddingHorizontal: '5%'}}>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                      }}></View>
                     <FlatList
                       data={topBins}
                       renderItem={renderItem}
-                      keyExtractor={(item) => item.id.toString()}
+                      keyExtractor={item => item.id.toString()}
                       horizontal={true}
                       showsHorizontalScrollIndicator={false}
                     />
@@ -278,13 +435,13 @@ const styles = StyleSheet.create({
   headerChild: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   headerText: {
     fontFamily: 'Nunito-Bold',
     fontSize: hp(3),
     textAlign: 'left',
-    color: '#0D0140'
+    color: '#0D0140',
   },
   searchParent: {
     flexDirection: 'row',
@@ -301,7 +458,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     borderColor: '#99ABC678',
     height: hp(6),
-    backgroundColor: '#F2F2F2'
+    backgroundColor: '#F2F2F2',
   },
   cameraButton: {
     padding: 10,
@@ -311,7 +468,7 @@ const styles = StyleSheet.create({
     fontSize: hp(2.2),
     fontFamily: 'Nunito-Regular',
     paddingVertical: 8,
-    color: '#999'
+    color: '#999',
   },
   searchButton: {
     padding: 10,
@@ -323,7 +480,7 @@ const styles = StyleSheet.create({
     height: hp(6),
     width: wp(14),
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   vector: {
     flex: 1,
@@ -332,7 +489,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: wp(100),
     height: hp(100),
-    zIndex: -1
+    zIndex: -1,
   },
   modalContainer: {
     flex: 1,
@@ -351,7 +508,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '90%',
     alignSelf: 'center',
-    marginVertical: '5%'
+    marginVertical: '5%',
     // marginBottom: 20,
   },
   modalTitle: {
@@ -362,7 +519,7 @@ const styles = StyleSheet.create({
   doneButton: {
     fontFamily: 'Nunito-SemiBold',
     color: '#356899',
-    fontSize: hp(2)
+    fontSize: hp(2),
   },
   categoryInput: {
     height: hp(6.1),
@@ -373,7 +530,7 @@ const styles = StyleSheet.create({
     fontSize: hp(2.1),
     fontFamily: 'Nunito-SemiBold',
     color: '#333',
-    marginVertical: '4%'
+    marginVertical: '4%',
   },
   categoriesContainer: {
     flexDirection: 'row',
@@ -402,12 +559,12 @@ const styles = StyleSheet.create({
   priceRangeTitle: {
     fontFamily: 'Nunito-SemiBold',
     color: '#95969D',
-    fontSize: hp(2.2)
+    fontSize: hp(2.2),
   },
   priceRangeSubtitle: {
     fontFamily: 'Nunito-SemiBold',
     color: '#494A50',
-    fontSize: hp(2.1)
+    fontSize: hp(2.1),
   },
   priceRangeContainer: {
     flexDirection: 'row',
@@ -451,32 +608,32 @@ const styles = StyleSheet.create({
   price: {
     fontFamily: 'Nunito-Bold',
     fontSize: hp(2),
-    color: '#14BA9C'
+    color: '#14BA9C',
   },
   slider: {
     width: '100%',
     marginVertical: '2%',
-    borderColor: '#000'
+    borderColor: '#000',
   },
   ratingContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 4,
-    width: '100%'
+    width: '100%',
   },
   rating: {
     // marginLeft: 4,
     fontSize: hp(1.5),
-    fontWeight: "bold",
-    color: '#000'
+    fontWeight: 'bold',
+    color: '#000',
   },
   reviews: {
     // marginLeft: 4,
     fontSize: hp(1.4),
-    color: "#000"
+    color: '#000',
   },
   heartButton: {
-    position: "absolute",
+    position: 'absolute',
     bottom: '2%',
     right: '1%',
     borderRadius: 15,
@@ -490,7 +647,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
     width: '32%',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   activeFilterChip: {
     backgroundColor: '#00BFA5',
@@ -498,7 +655,7 @@ const styles = StyleSheet.create({
   filterChipText: {
     color: '#666',
     fontSize: hp(1.7),
-    fontFamily: 'Nunito-SemiBold'
+    fontFamily: 'Nunito-SemiBold',
   },
   activeFilterChipText: {
     color: 'white',
@@ -518,6 +675,6 @@ const styles = StyleSheet.create({
     borderColor: '#ddd',
     borderRadius: 8,
     color: '#000',
-    height: hp(6)
+    height: hp(6),
   },
 });
