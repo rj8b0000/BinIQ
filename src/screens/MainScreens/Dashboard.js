@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   Dimensions,
+  Pressable,
 } from 'react-native';
 import {Circle} from 'react-native-progress'; // For circular progress
 import {
@@ -49,11 +50,7 @@ const Dashboard = ({percentage = 70}) => {
           style={styles.profileImage}
         />
       </View>
-      <View style={styles.progContainer}>
-        <View style={styles.progressBackground}>
-          <View style={[styles.progressFill, {width: `${50}%`}]} />
-        </View>
-      </View>
+
       {/* Main Cards */}
       <View style={styles.cardsContainer}>
         {/* Upgrade Storage */}
@@ -133,7 +130,7 @@ const Dashboard = ({percentage = 70}) => {
         </View>
 
         {/* Unlock Education */}
-        <View style={styles.card}>
+        {/* <View style={styles.card}>
           <Text style={styles.uppercardTitle}>UNLOCK EDUCATIONS</Text>
           <Circle
             size={hp(7)}
@@ -167,7 +164,7 @@ const Dashboard = ({percentage = 70}) => {
               KEEP GOING
             </Text>
           </View>
-        </View>
+        </View> */}
       </View>
 
       {/* Bottom Cards */}
@@ -209,6 +206,11 @@ const Dashboard = ({percentage = 70}) => {
           <Text style={styles.bottomcard2Title}>INVENTORY LEVEL</Text>
           <ProgressBar progress={50} tier="700 Items" />
         </View>
+      </View>
+      <View style={styles.enrollNowContainer}>
+        <Pressable style={styles.libButton}>
+          <Text style={styles.liBbuttonText}>Access library</Text>
+        </Pressable>
       </View>
     </View>
   );
@@ -376,28 +378,34 @@ const styles = StyleSheet.create({
     color: '#130160',
     fontFamily: 'Nunito-SemiBold',
   },
-  progContainer: {
-    borderRadius: 8,
-    width: '100%',
-    alignSelf: 'center',
-    marginVertical: '5%',
-  },
   tier: {
     color: '#1A1A4B',
     fontSize: hp(1.5),
     marginVertical: '15%',
     textAlign: 'left',
   },
-  progressBackground: {
-    height: hp(1),
-    backgroundColor: '#14BA9C33',
-    borderRadius: 8,
-    overflow: 'hidden',
+  enrollNowContainer: {
+    width: wp(95),
+    // height: hp(13),
+    alignSelf: 'center',
+    borderTopRightRadius: 10,
+    borderTopLeftRadius: 10,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
-  progressFill: {
-    height: '100%',
-    backgroundColor: '#14BA9C',
-    borderRadius: 8,
+  libButton: {
+    backgroundColor: '#130160',
+    width: '95%',
+    height: hp(3.5),
+    borderRadius: 7,
+    justifyContent: 'center',
+    marginTop: '2.5%',
+  },
+  liBbuttonText: {
+    color: 'white',
+    fontSize: hp(1.4),
+    fontFamily: 'Nunito-Bold',
+    textAlign: 'center',
   },
 });
 

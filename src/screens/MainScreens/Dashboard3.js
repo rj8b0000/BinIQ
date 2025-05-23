@@ -49,13 +49,18 @@ const Dashboard3 = ({percentage = 70}) => {
           style={styles.profileImage}
         />
       </View>
+      <View style={styles.progContainer}>
+        <View style={styles.progressBackground}>
+          <View style={[styles.progressFill, {width: `${50}%`}]} />
+        </View>
+      </View>
       <View
         style={{
           justifyContent: 'center',
           alignItems: 'center',
           width: wp(90),
-          height: hp(40),
-          marginTop: '10%',
+          height: hp(43),
+          // marginTop: '10%',
         }}>
         <Image
           source={require('../../../assets/slider_1.png')}
@@ -64,13 +69,13 @@ const Dashboard3 = ({percentage = 70}) => {
         <View
           style={{
             width: wp(90),
-            height: hp(10),
-            paddingHorizontal: '5%',
+            height: hp(3),
+            // paddingHorizontal: '5%',
             justifyContent: 'center',
             position: 'absolute',
             bottom: '8%',
           }}>
-          <Text
+          {/* <Text
             style={{
               fontFamily: 'Nunito-SemiBold',
               color: '#000',
@@ -99,14 +104,77 @@ const Dashboard3 = ({percentage = 70}) => {
               }}>
               KEEP GOING
             </Text>
+          </View> */}
+          <View style={styles.cardsContainer}>
+            {/* Upgrade Storage */}
+            <View style={styles.card}>
+              <Text style={styles.uppercardTitle}>
+                Ready to become a Bin IQ PRO?
+              </Text>
+              <View style={styles.cardText}>
+                <Text
+                  style={{
+                    color: '#524B6B',
+                    fontFamily: 'Nunito-SemiBold',
+                    fontSize: hp(1.2),
+                  }}>
+                  Ready to become a Bin IQ PRO? In this training learn the
+                  secrets of pinpointing the best bin stores, selecting the
+                  right items, listing effectively, and selling strategically
+                  with our proven BinIQ blueprint.
+                </Text>
+              </View>
+              <View style={styles.cardButton}>
+                <Text
+                  style={{
+                    color: '#fff',
+                    fontFamily: 'Nunito-SemiBold',
+                    fontSize: hp(1.4),
+                    textAlign: 'center',
+                  }}>
+                  KEEP GOING
+                </Text>
+              </View>
+            </View>
+
+            {/* Unlock Education */}
+            <View style={styles.card}>
+              <Text style={styles.uppercardTitle}>UNLOCK EDUCATIONS</Text>
+              <Circle
+                size={hp(7)}
+                progress={0.3}
+                showsText={true}
+                thickness={4}
+                color="#3CD4B8"
+                unfilledColor="#DDF4DF"
+                textStyle={styles.progressText}
+                style={styles.firstCardProgressBar}
+              />
+              <View style={styles.card2Text}>
+                <Text
+                  style={{
+                    color: '#524B6B',
+                    fontFamily: 'Nunito-SemiBold',
+                    fontSize: hp(1.2),
+                  }}>
+                  You're on a roll! You've finished 3 courses. Keep going to
+                  unlock the full library of courses and boost your skills!
+                </Text>
+              </View>
+              <View style={styles.cardButton}>
+                <Text
+                  style={{
+                    color: '#fff',
+                    fontFamily: 'Nunito-SemiBold',
+                    fontSize: hp(1.4),
+                    textAlign: 'center',
+                  }}>
+                  KEEP GOING
+                </Text>
+              </View>
+            </View>
           </View>
         </View>
-      </View>
-
-      <View style={styles.enrollNowContainer}>
-        <Pressable style={styles.libButton}>
-          <Text style={styles.liBbuttonText}>Access library</Text>
-        </Pressable>
       </View>
     </View>
   );
@@ -146,7 +214,8 @@ const styles = StyleSheet.create({
   cardsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 16,
+    // bottom: 0,
+    // marginBottom: 16,
   },
   card: {
     flex: 1,
@@ -178,30 +247,7 @@ const styles = StyleSheet.create({
     color: '#4B9CD3',
     fontWeight: 'bold',
   },
-  enrollNowContainer: {
-    width: wp(85),
-    height: hp(13),
-    bottom: 0,
-    alignSelf: 'center',
-    borderTopRightRadius: 10,
-    borderTopLeftRadius: 10,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  libButton: {
-    backgroundColor: '#130160',
-    width: '95%',
-    height: hp(3.5),
-    borderRadius: 7,
-    justifyContent: 'center',
-    marginTop: '2.5%',
-  },
-  liBbuttonText: {
-    color: 'white',
-    fontSize: hp(1.4),
-    fontFamily: 'Nunito-Bold',
-    textAlign: 'center',
-  },
+
   button: {
     backgroundColor: '#4B9CD3',
     paddingVertical: 10,
@@ -267,7 +313,7 @@ const styles = StyleSheet.create({
   },
   cardButton: {
     backgroundColor: '#130160',
-    width: '45%',
+    width: '55%',
     height: hp(3.5),
     marginTop: '3%',
     borderRadius: 5,
@@ -296,6 +342,48 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#130160',
     fontFamily: 'Nunito-SemiBold',
+  },
+  progContainer: {
+    borderRadius: 8,
+    width: '95%',
+    alignSelf: 'center',
+    marginTop: '5%',
+  },
+  progressBackground: {
+    height: hp(1),
+    backgroundColor: '#14BA9C33',
+    borderRadius: 8,
+    overflow: 'hidden',
+  },
+  progressFill: {
+    height: '100%',
+    backgroundColor: '#14BA9C',
+    borderRadius: 8,
+  },
+  card: {
+    flex: 1,
+    width: '50%',
+    height: hp(26),
+    backgroundColor: '#F2F5F8',
+    borderRadius: 6,
+    marginHorizontal: 5,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+    paddingVertical: '2.5%',
+    alignItems: 'center',
+  },
+  uppercardTitle: {
+    fontSize: wp(3.6),
+    color: '#130160',
+    fontFamily: 'Nunito-SemiBold',
+    // marginBottom: 8,
+  },
+  progressText: {
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

@@ -29,7 +29,7 @@ import {
 
 const Tab = createBottomTabNavigator();
 const {width, height} = Dimensions.get('window');
-const CIRCLE_RADIUS = 110;
+const CIRCLE_RADIUS = wp(28);
 const ICON_SIZE = hp(3.5);
 const BUTTON_COUNT = 4;
 const SCAN_BUTTON_RADIUS = 65 / 2; // Scan button is 65x65, so radius is 32.5
@@ -192,7 +192,7 @@ const BottomNavigator = () => {
 const styles = StyleSheet.create({
   tabBarContainer: {
     position: 'absolute',
-    bottom: hp(-8),
+    bottom: hp(-10),
     width: width,
     height: CIRCLE_RADIUS * 2 + hp(2),
     justifyContent: 'center',
@@ -202,14 +202,14 @@ const styles = StyleSheet.create({
     width: CIRCLE_RADIUS * 2,
     height: CIRCLE_RADIUS * 2,
     borderRadius: CIRCLE_RADIUS,
-    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    backgroundColor: 'rgba(164, 163, 163, 0.4)',
     borderWidth: 1.5,
     borderColor: 'rgba(255, 255, 255, 0.6)',
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 5},
     shadowOpacity: 0.35,
     shadowRadius: 8,
-    elevation: 5,
+    // elevation: 5,
     justifyContent: 'center',
     alignItems: 'center',
   },

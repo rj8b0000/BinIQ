@@ -1,5 +1,5 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useRef} from 'react';
+import {Image, StyleSheet, Text, View, Animated} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -10,6 +10,24 @@ import {useNavigation} from '@react-navigation/native';
 
 const PayWall = () => {
   const navigation = useNavigation();
+  const scaleAnim = useRef(new Animated.Value(1)).current;
+
+  const handlePressIn = () => {
+    Animated.spring(scaleAnim, {
+      toValue: 0.95,
+      friction: 3,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const handlePressOut = () => {
+    Animated.spring(scaleAnim, {
+      toValue: 1,
+      friction: 3,
+      useNativeDriver: true,
+    }).start();
+  };
+
   return (
     <View style={styles.container}>
       <View style={{height: hp(7)}} />
@@ -106,36 +124,54 @@ const PayWall = () => {
           </View>
         </View>
       </View>
-      <TouchableOpacity
-        style={styles.gettingStarted}
-        onPress={() => navigation.navigate('FreeSubscription')}>
-        <Text
-          style={{
-            fontFamily: 'Nunito-SemiBold',
-            color: '#fff',
-            fontSize: hp(2.2),
-          }}>
-          Access Now
-        </Text>
-      </TouchableOpacity>
+      <Animated.View
+        style={[styles.buttonContainer, {transform: [{scale: scaleAnim}]}]}>
+        <TouchableOpacity
+          style={styles.gettingStarted}
+          onPress={() => navigation.navigate('FreeSubscription')}
+          onPressIn={handlePressIn}
+          onPressOut={handlePressOut}
+          activeOpacity={0.8}>
+          <Text style={styles.buttonText}>Access Now</Text>
+        </TouchableOpacity>
+      </Animated.View>
     </View>
   );
 };
-
-export default PayWall;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  buttonContainer: {
+    width: '90%',
+    alignSelf: 'center',
+    marginTop: '15%',
+  },
   gettingStarted: {
     backgroundColor: '#130160',
-    width: '90%',
+    opacity: 0.85, // Semi-transparency for glassmorphism
+    width: '100%',
     height: hp(7),
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    alignSelf: 'center',
-    marginTop: '15%',
+    // Shadow for iOS
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 4},
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    // Border for glassmorphism effect
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.2)', // Subtle white border
+    // Elevation for Android
+    elevation: 8,
+  },
+  buttonText: {
+    fontFamily: 'Nunito-SemiBold',
+    color: '#fff',
+    fontSize: hp(2.2),
   },
 });
+
+export default PayWall;
