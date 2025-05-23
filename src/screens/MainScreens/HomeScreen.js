@@ -649,7 +649,7 @@ const HomeScreen = ({openDrawer}) => {
                   paddingRight: '2%',
                 }}
                 onPress={() => navigation.navigate('Notifications')}>
-                <Notification height={hp(4)} />
+                <Notification height={hp(10)} />
               </Pressable>
             </View>
           </View>
@@ -805,7 +805,7 @@ const HomeScreen = ({openDrawer}) => {
                 fontSize: hp(2.3),
                 color: '#000000',
               }}>
-              MY FAVOURITES
+              MY FAVORITES
             </Text>
             <TouchableOpacity
               onPress={() => navigation.navigate('FavouritesScreen')}>

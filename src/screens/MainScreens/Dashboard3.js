@@ -107,7 +107,7 @@ const Dashboard3 = ({percentage = 70}) => {
           </View> */}
           <View style={styles.cardsContainer}>
             {/* Upgrade Storage */}
-            <View style={styles.card}>
+            <View style={styles.card1}>
               <Text style={styles.uppercardTitle}>
                 Ready to become a Bin IQ PRO?
               </Text>
@@ -118,10 +118,9 @@ const Dashboard3 = ({percentage = 70}) => {
                     fontFamily: 'Nunito-SemiBold',
                     fontSize: hp(1.2),
                   }}>
-                  Ready to become a Bin IQ PRO? In this training learn the
-                  secrets of pinpointing the best bin stores, selecting the
-                  right items, listing effectively, and selling strategically
-                  with our proven BinIQ blueprint.
+                  In this training learn the secrets of pinpointing the best bin
+                  stores, selecting the right items, listing effectively, and
+                  selling strategically with our proven BinIQ blueprint.
                 </Text>
               </View>
               <View style={styles.cardButton}>
@@ -374,6 +373,22 @@ const styles = StyleSheet.create({
     elevation: 2,
     paddingVertical: '2.5%',
     alignItems: 'center',
+  },
+  card1: {
+    flex: 1,
+    width: '50%',
+    height: hp(26),
+    backgroundColor: '#F2F5F8',
+    borderRadius: 6,
+    marginHorizontal: 5,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+    paddingHorizontal: '2.5%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   uppercardTitle: {
     fontSize: wp(3.6),

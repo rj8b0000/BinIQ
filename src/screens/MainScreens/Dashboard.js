@@ -55,7 +55,7 @@ const Dashboard = ({percentage = 70}) => {
       <View style={styles.cardsContainer}>
         {/* Upgrade Storage */}
         <View style={styles.card}>
-          <Text style={styles.uppercardTitle}>UPGRADE STORAGE</Text>
+          <Text style={styles.uppercardTitle}>MY STORAGE</Text>
           <Circle
             size={hp(10)}
             progress={0.8}
